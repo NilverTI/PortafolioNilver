@@ -42,6 +42,13 @@ export const SKILLS = [
         color: '#61DAFB'
     },
     {
+        title: 'Next.js',
+        description: 'React Framework para producción',
+        value: 72,
+        icon: 'fa-brands fa-n',
+        color: '#ffffff'
+    },
+    {
         title: 'Node.js',
         description: 'APIs y servidores backend con JavaScript',
         value: 70,
@@ -202,7 +209,9 @@ export const SKILL_CATEGORIES = [
             { name: 'HTML5',      desc: 'Estructura de páginas',       icon: 'fa-brands fa-html5',       color: '#E34F26', value: 95 },
             { name: 'CSS3',       desc: 'Estilo y layout',             icon: 'fa-brands fa-css3-alt',    color: '#1572B6', value: 90 },
             { name: 'JavaScript', desc: 'Interacción dinámica',        icon: 'fa-brands fa-js',          color: '#F7DF1E', value: 85 },
+            { name: 'TypeScript', desc: 'JS Tipado y robusto',         icon: 'fa-solid fa-code',         color: '#3178C6', value: 76 },
             { name: 'React',      desc: 'Interfaces por componentes',  icon: 'fa-brands fa-react',       color: '#61DAFB', value: 80 },
+            { name: 'Next.js',    desc: 'Framework para React',        icon: 'fa-brands fa-n',           color: '#ffffff', value: 72 },
             { name: 'jQuery',     desc: 'Manipulación rápida del DOM', icon: 'fa-solid fa-bolt',         color: '#0769AD', value: 75 },
             { name: 'Qt',         desc: 'Interfaces multiplataforma',  icon: 'fa-solid fa-desktop',      color: '#41CD52', value: 70 }
         ]

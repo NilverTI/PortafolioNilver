@@ -1,5 +1,5 @@
 import { query, setHtml } from './utils/dom.js';
-import { SOCIAL_LINKS } from './constants/site-data.js';
+import { SOCIAL_LINKS } from './constants/sitedata.js';
 
 // Map social network name → brand color
 const SOCIAL_COLORS = {

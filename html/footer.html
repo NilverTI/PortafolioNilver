@@ -1,12 +1,25 @@
-<!-- Footer -->
-<footer class="bg-black py-8 border-t border-gray-800">
-    <div
-        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 space-y-4 md:space-y-0">
-        <div class="text-center md:text-left w-full md:w-auto">
-            <p>&copy; 2026 <span class="text-white font-semibold">NILVER T.I</span> &mdash; Todos los derechos
-                reservados.</p>
+<!-- Footer Cyberpunk -->
+<footer class="footer-cyberpunk" id="footerCyberpunk">
+    <!-- Background grid overlay -->
+    <div class="footer-grid"></div>
+
+    <!-- Massive Glitch Text Container -->
+    <div class="footer-glitch-container" id="glitchContainer">
+        <!-- Canvas for text masking/erasing via blend modes -->
+        <canvas id="eraseCanvas" class="erase-canvas"></canvas>
+        
+        <h2 class="glitch" id="glitchText" data-text="NILVER T.I">NILVER<span class="text-[#E50914]"> T.I</span></h2>
+        
+        <!-- Canvas for particle explosion -->
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center z-10 relative">
+            <div class="text-center md:text-left mb-4 md:mb-0">
+                <p class="footer-text">&copy; 2026 <span class="footer-highlight">NILVER T.I</span> &mdash; ACCESO CONCEDIDO ///</p>
+            </div>
+            <div id="socialLinks" class="flex space-x-6 justify-center md:justify-end footer-socials"></div>
         </div>
-        <div id="socialLinks"
-            class="flex space-x-5 text-xl text-gray-400 w-full md:w-auto justify-center md:justify-end"></div>
     </div>
 </footer>

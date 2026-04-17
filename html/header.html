@@ -1,34 +1,35 @@
 <!-- Header de navegacion -->
-<header class="fixed w-full bg-[#0F0F11] bg-opacity-95 z-50 transition-all duration-300">
-    <div class="container mx-auto px-6 py-5">
+<header
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-white/5 bg-[#0a0a0a]/80 backdrop-blur-md">
+    <div class="container mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-[#E50914] tracking-tighter">NT</h1>
-            
-            <nav class="hidden md:block flex-1">
-                <ul class="flex justify-center space-x-8" data-nav-list="desktop"></ul>
-            </nav>
-            
-            <div class="hidden md:block">
-                <a href="#contact" class="bg-[#E50914] hover:bg-red-600 text-white px-6 py-2 rounded-full font-medium text-sm transition duration-300 shadow-[0_0_15px_rgba(229,9,20,0.5)]">
-                    Let's Talk
-                </a>
-            </div>
 
-            <button class="md:hidden text-white focus:outline-none" id="mobileMenuButton" type="button"
-                aria-controls="mobileMenu" aria-expanded="false">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            <!-- Left Side: Nav Menu -->
+            <nav class="hidden md:block">
+                <ul class="flex justify-start space-x-10" data-nav-list="desktop"></ul>
+            </nav>
+
+            <!-- Left Side Mobile: Hamburger Button -->
+            <button class="md:hidden text-gray-300 hover:text-white focus:outline-none transition-colors"
+                id="mobileMenuButton" type="button" aria-controls="mobileMenu" aria-expanded="false">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                         d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
-        </div>
-    </div>
-    <div class="md:hidden hidden bg-[#0F0F11] border-t border-[#1E1E24] py-4" id="mobileMenu">
-        <ul class="flex flex-col items-center space-y-4" data-nav-list="mobile"></ul>
-        <div class="mt-6 flex justify-center">
-            <a href="#contact" class="bg-[#E50914] text-white px-6 py-2 rounded-full font-medium text-sm">
-                Let's Talk
+
+            <!-- Right Side: Logo -->
+            <a href="#" id="headerLogo" class="flex items-center gap-2 group cursor-pointer" aria-label="Ir al inicio">
+                <h1
+                    class="text-2xl font-black text-white tracking-wider uppercase transition-transform duration-300 group-hover:scale-105">
+                    NILVER<span class="text-[#E50914]"> T.I</span>
+                </h1>
             </a>
         </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden bg-[#0a0a0a]/95 backdrop-blur-md border-t border-white/5 py-6 px-6" id="mobileMenu">
+        <ul class="flex flex-col items-start space-y-6" data-nav-list="mobile"></ul>
     </div>
 </header>

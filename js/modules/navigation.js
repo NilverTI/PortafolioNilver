@@ -3,7 +3,7 @@ import { escapeHtml, query, queryAll, setHtml } from '../utils/dom.js';
 function buildNavMarkup(navLinks) {
     return navLinks.map(({ href, label }) => `
         <li>
-            <a href="${escapeHtml(href)}" class="nav-link text-white hover:text-red-accent transition" data-nav-link>
+            <a href="${escapeHtml(href)}" class="nav-link" data-nav-link>
                 ${escapeHtml(label)}
             </a>
         </li>
@@ -36,6 +36,18 @@ export function initNavigation() {
 
             mobileMenu.classList.toggle('hidden');
             mobileButton.setAttribute('aria-expanded', String(!isExpanded));
+        });
+    }
+
+    const headerLogo = query('#headerLogo');
+    if (headerLogo) {
+        headerLogo.addEventListener('click', (event) => {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Clean up the URL hash without reloading the page
+            history.replaceState(null, null, ' ');
+            setActiveNav('#home');
         });
     }
 

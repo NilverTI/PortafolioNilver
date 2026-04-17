@@ -1,4 +1,4 @@
-import { NAV_LINKS } from './constants/site-data.js';
+import { NAV_LINKS } from './constants/sitedata.js';
 import { initNavigation, renderNavigation } from './modules/navigation.js';
 
 export function initHeaderSection() {

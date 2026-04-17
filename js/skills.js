@@ -1,5 +1,5 @@
-import { SKILLS, SKILL_CATEGORIES, SKILL_VIEW_LABELS } from './constants/site-data.js';
-import { renderSkills, renderSkillCategories, initSkillsViewToggle } from './modules/skills-view.js';
+import { SKILLS, SKILL_CATEGORIES, SKILL_VIEW_LABELS } from './constants/sitedata.js';
+import { renderSkills, renderSkillCategories, initSkillsViewToggle } from './modules/skillsView.js';
 
 export function initSkillsSection() {
     renderSkillCategories(SKILL_CATEGORIES);

@@ -1,6 +1,6 @@
-import { PROJECTS } from './constants/site-data.js';
+import { PROJECTS } from './constants/sitedata.js';
 import { initProjectDetails } from './modules/project-details.js';
-import { renderProjects } from './modules/projects-list.js';
+import { renderProjects } from './modules/projectsList.js';
 
 export function initProjectsSection() {
     renderProjects(PROJECTS);
