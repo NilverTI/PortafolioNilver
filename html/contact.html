@@ -1,0 +1,56 @@
+<!-- Sección de contacto -->
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+
+        <!-- LEFT — Form -->
+        <div class="contact-left">
+            <span class="contact-label">¿Tienes un proyecto?</span>
+            <h2 class="contact-title">Contáct<span class="contact-title__accent">ame</span></h2>
+            <p class="contact-subtitle">
+                Cuéntame sobre tu idea y te respondo lo antes posible.
+            </p>
+
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required />
+                    <p class="form-error hidden" id="nameError">Por favor ingresa tu nombre</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required />
+                    <p class="form-error hidden" id="emailError">Por favor ingresa un correo válido</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Mensaje</label>
+                    <textarea id="message" name="message" rows="4" class="form-input form-textarea"
+                        placeholder="¿En qué puedo ayudarte?" required></textarea>
+                    <p class="form-error hidden" id="messageError">Por favor escribe tu mensaje</p>
+                </div>
+
+                <button type="submit" class="contact-submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Enviar mensaje
+                </button>
+            </form>
+
+            <div id="successMessage" class="contact-success hidden">
+                <i class="fa-solid fa-circle-check contact-success__icon"></i>
+                <h3>¡Mensaje enviado!</h3>
+                <p>Gracias por contactarme. Te responderé lo antes posible.</p>
+            </div>
+        </div>
+
+        <!-- RIGHT — Social links -->
+        <div class="contact-right">
+            <span class="contact-label">Encuéntrame en</span>
+            <h3 class="contact-social-title">Mis redes</h3>
+            <p class="contact-social-sub">Sígueme en mis redes sociales y mantente al tanto de mis proyectos.</p>
+
+            <div class="social-list" id="contactSocialList"></div>
+        </div>
+
+    </div>
+</section>

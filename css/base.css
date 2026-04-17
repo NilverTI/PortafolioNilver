@@ -1,0 +1,33 @@
+:root {
+    --color-background: #0f0f0f;
+    --color-accent: #E50914;
+    --color-muted-border: #333;
+    --transition-base: 0.3s ease;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--color-background);
+    color: #fff;
+}
+
+.red-accent {
+    color: var(--color-accent);
+}
+
+.bg-red-accent {
+    background-color: var(--color-accent);
+}
+
+.border-red-accent {
+    border-color: var(--color-accent);
+}
+
+.hover-scale {
+    transition: transform var(--transition-base);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}

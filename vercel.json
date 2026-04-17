@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*).(css|js|html|webp|jpg|png|svg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=86400, stale-while-revalidate=43200"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/projects",
+      "destination": "/html/projects.html"
+    }
+  ]
+}

@@ -1,52 +1,109 @@
 # NILVER T.I - Portfolio
 
-Sitio web tipo portfolio personal, desarrollado con enfoque moderno y visual limpio para presentar habilidades, proyectos y canales de contacto.
+Sitio web portfolio personal refactorizado con una arquitectura modular, limpia y escalable, manteniendo el mismo diseño visual, las mismas animaciones y la misma funcionalidad observable del sitio original.
 
-## Vista
+[![Ver demo en vivo](https://img.shields.io/badge/🚀%20Ver%20Demo%20en%20Vivo-nilverti.vercel.app-E50914?style=for-the-badge&logo=vercel&logoColor=white)](https://nilverti.vercel.app/)
 
-[Ver vista principal](./index.html)
+## Vista previa
 
-![Vista Home](./img/home.jpeg)
+[![Vista previa del portfolio](./img/ico/home.jpeg)](https://nilverti.vercel.app/)
 
 ## Tecnologias
 
 - HTML5
 - CSS3
-- JavaScript (Vanilla)
+- JavaScript (Vanilla + ES Modules)
 - Tailwind CSS (CDN)
 - Font Awesome
+- Node.js para generar artefactos del sitio
 
-## Secciones principales
-
-- Inicio (`#home`)
-- Habilidades (`#skills`)
-- Proyectos (`#projects`)
-- Contacto (`#contact`)
-
-## Estructura del proyecto
+## Estructura final
 
 ```text
-Practica 2/
+PortafolioNilver/
 |-- index.html
 |-- README.md
+|-- config/
+|   `-- site.config.json
+|-- html/
+|   |-- template.html
+|   |-- header.html
+|   |-- home.html
+|   |-- skills.html
+|   |-- projects.html
+|   |-- contact.html
+|   `-- footer.html
 |-- css/
-|   `-- estilos.css
+|   |-- base.css
+|   |-- header.css
+|   |-- home.css
+|   |-- skills.css
+|   |-- projects.css
+|   |-- contact.css
+|   `-- footer.css
 |-- js/
-|   |-- fondo.js
-|   `-- main.js
+|   |-- main.js
+|   |-- header.js
+|   |-- home.js
+|   |-- skills.js
+|   |-- projects.js
+|   |-- contact.js
+|   |-- footer.js
+|   |-- constants/
+|   |   `-- site-data.js
+|   |-- generated/
+|   |   |-- site-config.js
+|   |   `-- section-templates.js
+|   |-- modules/
+|   |   |-- drawing-canvas.js
+|   |   |-- navigation.js
+|   |   |-- particles-background.js
+|   |   |-- profile-svg.js
+|   |   |-- project-details.js
+|   |   |-- projects-list.js
+|   |   |-- skills-view.js
+|   |   `-- social-links.js
+|   |-- services/
+|   |   `-- section-loader.js
+|   `-- utils/
+|       `-- dom.js
+|-- scripts/
+|   `-- build.js
 `-- img/
-    |-- home.jpeg
-    |-- redes.jpg
-    |-- flores.jpg
-    |-- arbol.jpg
-    |-- corazon.jpg
-    `-- cicsa.jpg
+    |-- ico/
+    |   `-- home.jpeg
+    `-- proyectos/
+        |-- arbol.jpg
+        |-- cicsa.jpg
+        |-- corazon.jpg
+        |-- flores.jpg
+        |-- movilbuspsv.webp
+        |-- peruserver.webp
+        |-- rarazpsv.webp
+        |-- redes.jpg
+        `-- transzelapsv.webp
 ```
 
-## Como ejecutar
+## Como queda conectado
 
-1. Abre la carpeta del proyecto.
-2. Ejecuta `index.html` en el navegador (o usa Live Server en VS Code).
+- `config/site.config.json` define el shell del sitio, el orden de las secciones y los estilos globales.
+- `scripts/build.js` genera:
+  - `index.html`
+  - `js/generated/site-config.js`
+  - `js/generated/section-templates.js`
+- `index.html` queda como entry point limpio y solo carga estilos, slots de seccion y `js/main.js`.
+- `js/main.js` monta las secciones, inicializa cada modulo y coordina el sitio.
+- `js/services/section-loader.js` carga los parciales HTML y usa fallback generado cuando hace falta.
+- `js/constants/site-data.js` concentra la data repetida de navegacion, habilidades, proyectos y redes sociales.
+- `js/modules/` encapsula la logica de UI e interacciones.
+
+## Flujo de trabajo
+
+1. Edita las secciones en `html/`.
+2. Edita estilos en `css/`.
+3. Edita logica o datos en `js/`.
+4. Ejecuta `node scripts/build.js`.
+5. Abre `index.html` en el navegador o con Live Server.
 
 ## Autor
 

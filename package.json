@@ -1,0 +1,10 @@
+{
+  "name": "portfolio-nilver",
+  "version": "1.0.0",
+  "description": "Portfolio automation for Vercel deployment",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
