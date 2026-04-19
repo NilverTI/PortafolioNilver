@@ -1,14 +1,6 @@
-import { escapeHtml, query, queryAll, setHtml } from '../utils/dom.js';
+import { query, queryAll } from '../utils/dom.js';
 
-function buildNavMarkup(navLinks) {
-    return navLinks.map(({ href, label }) => `
-        <li>
-            <a href="${escapeHtml(href)}" class="nav-link" data-nav-link>
-                ${escapeHtml(label)}
-            </a>
-        </li>
-    `).join('');
-}
+let navigationInitialized = false;
 
 function setActiveNav(targetId) {
     queryAll('[data-nav-link]').forEach((link) => {
@@ -17,18 +9,91 @@ function setActiveNav(targetId) {
     });
 }
 
-export function renderNavigation(navLinks) {
-    const markup = buildNavMarkup(navLinks);
+function closeMobileMenu(mobileMenu, mobileButton) {
+    if (!mobileMenu || mobileMenu.classList.contains('hidden')) {
+        return;
+    }
 
-    queryAll('[data-nav-list]').forEach((list) => {
-        setHtml(list, markup);
+    mobileMenu.classList.add('hidden');
+    mobileButton?.setAttribute('aria-expanded', 'false');
+}
+
+function scrollToSection(targetId) {
+    const section = query(targetId);
+
+    if (!section) {
+        return;
+    }
+
+    const top = section.getBoundingClientRect().top + window.scrollY - 80;
+
+    window.scrollTo({
+        top,
+        behavior: 'smooth'
     });
 }
 
+function initSectionHighlighting() {
+    const sections = queryAll('section[id]');
+
+    if (!sections.length) {
+        return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+        const highlightSection = () => {
+            let currentSectionId = '#home';
+
+            sections.forEach((section) => {
+                if (window.scrollY >= section.offsetTop - 120) {
+                    currentSectionId = `#${section.id}`;
+                }
+            });
+
+            setActiveNav(currentSectionId);
+        };
+
+        window.addEventListener('scroll', highlightSection, { passive: true });
+        highlightSection();
+        return;
+    }
+
+    const visibleSections = new Map();
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            visibleSections.set(entry.target.id, entry);
+        });
+
+        const activeEntry = Array.from(visibleSections.values())
+            .filter((entry) => entry.isIntersecting)
+            .sort((entryA, entryB) => {
+                if (entryB.intersectionRatio !== entryA.intersectionRatio) {
+                    return entryB.intersectionRatio - entryA.intersectionRatio;
+                }
+
+                return entryA.boundingClientRect.top - entryB.boundingClientRect.top;
+            })[0];
+
+        if (activeEntry) {
+            setActiveNav(`#${activeEntry.target.id}`);
+        }
+    }, {
+        rootMargin: '-35% 0px -45% 0px',
+        threshold: [0.1, 0.25, 0.5, 0.75]
+    });
+
+    sections.forEach((section) => observer.observe(section));
+}
+
 export function initNavigation() {
+    if (navigationInitialized) {
+        return;
+    }
+
+    navigationInitialized = true;
+
     const mobileButton = query('#mobileMenuButton');
     const mobileMenu = query('#mobileMenu');
-    const navLinks = queryAll('[data-nav-link]');
 
     if (mobileButton && mobileMenu) {
         mobileButton.addEventListener('click', () => {
@@ -44,56 +109,30 @@ export function initNavigation() {
         headerLogo.addEventListener('click', (event) => {
             event.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Clean up the URL hash without reloading the page
-            history.replaceState(null, null, ' ');
+            history.replaceState(null, '', window.location.pathname + window.location.search);
             setActiveNav('#home');
+            closeMobileMenu(mobileMenu, mobileButton);
         });
     }
 
-    navLinks.forEach((link) => {
-        link.addEventListener('click', (event) => {
-            const targetId = link.getAttribute('href');
+    document.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-nav-link]');
 
-            if (!targetId?.startsWith('#')) {
-                return;
-            }
+        if (!link) {
+            return;
+        }
 
-            event.preventDefault();
+        const targetId = link.getAttribute('href');
+        if (!targetId?.startsWith('#')) {
+            return;
+        }
 
-            const section = query(targetId);
-
-            if (section) {
-                window.scrollTo({
-                    top: section.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-
-            setActiveNav(targetId);
-
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                mobileButton?.setAttribute('aria-expanded', 'false');
-            }
-        });
+        event.preventDefault();
+        scrollToSection(targetId);
+        setActiveNav(targetId);
+        closeMobileMenu(mobileMenu, mobileButton);
     });
 
-    function highlightSection() {
-        const sections = queryAll('section');
-        let currentSectionId = '';
-
-        sections.forEach((section) => {
-            if (window.pageYOffset >= section.offsetTop - 100) {
-                currentSectionId = `#${section.id}`;
-            }
-        });
-
-        if (currentSectionId) {
-            setActiveNav(currentSectionId);
-        }
-    }
-
-    window.addEventListener('scroll', highlightSection);
-    highlightSection();
+    setActiveNav('#home');
+    initSectionHighlighting();
 }

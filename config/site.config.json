@@ -2,8 +2,20 @@
   "template": "html/template.html",
   "output": "index.html",
   "entryScript": "js/main.js",
+  "stylesOutput": "css/site.css",
+  "metadata": {
+    "title": "NILVER T.I - Portfolio",
+    "description": "Construyo aplicaciones web modernas, escalables y de alto rendimiento con dise\u00f1o limpio y arquitectura s\u00f3lida.",
+    "siteUrl": "https://nilverti.vercel.app/",
+    "previewImage": "img/ico/home.jpeg",
+    "themeColor": "#07070a",
+    "locale": "es_PE"
+  },
   "styles": [
+    "css/fonts.css",
+    "css/icons.css",
     "css/base.css",
+    "css/scrollbar.css",
     "css/header.css",
     "css/home.css",
     "css/skills.css",

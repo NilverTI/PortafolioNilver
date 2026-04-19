@@ -1,25 +1,35 @@
 import { escapeHtml, query, setHtml } from '../utils/dom.js';
 
 const PER_PAGE = 6;
+
 let currentPage = 0;
 let allProjects = [];
+
+function getProjectImageSrc(imageSrc) {
+    if (!imageSrc.endsWith('.webp')) {
+        return imageSrc;
+    }
+
+    return imageSrc.replace('img/proyectos/', 'img/proyectos/optimized/');
+}
 
 function buildProjectCard(project) {
     return `
         <a href="${escapeHtml(project.websiteUrl)}" target="_blank" rel="noopener noreferrer"
            class="proj-card" aria-label="Ver ${escapeHtml(project.title)} en vivo">
-
-            <!-- Image fills the entire card -->
             <div class="proj-card__img-wrap">
                 <img
-                    src="${escapeHtml(project.imageSrc)}"
+                    src="${escapeHtml(getProjectImageSrc(project.imageSrc))}"
                     alt="${escapeHtml(project.imageAlt || project.title)}"
                     class="proj-card__img"
                     loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    width="1600"
+                    height="1000"
+                    sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
                 />
             </div>
-
-            <!-- Hover overlay: pill + title + desc -->
             <div class="proj-card__overlay">
                 <span class="proj-card__visit">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -33,82 +43,124 @@ function buildProjectCard(project) {
                     <p class="proj-card__desc">${escapeHtml(project.description)}</p>
                 </div>
             </div>
-
         </a>
     `;
 }
 
-function renderPage(page) {
-    const grid = query('#projectsGrid');
-    if (!grid) return;
-
-    const start = page * PER_PAGE;
-    const slice = allProjects.slice(start, start + PER_PAGE);
-
-    // Fade out → swap → fade in
-    grid.style.opacity = '0';
-    grid.style.transform = 'translateY(12px)';
-
-    setTimeout(() => {
-        setHtml(grid, slice.map(buildProjectCard).join(''));
-        grid.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-        grid.style.opacity = '1';
-        grid.style.transform = 'translateY(0)';
-    }, 220);
-
-    updatePaginationUI(page);
+function buildDots(totalPages, page) {
+    return Array.from({ length: totalPages }, (_, index) => `
+        <button
+            class="proj-dot ${index === page ? 'active' : ''}"
+            data-page="${index}"
+            aria-label="Ir a p&aacute;gina ${index + 1}"
+        ></button>
+    `).join('');
 }
 
 function updatePaginationUI(page) {
     const totalPages = Math.ceil(allProjects.length / PER_PAGE);
-    const dots  = query('#projPageDots');
-    const prev  = query('#projPrevBtn');
-    const next  = query('#projNextBtn');
+    const dots = query('#projPageDots');
+    const prev = query('#projPrevBtn');
+    const next = query('#projNextBtn');
 
-    if (!dots || !prev || !next) return;
+    if (!dots || !prev || !next) {
+        return;
+    }
 
-    // Dots
-    dots.innerHTML = Array.from({ length: totalPages }, (_, i) => `
-        <button
-            class="proj-dot ${i === page ? 'active' : ''}"
-            data-page="${i}"
-            aria-label="Ir a página ${i + 1}"
-        ></button>
-    `).join('');
+    setHtml(dots, buildDots(totalPages, page));
 
-    dots.querySelectorAll('.proj-dot').forEach((dot) => {
-        dot.addEventListener('click', () => goToPage(Number(dot.dataset.page)));
-    });
-
-    // Prev / Next state
     prev.disabled = page === 0;
     next.disabled = page === totalPages - 1;
     prev.classList.toggle('disabled', page === 0);
     next.classList.toggle('disabled', page === totalPages - 1);
 }
 
+function renderPage(page, { animate = true } = {}) {
+    const grid = query('#projectsGrid');
+    if (!grid) {
+        return;
+    }
+
+    const start = page * PER_PAGE;
+    const slice = allProjects.slice(start, start + PER_PAGE);
+
+    const applyMarkup = () => {
+        setHtml(grid, slice.map(buildProjectCard).join(''));
+        grid.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        grid.style.opacity = '1';
+        grid.style.transform = 'translateY(0)';
+        updatePaginationUI(page);
+    };
+
+    if (!animate) {
+        applyMarkup();
+        return;
+    }
+
+    grid.style.opacity = '0';
+    grid.style.transform = 'translateY(12px)';
+
+    window.setTimeout(applyMarkup, 220);
+}
+
 function goToPage(page) {
+    const totalPages = Math.ceil(allProjects.length / PER_PAGE);
+
+    if (page < 0 || page >= totalPages || page === currentPage) {
+        return;
+    }
+
     currentPage = page;
     renderPage(currentPage);
+}
+
+function bindPaginationEvents(pagination) {
+    if (pagination.dataset.bound === 'true') {
+        return;
+    }
+
+    pagination.dataset.bound = 'true';
+    pagination.addEventListener('click', (event) => {
+        const button = event.target.closest('button');
+        if (!button) {
+            return;
+        }
+
+        if (button.id === 'projPrevBtn') {
+            goToPage(currentPage - 1);
+            return;
+        }
+
+        if (button.id === 'projNextBtn') {
+            goToPage(currentPage + 1);
+            return;
+        }
+
+        if (button.dataset.page) {
+            goToPage(Number(button.dataset.page));
+        }
+    });
 }
 
 export function renderProjects(projects) {
     allProjects = projects;
     currentPage = 0;
 
-    const prev = query('#projPrevBtn');
-    const next = query('#projNextBtn');
     const pagination = query('#projPagination');
-
-    const totalPages = Math.ceil(allProjects.length / PER_PAGE);
-
-    // Hide pagination if only 1 page
-    if (pagination) {
-        pagination.style.display = totalPages <= 1 ? 'none' : 'flex';
+    const grid = query('#projectsGrid');
+    if (!pagination || !grid) {
+        return;
     }
 
-    if (prev) prev.addEventListener('click', () => { if (currentPage > 0) goToPage(currentPage - 1); });
-    if (next) next.addEventListener('click', () => { if (currentPage < totalPages - 1) goToPage(currentPage + 1); });
+    const totalPages = Math.ceil(allProjects.length / PER_PAGE);
+    pagination.style.display = totalPages <= 1 ? 'none' : 'flex';
 
-    renderPage(0);
+    bindPaginationEvents(pagination);
+    updatePaginationUI(0);
+
+    if (grid.children.length > 0) {
+        return;
+    }
+
+    renderPage(0, { animate: false });
 }

@@ -1,191 +1,331 @@
 import { query } from '../utils/dom.js';
 
+const PARTICLE_COLORS = ['#E50914', '#ff5252', '#ffffff'];
+const MAX_PARTICLES = 650;
+const BRUSH_RADIUS = 30;
+const PARTICLE_STEP = 4;
+const HEAL_STRENGTH = 0.04;
+const DAMAGE_ALPHA_THRESHOLD = 24;
+const TEXT_ALPHA_THRESHOLD = 70;
+
+let footerParticlesInitialized = false;
+
+function createDamageCanvas(width, height) {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+
+    return {
+        canvas,
+        context: canvas.getContext('2d', { willReadFrequently: true })
+    };
+}
+
+class Particle {
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 2.2 + 1.2;
+        this.life = 1;
+        this.decay = Math.random() * 0.02 + 0.012;
+        this.color = color;
+
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 5 + 1.8;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed - 0.6;
+    }
+
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx *= 0.96;
+        this.vy = this.vy * 0.96 + 0.02;
+        this.life -= this.decay;
+    }
+
+    draw(context) {
+        const alpha = Math.max(0, this.life);
+
+        context.globalAlpha = alpha;
+        context.fillStyle = this.color;
+        context.shadowBlur = 10;
+        context.shadowColor = this.color;
+        context.beginPath();
+        context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        context.fill();
+    }
+}
+
 export function initFooterParticles() {
-    const pCanvas = query('#particleCanvas');
-    const eCanvas = query('#eraseCanvas');
+    if (footerParticlesInitialized) {
+        return;
+    }
+
+    footerParticlesInitialized = true;
+
+    const particleCanvas = query('#particleCanvas');
+    const eraseCanvas = query('#eraseCanvas');
     const container = query('#glitchContainer');
     const textElement = query('#glitchText');
-    
-    if(!pCanvas || !eCanvas || !container || !textElement) return;
 
-    const pCtx = pCanvas.getContext('2d', { willReadFrequently: true });
-    const eCtx = eCanvas.getContext('2d');
-    
+    if (!particleCanvas || !eraseCanvas || !container || !textElement) {
+        return;
+    }
+
+    const particleContext = particleCanvas.getContext('2d');
+    const eraseContext = eraseCanvas.getContext('2d');
+
+    if (!particleContext || !eraseContext) {
+        return;
+    }
+
+    const textMask = createDamageCanvas(1, 1);
+    const damageMask = createDamageCanvas(1, 1);
+
+    if (!textMask.context || !damageMask.context) {
+        return;
+    }
+
     let particles = [];
-    let animationFrame;
-    
-    // Mouse tracking
-    let mouseX = -1000;
-    let mouseY = -1000;
-    let isMouseOver = false;
-    let offCtx; // Offscreen canvas to detect pixels
+    let animationFrame = 0;
+    let resizeFrame = 0;
+    let isVisible = !('IntersectionObserver' in window);
+    let isPointerInside = false;
+    let needsHealing = false;
 
-    function resize() {
-        // Particle canvas bleeds out by 100px
-        pCanvas.width = container.clientWidth + 100;
-        pCanvas.height = container.clientHeight + 100;
-        
-        // Erase canvas matches exactly the text size container
-        eCanvas.width = container.clientWidth;
-        eCanvas.height = container.clientHeight;
-        
-        // Clear erase canvas (transparent)
-        eCtx.clearRect(0, 0, eCanvas.width, eCanvas.height);
-        
-        // Rebuild offscreen canvas to match text size
-        initOffscreenCanvas();
-    }
-    
-    function initOffscreenCanvas() {
-        const offCanvas = document.createElement('canvas');
-        offCanvas.width = container.clientWidth;
-        offCanvas.height = container.clientHeight;
-        offCtx = offCanvas.getContext('2d', { willReadFrequently: true });
-        
+    function resizeCanvases() {
+        const width = Math.max(1, Math.round(container.clientWidth));
+        const height = Math.max(1, Math.round(container.clientHeight));
+
+        particleCanvas.width = width + 100;
+        particleCanvas.height = height + 100;
+        eraseCanvas.width = width;
+        eraseCanvas.height = height;
+        textMask.canvas.width = width;
+        textMask.canvas.height = height;
+        damageMask.canvas.width = width;
+        damageMask.canvas.height = height;
+
+        eraseContext.clearRect(0, 0, width, height);
+        damageMask.context.clearRect(0, 0, width, height);
+
         const fontSize = window.getComputedStyle(textElement).fontSize;
-        const text = textElement.getAttribute('data-text');
-        
-        offCtx.fillStyle = '#ffffff';
-        offCtx.font = `900 ${fontSize} Orbitron, Impact, sans-serif`;
-        offCtx.textAlign = 'center';
-        offCtx.textBaseline = 'middle';
-        offCtx.fillText(text, offCanvas.width / 2, offCanvas.height / 2);
+        const text = textElement.getAttribute('data-text') || textElement.textContent || '';
+
+        textMask.context.clearRect(0, 0, width, height);
+        textMask.context.fillStyle = '#ffffff';
+        textMask.context.font = `900 ${fontSize} Orbitron, Impact, sans-serif`;
+        textMask.context.textAlign = 'center';
+        textMask.context.textBaseline = 'middle';
+        textMask.context.fillText(text, width / 2, height / 2);
+
+        renderEraseMask();
     }
 
-    window.addEventListener('resize', resize);
-    document.fonts.ready.then(resize);
-    resize();
-
-    class Particle {
-        constructor(x, y, color) {
-            this.x = x;
-            this.y = y;
-            this.size = Math.random() * 2.5 + 1;
-            
-            // Explosion physics completely randomized outward
-            const angle = Math.random() * Math.PI * 2;
-            const velocity = Math.random() * 10 + 2; 
-            this.vx = Math.cos(angle) * velocity;
-            this.vy = Math.sin(angle) * velocity - 2; // slight upward bias
-            
-            this.color = color;
-            this.life = 1.0;
-            this.decay = Math.random() * 0.02 + 0.01;
+    function scheduleResize() {
+        if (resizeFrame) {
+            return;
         }
 
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            this.vx *= 0.92; // friction
-            this.vy *= 0.92; // friction
-            this.life -= this.decay;
+        resizeFrame = window.requestAnimationFrame(() => {
+            resizeFrame = 0;
+            resizeCanvases();
+        });
+    }
+
+    function renderEraseMask() {
+        eraseContext.clearRect(0, 0, eraseCanvas.width, eraseCanvas.height);
+        eraseContext.drawImage(damageMask.canvas, 0, 0);
+        eraseContext.globalCompositeOperation = 'source-in';
+        eraseContext.fillStyle = '#050505';
+        eraseContext.fillRect(0, 0, eraseCanvas.width, eraseCanvas.height);
+        eraseContext.globalCompositeOperation = 'source-over';
+    }
+
+    function paintDamage(x, y) {
+        const gradient = damageMask.context.createRadialGradient(x, y, 0, x, y, BRUSH_RADIUS);
+        gradient.addColorStop(0, 'rgba(255,255,255,0.95)');
+        gradient.addColorStop(0.55, 'rgba(255,255,255,0.55)');
+        gradient.addColorStop(1, 'rgba(255,255,255,0)');
+
+        damageMask.context.globalCompositeOperation = 'source-over';
+        damageMask.context.fillStyle = gradient;
+        damageMask.context.beginPath();
+        damageMask.context.arc(x, y, BRUSH_RADIUS, 0, Math.PI * 2);
+        damageMask.context.fill();
+    }
+
+    function healDamage() {
+        damageMask.context.globalCompositeOperation = 'destination-out';
+        damageMask.context.fillStyle = `rgba(0, 0, 0, ${HEAL_STRENGTH})`;
+        damageMask.context.fillRect(0, 0, damageMask.canvas.width, damageMask.canvas.height);
+        damageMask.context.globalCompositeOperation = 'source-over';
+    }
+
+    function hasRemainingDamage() {
+        const sample = damageMask.context.getImageData(
+            0,
+            0,
+            damageMask.canvas.width,
+            damageMask.canvas.height
+        ).data;
+
+        for (let index = 3; index < sample.length; index += 64) {
+            if (sample[index] > DAMAGE_ALPHA_THRESHOLD) {
+                return true;
+            }
         }
 
-        draw() {
-            pCtx.globalAlpha = Math.max(0, this.life);
-            pCtx.fillStyle = this.color;
-            pCtx.shadowBlur = 8;
-            pCtx.shadowColor = this.color;
-            pCtx.beginPath();
-            pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            pCtx.fill();
-        }
+        return false;
     }
 
     function spawnParticlesFromBrush(mouseX, mouseY) {
-        if (!offCtx) return;
-        
-        // Coordinates for the offscreen/erase canvases are relative to the container
-        const brushRadius = 25; 
-        
-        // We only scan a small area around the mouse
-        const startX = Math.max(0, mouseX - brushRadius);
-        const startY = Math.max(0, mouseY - brushRadius);
-        const scanWidth = Math.min(eCanvas.width - startX, brushRadius * 2);
-        const scanHeight = Math.min(eCanvas.height - startY, brushRadius * 2);
-        
-        if(scanWidth <= 0 || scanHeight <= 0) return;
+        const startX = Math.max(0, Math.floor(mouseX - BRUSH_RADIUS));
+        const startY = Math.max(0, Math.floor(mouseY - BRUSH_RADIUS));
+        const scanWidth = Math.min(eraseCanvas.width - startX, BRUSH_RADIUS * 2);
+        const scanHeight = Math.min(eraseCanvas.height - startY, BRUSH_RADIUS * 2);
 
-        const imgData = offCtx.getImageData(startX, startY, scanWidth, scanHeight).data;
-        const colors = ['#E50914', '#ffffff', '#333333'];
-        
-        let spawnedAnything = false;
-        
-        // Check pixels in the brush area
-        for (let y = 0; y < scanHeight; y += 4) {
-            for (let x = 0; x < scanWidth; x += 4) {
-                // Circular brush check
-                const dx = (startX + x) - mouseX;
-                const dy = (startY + y) - mouseY;
-                if(dx*dx + dy*dy <= brushRadius*brushRadius) {
-                    
-                    const alpha = imgData[(y * scanWidth + x) * 4 + 3];
-                    if (alpha > 128) {
-                        // We hit text! 
-                        const color = colors[Math.floor(Math.random() * colors.length)];
-                        // particle canvas has a 50px offset (bleed out), so we add 50px
-                        particles.push(new Particle(startX + x + 50, startY + y + 50, color));
-                        spawnedAnything = true;
-                    }
+        if (scanWidth <= 0 || scanHeight <= 0) {
+            return;
+        }
+
+        const textPixels = textMask.context.getImageData(startX, startY, scanWidth, scanHeight).data;
+        const damagePixels = damageMask.context.getImageData(startX, startY, scanWidth, scanHeight).data;
+        let hitText = false;
+
+        for (let y = 0; y < scanHeight; y += PARTICLE_STEP) {
+            for (let x = 0; x < scanWidth; x += PARTICLE_STEP) {
+                const dx = startX + x - mouseX;
+                const dy = startY + y - mouseY;
+                if (dx * dx + dy * dy > BRUSH_RADIUS * BRUSH_RADIUS) {
+                    continue;
                 }
+
+                const pixelIndex = (y * scanWidth + x) * 4;
+                const textAlpha = textPixels[pixelIndex + 3];
+                const damageAlpha = damagePixels[pixelIndex + 3];
+
+                if (textAlpha < TEXT_ALPHA_THRESHOLD || damageAlpha > DAMAGE_ALPHA_THRESHOLD) {
+                    continue;
+                }
+
+                hitText = true;
+
+                if (particles.length >= MAX_PARTICLES || Math.random() > 0.62) {
+                    continue;
+                }
+
+                particles.push(new Particle(
+                    startX + x + 50,
+                    startY + y + 50,
+                    PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)]
+                ));
             }
         }
-        
-        if(spawnedAnything) {
-            // Draw a background-colored circle to "erase" the text dynamically
-            // #050505 is the exact background color of the footer
-            eCtx.globalCompositeOperation = 'source-over';
-            eCtx.fillStyle = '#050505'; 
-            eCtx.filter = 'blur(4px)'; 
-            eCtx.beginPath();
-            eCtx.arc(mouseX, mouseY, brushRadius, 0, Math.PI * 2);
-            eCtx.fill();
-            eCtx.filter = 'none';
+
+        if (!hitText) {
+            return;
         }
+
+        paintDamage(mouseX, mouseY);
+        needsHealing = true;
+        renderEraseMask();
+        startAnimation();
+    }
+
+    function startAnimation() {
+        if (animationFrame || !isVisible) {
+            return;
+        }
+
+        animationFrame = window.requestAnimationFrame(animate);
     }
 
     function animate() {
-        // Clear particle canvas
-        pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-        
-        // Fade the erase canvas back to transparent slowly so the text "regrows" 
-        if(!isMouseOver) {
-            eCtx.globalCompositeOperation = 'destination-out';
-            eCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            eCtx.fillRect(0, 0, eCanvas.width, eCanvas.height);
+        animationFrame = 0;
+
+        particleContext.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+
+        if (!isPointerInside && needsHealing) {
+            healDamage();
+            needsHealing = hasRemainingDamage();
+            renderEraseMask();
         }
 
-        // Handle particles
-        let alive = false;
-        particles.forEach(p => {
-            if (p.life > 0) {
-                p.update();
-                p.draw();
-                alive = true;
+        let hasAliveParticles = false;
+
+        particles = particles.filter((particle) => {
+            if (particle.life <= 0) {
+                return false;
             }
+
+            particle.update();
+            particle.draw(particleContext);
+
+            if (particle.life > 0) {
+                hasAliveParticles = true;
+                return true;
+            }
+
+            return false;
         });
-        
-        // Always run to heal the text or process particles
-        animationFrame = requestAnimationFrame(animate);
+
+        particleContext.globalAlpha = 1;
+        particleContext.shadowBlur = 0;
+
+        if ((isPointerInside && isVisible) || hasAliveParticles || needsHealing) {
+            startAnimation();
+        }
     }
 
-    container.addEventListener('mousemove', (e) => {
+    function updatePointerState(event) {
         const rect = container.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
-        isMouseOver = true;
-        
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+
+        isPointerInside = true;
         spawnParticlesFromBrush(mouseX, mouseY);
+    }
+
+    container.addEventListener('pointermove', updatePointerState);
+    container.addEventListener('pointerenter', () => {
+        isPointerInside = true;
+        startAnimation();
+    });
+    container.addEventListener('pointerleave', () => {
+        isPointerInside = false;
+        if (particles.length > 0 || needsHealing) {
+            startAnimation();
+        }
     });
 
-    container.addEventListener('mouseenter', () => {
-        isMouseOver = true;
-    });
+    window.addEventListener('resize', scheduleResize, { passive: true });
 
-    container.addEventListener('mouseleave', () => {
-        isMouseOver = false;
-    });
+    if (document.fonts?.ready) {
+        document.fonts.ready.then(scheduleResize).catch(scheduleResize);
+    } else {
+        scheduleResize();
+    }
 
-    // Start animation loop
-    animate();
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                isVisible = entry.isIntersecting;
+
+                if (isVisible) {
+                    scheduleResize();
+                    if (isPointerInside || particles.length > 0 || needsHealing) {
+                        startAnimation();
+                    }
+                }
+            });
+        }, {
+            threshold: 0.01
+        });
+
+        observer.observe(container);
+    } else {
+        scheduleResize();
+    }
 }

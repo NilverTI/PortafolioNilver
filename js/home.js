@@ -5,6 +5,8 @@ const roles = [
     "Especialista en React & Node.js"
 ];
 
+let homeSectionInitialized = false;
+
 function initTypewriter() {
     const textElement = document.querySelector('.typed-text');
     if (!textElement) return;
@@ -44,5 +46,10 @@ function initTypewriter() {
 }
 
 export function initHomeSection() {
+    if (homeSectionInitialized) {
+        return;
+    }
+
+    homeSectionInitialized = true;
     initTypewriter();
 }

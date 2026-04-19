@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url('../webfonts/fa-solid-900.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('../webfonts/fa-brands-400.woff2') format('woff2');
+}
+
+.fa,
+.fa-solid,
+.fas,
+.fa-brands,
+.fab {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+}
+
+.fa-solid,
+.fas {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+.fa-brands,
+.fab {
+    font-family: 'Font Awesome 6 Brands';
+    font-weight: 400;
+}
+
+.fa-arrow-right::before { content: '\f061'; }
+.fa-arrow-up-right-from-square::before,
+.fa-external-link::before { content: '\f08e'; }
+.fa-c::before { content: '\43'; }
+.fa-check::before { content: '\f00c'; }
+.fa-chevron-left::before { content: '\f053'; }
+.fa-chevron-right::before { content: '\f054'; }
+.fa-circle-check::before { content: '\f058'; }
+.fa-cloud-arrow-up::before,
+.fa-cloud-upload-alt::before { content: '\f0ee'; }
+.fa-code::before { content: '\f121'; }
+.fa-css3::before { content: '\f13c'; }
+.fa-css3-alt::before { content: '\f38b'; }
+.fa-database::before { content: '\f1c0'; }
+.fa-desktop::before { content: '\f390'; }
+.fa-figma::before { content: '\f799'; }
+.fa-gears::before { content: '\f085'; }
+.fa-git-alt::before { content: '\f841'; }
+.fa-github::before { content: '\f09b'; }
+.fa-gitlab::before { content: '\f296'; }
+.fa-html5::before { content: '\f13b'; }
+.fa-instagram::before { content: '\f16d'; }
+.fa-java::before { content: '\f4e4'; }
+.fa-js::before { content: '\f3b8'; }
+.fa-k::before { content: '\4b'; }
+.fa-linkedin::before { content: '\f08c'; }
+.fa-n::before { content: '\4e'; }
+.fa-node-js::before { content: '\f3d3'; }
+.fa-palette::before { content: '\f53f'; }
+.fa-paper-plane::before { content: '\f1d8'; }
+.fa-pen-ruler::before,
+.fa-pencil-ruler::before { content: '\f5ae'; }
+.fa-php::before { content: '\f457'; }
+.fa-python::before { content: '\f3e2'; }
+.fa-react::before { content: '\f41b'; }
+.fa-server::before { content: '\f233'; }
+.fa-tiktok::before { content: '\e07b'; }
+.fa-user::before { content: '\f007'; }
+.fa-youtube::before { content: '\f167'; }

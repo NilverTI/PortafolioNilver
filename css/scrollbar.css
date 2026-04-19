@@ -1,0 +1,133 @@
+.custom-scrollbar {
+    --scrollbar-width: 0.95rem;
+    position: fixed;
+    top: max(5.45rem, env(safe-area-inset-top));
+    right: max(0.6rem, env(safe-area-inset-right));
+    bottom: max(1.2rem, env(safe-area-inset-bottom));
+    width: var(--scrollbar-width);
+    z-index: 80;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(1rem, 0, 0);
+    transition:
+        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-scrollbar.is-ready {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.custom-scrollbar.is-hidden {
+    opacity: 0;
+    transform: translate3d(1rem, 0, 0);
+}
+
+.custom-scrollbar__track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #E50914; /* Fondo rojo profesional */
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.3),
+        0 4px 15px rgba(229, 9, 20, 0.2);
+}
+
+.custom-scrollbar__labels {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+    will-change: transform;
+}
+
+.custom-scrollbar__label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.38rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.custom-scrollbar__label.is-ink {
+    color: #0A0A0A;
+}
+
+.custom-scrollbar__label.is-ivory {
+    color: #FFFFFF;
+}
+
+.custom-scrollbar__thumb {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    width: calc(100% - 4px);
+    min-height: 4rem;
+    border-radius: 999px;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    will-change: transform, height;
+    transition:
+        height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.custom-scrollbar__thumb::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-scrollbar.is-scrolling .custom-scrollbar__thumb {
+    background: #000;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+}
+
+.custom-scrollbar.is-scrolling .custom-scrollbar__thumb::before {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 767px) {
+    .custom-scrollbar {
+        --scrollbar-width: 0.75rem;
+        top: max(5rem, env(safe-area-inset-top));
+        right: max(0.4rem, env(safe-area-inset-right));
+        bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+
+    .custom-scrollbar__labels {
+        padding: 0.5rem 0;
+    }
+
+    .custom-scrollbar__label {
+        font-size: 0.3rem;
+        letter-spacing: 0.15em;
+    }
+
+    .custom-scrollbar__thumb {
+        min-height: 2.5rem;
+    }
+}

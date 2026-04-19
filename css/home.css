@@ -1,11 +1,11 @@
 /* =============================================
-   HERO SECTION — Split Layout (Text Left | Image Right)
+   HERO SECTION — Fully Responsive
    ============================================= */
 
 /* ─── Layout ─── */
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 100svh; /* use svh for mobile browser chrome */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,11 +19,11 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10rem 2.5rem 6rem;
+    padding: 8rem 1.5rem 5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 5rem;
+    gap: 4rem;
 }
 
 /* ─── LEFT column ─── */
@@ -81,21 +81,22 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 18px;
+    padding: 6px 16px;
     border-radius: 999px;
     border: 1px solid rgba(229, 9, 20, 0.25);
     background: rgba(229, 9, 20, 0.07);
     backdrop-filter: blur(10px);
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.4rem;
 }
 .hero-badge__dot {
-    width: 7px; height: 7px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: #e50914;
     animation: blinkDot 2s ease-in-out infinite;
+    flex-shrink: 0;
 }
 .hero-badge__text {
-    font-size: 0.72rem;
+    font-size: clamp(0.62rem, 1.5vw, 0.72rem);
     font-weight: 500;
     color: #e50914;
     letter-spacing: 0.06em;
@@ -104,7 +105,7 @@
 
 /* ─── Title ─── */
 .hero-title {
-    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-size: clamp(2rem, 5vw, 4.2rem);
     font-weight: 800;
     color: #ffffff;
     line-height: 1.1;
@@ -122,7 +123,7 @@
 
 /* ─── Typewriter Role ─── */
 .hero-role {
-    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
     color: #9ca3af;
     font-weight: 300;
     letter-spacing: 0.01em;
@@ -140,7 +141,7 @@
 
 /* ─── Description ─── */
 .hero-description {
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
     color: #6b7280;
     line-height: 1.85;
     max-width: 480px;
@@ -152,17 +153,17 @@
 .hero-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
+    gap: 0.5rem;
     justify-content: flex-start;
-    margin-bottom: 2.2rem;
+    margin-bottom: 2rem;
 }
 .tech-chip {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 5px 14px;
+    padding: 5px 12px;
     border-radius: 6px;
-    font-size: 0.78rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.78rem);
     font-weight: 500;
     color: #d1d5db;
     background: rgba(255, 255, 255, 0.03);
@@ -188,14 +189,15 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 0.75rem 1.8rem;
+    padding: 0.75rem 1.6rem;
     border-radius: 999px;
-    font-size: 0.88rem;
+    font-size: clamp(0.82rem, 1.5vw, 0.88rem);
     font-weight: 600;
     letter-spacing: 0.02em;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     text-decoration: none;
+    white-space: nowrap;
 }
 .btn--primary {
     background: linear-gradient(135deg, #e50914, #b00710);
@@ -222,11 +224,7 @@
     transform: translateY(-2px);
 }
 
-/* ════════════════════════════════════
-   PROFILE IMAGE — Right Side
-   ════════════════════════════════════ */
-
-/* Outer decorative rings */
+/* ─── Profile Image Right ─── */
 .hero-img-ring {
     position: absolute;
     width: 320px; height: 320px;
@@ -241,7 +239,6 @@
     animation-duration: 30s;
 }
 
-/* Glow behind image */
 .hero-img-glow {
     position: absolute;
     width: 260px; height: 260px;
@@ -251,11 +248,11 @@
     z-index: 0;
 }
 
-/* Image frame */
 .hero-img-wrapper {
     position: relative;
     z-index: 2;
-    width: 280px; height: 280px;
+    width: clamp(200px, 25vw, 280px);
+    height: clamp(200px, 25vw, 280px);
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid rgba(229, 9, 20, 0.35);
@@ -276,7 +273,6 @@
 }
 .hero-img:hover { transform: scale(1.04); }
 
-/* Fallback placeholder */
 .hero-img-fallback {
     display: none;
     flex-direction: column;
@@ -380,7 +376,6 @@
 .animate-float-a { animation: floatA 5s ease-in-out infinite; }
 .animate-float-b { animation: floatB 6s ease-in-out infinite 1s; }
 
-/* ─── Animation delays ─── */
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 220ms; }
 .delay-300 { animation-delay: 340ms; }
@@ -388,25 +383,60 @@
 .delay-500 { animation-delay: 580ms; }
 
 /* ─── Responsive ─── */
+
+/* Tablet */
 @media (max-width: 900px) {
     .hero-container {
         grid-template-columns: 1fr;
-        text-align: left;
-        gap: 3.5rem;
-        padding: 9rem 1.5rem 5rem;
+        text-align: center;
+        gap: 3rem;
+        padding: 8rem 1.5rem 4rem;
+    }
+    .hero-left {
+        align-items: center;
+    }
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-chips {
+        justify-content: center;
+    }
+    .hero-cta {
+        justify-content: center;
     }
     .hero-right {
-        order: -1;  /* image on top in mobile */
+        order: -1;
         margin: 0 auto;
     }
-    .hero-img-wrapper  { width: 220px; height: 220px; }
-    .hero-img-ring     { width: 250px; height: 250px; }
-    .hero-img-ring--outer { width: 300px; height: 300px; }
+    .hero-img-wrapper  { width: 200px; height: 200px; }
+    .hero-img-ring     { width: 235px; height: 235px; }
+    .hero-img-ring--outer { width: 275px; height: 275px; }
     .hero-exp-badge    { left: 0; bottom: -10px; }
     .hero-proj-badge   { right: 0; top: -10px; }
 }
-@media (max-width: 480px) {
-    .hero-cta { flex-direction: column; }
-    .btn { justify-content: center; }
+
+/* Mobile */
+@media (max-width: 560px) {
+    .hero-container {
+        padding: 7rem 1.25rem 3.5rem;
+        gap: 2.5rem;
+    }
+    .hero-img-wrapper  { width: 170px; height: 170px; }
+    .hero-img-ring     { width: 200px; height: 200px; }
+    .hero-img-ring--outer { width: 235px; height: 235px; }
+    .hero-exp-badge {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -40px;
+        white-space: nowrap;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 380px) {
+    .hero-cta { flex-direction: column; align-items: center; }
+    .btn { justify-content: center; width: 100%; max-width: 260px; }
     .hero-proj-badge { display: none; }
+    .hero-exp-badge { display: none; }
 }

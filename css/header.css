@@ -1,40 +1,193 @@
+/* =========================================
+   Header & Navigation
+========================================= */
 .nav-link {
     position: relative;
-    color: #999;
-    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
     font-weight: 500;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: color 0.3s ease;
-    padding: 0.5rem 0;
+    text-decoration: none;
+    padding: 0.4rem 0;
+    transition: color 0.25s ease;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
-    color: #fff;
+    color: #ffffff;
 }
 
+/* Thin red underline that expands on hover */
 .nav-link::after {
     content: '';
     position: absolute;
-    width: 4px;
-    height: 4px;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%) scale(0);
-    background-color: var(--color-accent);
-    border-radius: 50%;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #E50914;
+    box-shadow: 0 0 6px rgba(229, 9, 20, 0.7);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-link:hover::after {
-    transform: translateX(-50%) scale(1);
+.nav-link:hover::after,
+.active-nav::after {
+    width: 100%;
 }
 
 .active-nav {
-    color: #fff;
-    font-weight: 600;
+    color: #ffffff;
 }
 
-.active-nav::after {
-    transform: translateX(-50%) scale(1);
+/* Dot separator between nav items */
+.nav-separator {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
 }
+
+/* Mobile nav links */
+.nav-link--mobile {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0.5rem 1.5rem;
+}
+
+.nav-link--mobile:hover {
+    color: #ffffff;
+}
+
+/* =========================================
+   Site Header Structure
+========================================= */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    background: rgba(7, 7, 10, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.site-header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* Logo */
+.site-header__logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: opacity 0.25s ease;
+}
+
+.site-header__logo:hover {
+    opacity: 0.85;
+}
+
+.site-header__logo-accent {
+    color: #E50914;
+}
+
+/* Nav */
+.site-header__nav {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .site-header__nav {
+        display: block;
+    }
+}
+
+.site-header__nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-header__nav-list li {
+    display: flex;
+    align-items: center;
+}
+
+/* Hamburger */
+.site-header__hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 2rem;
+    height: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .site-header__hamburger {
+        display: none;
+    }
+}
+
+.site-header__bar {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+    transition: background 0.25s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+.site-header__hamburger:hover .site-header__bar {
+    background: #ffffff;
+}
+
+/* Mobile Menu */
+.site-header__mobile {
+    background: rgba(7, 7, 10, 0.97);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem 0;
+}
+
+.site-header__mobile.hidden {
+    display: none;
+}
+
+.site-header__mobile-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+

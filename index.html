@@ -5,27 +5,829 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NILVER T.I - Portfolio</title>
+    <meta name="description" content="Construyo aplicaciones web modernas, escalables y de alto rendimiento con diseño limpio y arquitectura sólida." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#07070a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:title" content="NILVER T.I - Portfolio" />
+    <meta property="og:description" content="Construyo aplicaciones web modernas, escalables y de alto rendimiento con diseño limpio y arquitectura sólida." />
+    <meta property="og:url" content="https://nilverti.vercel.app/" />
+    <meta property="og:image" content="https://nilverti.vercel.app/img/ico/home.jpeg" />
+    <meta property="og:site_name" content="NILVER T.I - Portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NILVER T.I - Portfolio" />
+    <meta name="twitter:description" content="Construyo aplicaciones web modernas, escalables y de alto rendimiento con diseño limpio y arquitectura sólida." />
+    <meta name="twitter:image" content="https://nilverti.vercel.app/img/ico/home.jpeg" />
+    <link rel="canonical" href="https://nilverti.vercel.app/" />
     <link rel="icon" type="image/png" href="img/ico/logo.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/home.css" />
-    <link rel="stylesheet" href="css/skills.css" />
-    <link rel="stylesheet" href="css/projects.css" />
-    <link rel="stylesheet" href="css/contact.css" />
-    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="preload" href="fonts/poppins-300.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="img/ico/logo.png" as="image" type="image/png" fetchpriority="high" />
+    <link rel="stylesheet" href="css/site.css" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"NILVER T.I","url":"https://nilverti.vercel.app/","image":"https://nilverti.vercel.app/img/ico/home.jpeg","jobTitle":"Desarrollador Full Stack","description":"Construyo aplicaciones web modernas, escalables y de alto rendimiento con diseño limpio y arquitectura sólida.","sameAs":["https://www.instagram.com/nilvert.i/","https://github.com/NilverTI","https://www.linkedin.com/in/nilverti/","https://tiktok.com/@nilvert.i","https://www.youtube.com/@nilvert.i"]}</script>
 </head>
 <body>
-    <div id="section-header" data-section-slot="header"></div>
-    <div id="section-home" data-section-slot="home"></div>
-    <div id="section-skills" data-section-slot="skills"></div>
-    <div id="section-projects" data-section-slot="projects"></div>
-    <div id="section-contact" data-section-slot="contact"></div>
-    <div id="section-footer" data-section-slot="footer"></div>
+<!-- Header de navegacion -->
+<header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+
+        <!-- Logo -->
+        <a href="#" id="headerLogo" class="site-header__logo" aria-label="Ir al inicio">
+            NILVER<span class="site-header__logo-accent"> T.I</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="site-header__nav" aria-label="Navegación principal">
+            <ul class="site-header__nav-list" data-nav-list="desktop">
+        <li>
+            <a href="#home" class="nav-link" data-nav-link>
+                Inicio
+            </a>
+        </li>
+    
+        <li>
+            <a href="#skills" class="nav-link" data-nav-link>
+                Habilidades
+            </a>
+        </li>
+    
+        <li>
+            <a href="#projects" class="nav-link" data-nav-link>
+                Proyectos
+            </a>
+        </li>
+    
+        <li>
+            <a href="#contact" class="nav-link" data-nav-link>
+                Contacto
+            </a>
+        </li>
+    </ul>
+        </nav>
+
+        <!-- Hamburger (Mobile) -->
+        <button
+            class="site-header__hamburger"
+            id="mobileMenuButton"
+            type="button"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+            aria-label="Abrir menú">
+            <span class="site-header__bar"></span>
+            <span class="site-header__bar"></span>
+            <span class="site-header__bar"></span>
+        </button>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="site-header__mobile hidden" id="mobileMenu">
+        <ul class="site-header__mobile-list" data-nav-list="mobile">
+        <li>
+            <a href="#home" class="nav-link" data-nav-link>
+                Inicio
+            </a>
+        </li>
+    
+        <li>
+            <a href="#skills" class="nav-link" data-nav-link>
+                Habilidades
+            </a>
+        </li>
+    
+        <li>
+            <a href="#projects" class="nav-link" data-nav-link>
+                Proyectos
+            </a>
+        </li>
+    
+        <li>
+            <a href="#contact" class="nav-link" data-nav-link>
+                Contacto
+            </a>
+        </li>
+    </ul>
+    </div>
+</header>
+
+<!-- Premium Hero Section -->
+<section id="home" class="hero-section">
+
+    <!-- Ambient background layers -->
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow hero-glow--left"></div>
+    <div class="hero-glow hero-glow--right"></div>
+
+    <!-- Two-column layout -->
+    <div class="hero-container">
+
+        <!-- ═══ LEFT SIDE — Text Content ═══ -->
+        <div class="hero-left">
+
+            <!-- Badge -->
+            <div class="hero-badge animate-fade-up">
+                <span class="hero-badge__dot"></span>
+                <span class="hero-badge__text">Disponible para proyectos freelance</span>
+            </div>
+
+            <!-- Main heading -->
+            <h1 class="hero-title animate-fade-up delay-100">
+                Hola, soy <br />
+                <span class="hero-title__name">NILVER T.I</span>
+            </h1>
+
+            <!-- Typewriter role -->
+            <div class="hero-role animate-fade-up delay-200">
+                <span class="typed-text"></span><span class="typed-cursor">|</span>
+            </div>
+
+            <!-- Description -->
+            <p class="hero-description animate-fade-up delay-300">
+                Construyo aplicaciones web modernas, escalables y de alto rendimiento
+                con diseño limpio y arquitectura sólida.
+            </p>
+
+            <!-- Tech chips -->
+            <div class="hero-chips animate-fade-up delay-400">
+                <span class="tech-chip"><i class="fa-brands fa-react" style="color:#61DAFB"></i> React</span>
+                <span class="tech-chip"><i class="fa-brands fa-node-js" style="color:#339933"></i> Node.js</span>
+                <span class="tech-chip"><i class="fa-brands fa-js" style="color:#F7DF1E"></i> TypeScript</span>
+                <span class="tech-chip"><i class="fa-solid fa-database" style="color:#47A248"></i> MongoDB</span>
+                <span class="tech-chip"><i class="fa-brands fa-css3-alt" style="color:#38B2AC"></i> Tailwind</span>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="hero-cta animate-fade-up delay-500">
+                <a href="#projects" class="btn btn--primary">
+                    <span>Ver Proyectos</span>
+                    <i class="fa-solid fa-arrow-right btn__icon"></i>
+                </a>
+                <a href="#contact" class="btn btn--outline">
+                    <span>Contáctame</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- ═══ RIGHT SIDE — Profile Image ═══ -->
+        <div class="hero-right animate-fade-up delay-300">
+
+            <!-- Decorative ring -->
+            <div class="hero-img-ring"></div>
+            <div class="hero-img-ring hero-img-ring--outer"></div>
+
+            <!-- Glow behind image -->
+            <div class="hero-img-glow"></div>
+
+            <!-- Profile picture -->
+            <div class="hero-img-wrapper">
+                <img src="img/ico/logo.png" alt="Nilver T.I - Desarrollador Full Stack" class="hero-img"
+                    id="hero-logo-img"
+                    width="280" height="280" decoding="async" fetchpriority="high"
+                    onerror="this.style.display='none'; document.getElementById('hero-img-fallback').style.display='flex';" />
+                <!-- Fallback if no image -->
+                <div class="hero-img-fallback" id="hero-img-fallback">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Añade tu foto en<br /><code>img/ico/logo.png</code></span>
+                </div>
+            </div>
+
+            <!-- Floating experience badge -->
+            <div class="hero-exp-badge animate-float-a">
+                <span class="hero-exp-badge__num">2+</span>
+                <span class="hero-exp-badge__label">Años de<br />experiencia</span>
+            </div>
+
+            <!-- Floating projects badge -->
+            <div class="hero-proj-badge animate-float-b">
+                <i class="fa-solid fa-check" style="color:#22c55e; font-size:0.7rem;"></i>
+                <span>+10 Proyectos entregados</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Sección de Habilidades -->
+<section id="skills" class="skills-section">
+    <div class="skills-bg-glow"></div>
+
+    <div class="skills-container">
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <span class="section-label">¿Qué sé hacer?</span>
+            <h2 class="section-title">Mis <span class="section-title__accent">Habilidades</span></h2>
+            <p class="section-subtitle">
+                Tecnologías que uso para construir productos modernos, escalables y de alto impacto.
+            </p>
+        </div>
+
+        <!-- Skills Grid (rendered by JS, 9 per page) -->
+        <div id="skillsCategoryGrid" class="sk-grid">
+        <div class="sk-card">
+            <div class="sk-card__head">
+                <div class="sk-card__icon" style="--c:#E34F26">
+                    <i class="fa-brands fa-html5" style="color:#E34F26"></i>
+                </div>
+                <div class="sk-card__info">
+                    <span class="sk-card__name">HTML5</span>
+                    <span class="sk-card__cat">Frontend</span>
+                </div>
+                <span class="sk-card__pct" style="color:#E34F26">95%</span>
+            </div>
+            <p class="sk-card__desc">Estructura de páginas</p>
+            <div class="sk-bar__track">
+                <div class="sk-bar__fill skill-bar-anim"
+                     style="--tw:95%;--c:#E34F26;"></div>
+            </div>
+        </div>
+    
+        <div class="sk-card">
+            <div class="sk-card__head">
+                <div class="sk-card__icon" style="--c:#1572B6">
+                    <i class="fa-brands fa-css3-alt" style="color:#1572B6"></i>
+                </div>
+                <div class="sk-card__info">
+                    <span class="sk-card__name">CSS3</span>
+                    <span class="sk-card__cat">Frontend</span>
+                </div>
+                <span class="sk-card__pct" style="color:#1572B6">90%</span>
+            </div>
+            <p class="sk-card__desc">Estilo y layout</p>
+            <div class="sk-bar__track">
+                <div class="sk-bar__fill skill-bar-anim"
+                     style="--tw:90%;--c:#1572B6;"></div>
+            </div>
+        </div>
+    
+        <div class="sk-card">
+            <div class="sk-card__head">
+                <div class="sk-card__icon" style="--c:#F7DF1E">
+                    <i class="fa-brands fa-js" style="color:#F7DF1E"></i>
+                </div>
+                <div class="sk-card__info">
+                    <span class="sk-card__name">JavaScript</span>
+                    <span class="sk-card__cat">Frontend</span>
+                </div>
+                <span class="sk-card__pct" style="color:#F7DF1E">85%</span>
+            </div>
+            <p class="sk-card__desc">Interacción dinámica</p>
+            <div class="sk-bar__track">
+                <div class="sk-bar__fill skill-bar-anim"
+                     style="--tw:85%;--c:#F7DF1E;"></div>
+            </div>
+        </div>
+    
+        <div class="sk-card">
+            <div class="sk-card__head">
+                <div class="sk-card__icon" style="--c:#3178C6">
+                    <i class="fa-solid fa-code" style="color:#3178C6"></i>
+                </div>
+                <div class="sk-card__info">
+                    <span class="sk-card__name">TypeScript</span>
+                    <span class="sk-card__cat">Frontend</span>
+                </div>
+                <span class="sk-card__pct" style="color:#3178C6">76%</span>
+            </div>
+            <p class="sk-card__desc">JS Tipado y robusto</p>
+            <div class="sk-bar__track">
+                <div class="sk-bar__fill skill-bar-anim"
+                     style="--tw:76%;--c:#3178C6;"></div>
+            </div>
+        </div>
+    
+        <div class="sk-card">
+            <div class="sk-card__head">
+                <div class="sk-card__icon" style="--c:#61DAFB">
+                    <i class="fa-brands fa-react" style="color:#61DAFB"></i>
+                </div>
+                <div class="sk-card__info">
+                    <span class="sk-card__name">React</span>
+                    <span class="sk-card__cat">Frontend</span>
+                </div>
+                <span class="sk-card__pct" style="color:#61DAFB">80%</span>
+            </div>
+            <p class="sk-card__desc">Interfaces por componentes</p>
+            <div class="sk-bar__track">
+                <div class="sk-bar__fill skill-bar-anim"
+                     style="--tw:80%;--c:#61DAFB;"></div>
+            </div>
+        </div>
+    
+        <div class="sk-card">
+            <div class="sk-card__head">
+                <div class="sk-card__icon" style="--c:#ffffff">
+                    <i class="fa-brands fa-n" style="color:#ffffff"></i>
+                </div>
+                <div class="sk-card__info">
+                    <span class="sk-card__name">Next.js</span>
+                    <span class="sk-card__cat">Frontend</span>
+                </div>
+                <span class="sk-card__pct" style="color:#ffffff">72%</span>
+            </div>
+            <p class="sk-card__desc">Framework para React</p>
+            <div class="sk-bar__track">
+                <div class="sk-bar__fill skill-bar-anim"
+                     style="--tw:72%;--c:#ffffff;"></div>
+            </div>
+        </div>
+    
+        <div class="sk-card">
+            <div class="sk-card__head">
+                <div class="sk-card__icon" style="--c:#0769AD">
+                    <i class="fa-solid fa-bolt" style="color:#0769AD"></i>
+                </div>
+                <div class="sk-card__info">
+                    <span class="sk-card__name">jQuery</span>
+                    <span class="sk-card__cat">Frontend</span>
+                </div>
+                <span class="sk-card__pct" style="color:#0769AD">75%</span>
+            </div>
+            <p class="sk-card__desc">Manipulación rápida del DOM</p>
+            <div class="sk-bar__track">
+                <div class="sk-bar__fill skill-bar-anim"
+                     style="--tw:75%;--c:#0769AD;"></div>
+            </div>
+        </div>
+    
+        <div class="sk-card">
+            <div class="sk-card__head">
+                <div class="sk-card__icon" style="--c:#41CD52">
+                    <i class="fa-solid fa-desktop" style="color:#41CD52"></i>
+                </div>
+                <div class="sk-card__info">
+                    <span class="sk-card__name">Qt</span>
+                    <span class="sk-card__cat">Frontend</span>
+                </div>
+                <span class="sk-card__pct" style="color:#41CD52">70%</span>
+            </div>
+            <p class="sk-card__desc">Interfaces multiplataforma</p>
+            <div class="sk-bar__track">
+                <div class="sk-bar__fill skill-bar-anim"
+                     style="--tw:70%;--c:#41CD52;"></div>
+            </div>
+        </div>
+    
+        <div class="sk-card">
+            <div class="sk-card__head">
+                <div class="sk-card__icon" style="--c:#339933">
+                    <i class="fa-brands fa-node-js" style="color:#339933"></i>
+                </div>
+                <div class="sk-card__info">
+                    <span class="sk-card__name">Node.js</span>
+                    <span class="sk-card__cat">Backend y Desarrollo</span>
+                </div>
+                <span class="sk-card__pct" style="color:#339933">85%</span>
+            </div>
+            <p class="sk-card__desc">Lógica del servidor</p>
+            <div class="sk-bar__track">
+                <div class="sk-bar__fill skill-bar-anim"
+                     style="--tw:85%;--c:#339933;"></div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Pagination controls (rendered by JS) -->
+        <div id="skillsPagination">
+        <div class="sk-pagination">
+            <button class="sk-page-btn sk-page-btn--prev" id="skillsPrev"
+                    disabled>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="sk-page-dots">
+        <button class="sk-page-dot sk-page-dot--active"
+                data-page="0" aria-label="P&aacute;gina 1"></button>
+    
+        <button class="sk-page-dot "
+                data-page="1" aria-label="P&aacute;gina 2"></button>
+    
+        <button class="sk-page-dot "
+                data-page="2" aria-label="P&aacute;gina 3"></button>
+    </div>
+            <button class="sk-page-btn sk-page-btn--next" id="skillsNext"
+                    >
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        <p class="sk-page-info">
+            Mostrando 1&ndash;9 de 24 habilidades
+        </p>
+    </div>
+
+    </div>
+</section>
+
+<!-- Sección de Proyectos -->
+<section id="projects" class="proj-section">
+    <div class="proj-bg-glow"></div>
+
+    <div class="proj-container">
+
+        <!-- Header -->
+        <div class="section-header">
+            <span class="section-label">Lo que he construido</span>
+            <h2 class="section-title">Mis <span class="section-title__accent">Proyectos</span></h2>
+            <p class="section-subtitle">
+                Sitios web reales, en producción, construidos con tecnologías modernas.
+            </p>
+        </div>
+
+        <!-- Projects grid -->
+        <div id="projectsGrid" class="proj-grid">
+        <a href="https://peruserver.pe" target="_blank" rel="noopener noreferrer"
+           class="proj-card" aria-label="Ver Web de Peruserver en vivo">
+            <div class="proj-card__img-wrap">
+                <img
+                    src="img/proyectos/optimized/peruserver.webp"
+                    alt="Flores Virtuales"
+                    class="proj-card__img"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    width="1600"
+                    height="1000"
+                    sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+                />
+            </div>
+            <div class="proj-card__overlay">
+                <span class="proj-card__visit">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Ver sitio web
+                </span>
+                <div class="proj-card__body">
+                    <div class="proj-card__meta">
+                        <h3 class="proj-card__title">Web de Peruserver</h3>
+                        <i class="fa-solid fa-arrow-up-right-from-square proj-card__arrow"></i>
+                    </div>
+                    <p class="proj-card__desc">Sitio web oficial de PERUSERVER simulador de conduccion de inspirado en perú</p>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://www.movilbuspsv.de/" target="_blank" rel="noopener noreferrer"
+           class="proj-card" aria-label="Ver Web de MOVIL BUS PSV en vivo">
+            <div class="proj-card__img-wrap">
+                <img
+                    src="img/proyectos/optimized/movilbuspsv.webp"
+                    alt="Flores Virtuales"
+                    class="proj-card__img"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    width="1600"
+                    height="1000"
+                    sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+                />
+            </div>
+            <div class="proj-card__overlay">
+                <span class="proj-card__visit">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Ver sitio web
+                </span>
+                <div class="proj-card__body">
+                    <div class="proj-card__meta">
+                        <h3 class="proj-card__title">Web de MOVIL BUS PSV</h3>
+                        <i class="fa-solid fa-arrow-up-right-from-square proj-card__arrow"></i>
+                    </div>
+                    <p class="proj-card__desc">Sitio web oficial de MOVIL BUS PSV consumo de api del trucky y conexion con supabase para una galeria de fotos</p>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://transzelapsv.ink/" target="_blank" rel="noopener noreferrer"
+           class="proj-card" aria-label="Ver Web de TRANSZELA PSV en vivo">
+            <div class="proj-card__img-wrap">
+                <img
+                    src="img/proyectos/optimized/transzelapsv.webp"
+                    alt="Flores Virtuales"
+                    class="proj-card__img"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    width="1600"
+                    height="1000"
+                    sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+                />
+            </div>
+            <div class="proj-card__overlay">
+                <span class="proj-card__visit">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Ver sitio web
+                </span>
+                <div class="proj-card__body">
+                    <div class="proj-card__meta">
+                        <h3 class="proj-card__title">Web de TRANSZELA PSV</h3>
+                        <i class="fa-solid fa-arrow-up-right-from-square proj-card__arrow"></i>
+                    </div>
+                    <p class="proj-card__desc">Sitio web oficial de TRANSZELA PSV consumo de api del trucky y conexion con supabase para una galeria de fotos</p>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://raraz.peruserver.pe/" target="_blank" rel="noopener noreferrer"
+           class="proj-card" aria-label="Ver Web de RARAZ PSV en vivo">
+            <div class="proj-card__img-wrap">
+                <img
+                    src="img/proyectos/optimized/rarazpsv.webp"
+                    alt="Flores Virtuales"
+                    class="proj-card__img"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    width="1600"
+                    height="1000"
+                    sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+                />
+            </div>
+            <div class="proj-card__overlay">
+                <span class="proj-card__visit">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Ver sitio web
+                </span>
+                <div class="proj-card__body">
+                    <div class="proj-card__meta">
+                        <h3 class="proj-card__title">Web de RARAZ PSV</h3>
+                        <i class="fa-solid fa-arrow-up-right-from-square proj-card__arrow"></i>
+                    </div>
+                    <p class="proj-card__desc">Sitio web oficial de RARAZ PSV consumo de api del trucky y conexion con supabase para una galeria de fotos</p>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://cicsa.netlify.app/" target="_blank" rel="noopener noreferrer"
+           class="proj-card" aria-label="Ver Web de Cicsa en vivo">
+            <div class="proj-card__img-wrap">
+                <img
+                    src="img/proyectos/cicsa.jpg"
+                    alt="Flores Virtuales"
+                    class="proj-card__img"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    width="1600"
+                    height="1000"
+                    sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+                />
+            </div>
+            <div class="proj-card__overlay">
+                <span class="proj-card__visit">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Ver sitio web
+                </span>
+                <div class="proj-card__body">
+                    <div class="proj-card__meta">
+                        <h3 class="proj-card__title">Web de Cicsa</h3>
+                        <i class="fa-solid fa-arrow-up-right-from-square proj-card__arrow"></i>
+                    </div>
+                    <p class="proj-card__desc">Sitio web oficial del Centro Médico CICSA, especializado en la realización de exámenes médicos para licencias de conducir.</p>
+                </div>
+            </div>
+        </a>
+    
+        <a href="https://nilverti.netlify.app/" target="_blank" rel="noopener noreferrer"
+           class="proj-card" aria-label="Ver Gestor de Redes Sociales en vivo">
+            <div class="proj-card__img-wrap">
+                <img
+                    src="img/proyectos/redes.jpg"
+                    alt="Redes Sociales"
+                    class="proj-card__img"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    width="1600"
+                    height="1000"
+                    sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+                />
+            </div>
+            <div class="proj-card__overlay">
+                <span class="proj-card__visit">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Ver sitio web
+                </span>
+                <div class="proj-card__body">
+                    <div class="proj-card__meta">
+                        <h3 class="proj-card__title">Gestor de Redes Sociales</h3>
+                        <i class="fa-solid fa-arrow-up-right-from-square proj-card__arrow"></i>
+                    </div>
+                    <p class="proj-card__desc">Web interactiva para administrar múltiples redes sociales desde un solo panel. Ideal para creadores de contenido y pymes.</p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+        <!-- Pagination -->
+        <div class="proj-pagination" id="projPagination">
+            <button class="proj-page-btn" id="projPrevBtn" disabled aria-label="Página anterior">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="proj-page-dots" id="projPageDots">
+        <button
+            class="proj-dot active"
+            data-page="0"
+            aria-label="Ir a p&aacute;gina 1"
+        ></button>
+    
+        <button
+            class="proj-dot "
+            data-page="1"
+            aria-label="Ir a p&aacute;gina 2"
+        ></button>
+    </div>
+            <button class="proj-page-btn" id="projNextBtn" aria-label="Página siguiente">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- Sección de contacto -->
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+
+        <!-- LEFT — Form -->
+        <div class="contact-left">
+            <span class="contact-label">¿Tienes un proyecto?</span>
+            <h2 class="contact-title">Contáct<span class="contact-title__accent">ame</span></h2>
+            <p class="contact-subtitle">
+                Cuéntame sobre tu idea y te respondo lo antes posible.
+            </p>
+
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required />
+                    <p class="form-error hidden" id="nameError">Por favor ingresa tu nombre</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required />
+                    <p class="form-error hidden" id="emailError">Por favor ingresa un correo válido</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Mensaje</label>
+                    <textarea id="message" name="message" rows="4" class="form-input form-textarea"
+                        placeholder="¿En qué puedo ayudarte?" required></textarea>
+                    <p class="form-error hidden" id="messageError">Por favor escribe tu mensaje</p>
+                </div>
+
+                <button type="submit" class="contact-submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Enviar mensaje
+                </button>
+            </form>
+
+            <div id="successMessage" class="contact-success hidden">
+                <i class="fa-solid fa-circle-check contact-success__icon"></i>
+                <h3>¡Mensaje enviado!</h3>
+                <p>Gracias por contactarme. Te responderé lo antes posible.</p>
+            </div>
+        </div>
+
+        <!-- RIGHT — Social links -->
+        <div class="contact-right">
+            <span class="contact-label">Encuéntrame en</span>
+            <h3 class="contact-social-title">Mis redes</h3>
+            <p class="contact-social-sub">Sígueme en mis redes sociales y mantente al tanto de mis proyectos.</p>
+
+            <div class="social-list" id="contactSocialList">
+        <a href="https://www.instagram.com/nilvert.i/" target="_blank" rel="noopener noreferrer"
+           class="social-item" style="--social-color: #E1306C;"
+           aria-label="Instagram">
+            <div class="social-item__icon">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div class="social-item__info">
+                <p class="social-item__name">Instagram</p>
+                <p class="social-item__handle">@nilvert.i</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+        </a>
+    
+        <a href="https://github.com/NilverTI" target="_blank" rel="noopener noreferrer"
+           class="social-item" style="--social-color: #6e5494;"
+           aria-label="GitHub">
+            <div class="social-item__icon">
+                <i class="fab fa-github"></i>
+            </div>
+            <div class="social-item__info">
+                <p class="social-item__name">GitHub</p>
+                <p class="social-item__handle">github.com/NilverTI</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+        </a>
+    
+        <a href="https://www.linkedin.com/in/nilverti/" target="_blank" rel="noopener noreferrer"
+           class="social-item" style="--social-color: #0A66C2;"
+           aria-label="LinkedIn">
+            <div class="social-item__icon">
+                <i class="fab fa-linkedin"></i>
+            </div>
+            <div class="social-item__info">
+                <p class="social-item__name">LinkedIn</p>
+                <p class="social-item__handle">linkedin.com/in/nilverti</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+        </a>
+    
+        <a href="https://tiktok.com/@nilvert.i" target="_blank" rel="noopener noreferrer"
+           class="social-item" style="--social-color: #EE1D52;"
+           aria-label="TikTok">
+            <div class="social-item__icon">
+                <i class="fab fa-tiktok"></i>
+            </div>
+            <div class="social-item__info">
+                <p class="social-item__name">TikTok</p>
+                <p class="social-item__handle">@nilvert.i</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+        </a>
+    
+        <a href="https://www.youtube.com/@nilvert.i" target="_blank" rel="noopener noreferrer"
+           class="social-item" style="--social-color: #FF0000;"
+           aria-label="YouTube">
+            <div class="social-item__icon">
+                <i class="fab fa-youtube"></i>
+            </div>
+            <div class="social-item__info">
+                <p class="social-item__name">YouTube</p>
+                <p class="social-item__handle">@nilvert.i</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+        </a>
+    </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer Cyberpunk -->
+<footer class="footer-cyberpunk" id="footerCyberpunk">
+    <!-- Background grid overlay -->
+    <div class="footer-grid"></div>
+
+    <!-- Massive Glitch Text Container -->
+    <div class="footer-glitch-container" id="glitchContainer">
+        <!-- Canvas for text masking/erasing via blend modes -->
+        <canvas id="eraseCanvas" class="erase-canvas"></canvas>
+        
+        <h2 class="glitch" id="glitchText" data-text="NILVER T.I">NILVER<span class="text-[#E50914]"> T.I</span></h2>
+        
+        <!-- Canvas for particle explosion -->
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-24 z-10 relative">
+            <div class="text-center md:text-right">
+                <p class="footer-text m-0">&copy; 2026 <span class="footer-highlight">NILVER T.I</span> &mdash; ACCESO CONCEDIDO ///</p>
+            </div>
+            <div id="socialLinks" class="flex space-x-6 justify-center footer-socials">
+        <a href="https://www.instagram.com/nilvert.i/" class="footer-social-link hover:text-pink-500"
+            target="_blank" rel="noopener noreferrer" title="Instagram"
+            aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    
+        <a href="https://github.com/NilverTI" class="footer-social-link hover:text-white"
+            target="_blank" rel="noopener noreferrer" title="GitHub"
+            aria-label="GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+    
+        <a href="https://www.linkedin.com/in/nilverti/" class="footer-social-link hover:text-blue-500"
+            target="_blank" rel="noopener noreferrer" title="LinkedIn"
+            aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </a>
+    
+        <a href="https://tiktok.com/@nilvert.i" class="footer-social-link hover:text-pink-400"
+            target="_blank" rel="noopener noreferrer" title="TikTok"
+            aria-label="TikTok">
+            <i class="fab fa-tiktok"></i>
+        </a>
+    
+        <a href="https://www.youtube.com/@nilvert.i" class="footer-social-link hover:text-red-600"
+            target="_blank" rel="noopener noreferrer" title="YouTube"
+            aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+        </div>
+    </div>
+</footer>
+
+    <div class="custom-scrollbar" id="customScrollbar" aria-hidden="true">
+        <div class="custom-scrollbar__track" id="customScrollbarTrack">
+            <div class="custom-scrollbar__labels" id="customScrollbarLabels"></div>
+            <div class="custom-scrollbar__thumb" id="customScrollbarThumb"></div>
+        </div>
+    </div>
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

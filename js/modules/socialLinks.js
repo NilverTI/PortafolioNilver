@@ -3,7 +3,8 @@ import { escapeHtml, query, setHtml } from '../utils/dom.js';
 function buildSocialLinkMarkup(link) {
     return `
         <a href="${escapeHtml(link.href)}" class="footer-social-link ${escapeHtml(link.hoverClassName)}"
-            target="_blank" title="${escapeHtml(link.title)}">
+            target="_blank" rel="noopener noreferrer" title="${escapeHtml(link.title)}"
+            aria-label="${escapeHtml(link.title)}">
             <i class="${escapeHtml(link.iconClassName)}"></i>
         </a>
     `;

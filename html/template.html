@@ -4,17 +4,37 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NILVER T.I - Portfolio</title>
+    <title>{{metaTitle}}</title>
+    <meta name="description" content="{{metaDescription}}" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="{{themeColor}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="{{metaLocale}}" />
+    <meta property="og:title" content="{{metaTitle}}" />
+    <meta property="og:description" content="{{metaDescription}}" />
+    <meta property="og:url" content="{{siteUrl}}" />
+    <meta property="og:image" content="{{previewImageUrl}}" />
+    <meta property="og:site_name" content="{{metaTitle}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{metaTitle}}" />
+    <meta name="twitter:description" content="{{metaDescription}}" />
+    <meta name="twitter:image" content="{{previewImageUrl}}" />
+    <link rel="canonical" href="{{siteUrl}}" />
     <link rel="icon" type="image/png" href="img/ico/logo.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preload" href="fonts/poppins-300.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="img/ico/logo.png" as="image" type="image/png" fetchpriority="high" />
 {{styles}}
+    <script type="application/ld+json">{{structuredData}}</script>
 </head>
 <body>
-{{sectionSlots}}
+{{sectionMarkup}}
+    <div class="custom-scrollbar" id="customScrollbar" aria-hidden="true">
+        <div class="custom-scrollbar__track" id="customScrollbarTrack">
+            <div class="custom-scrollbar__labels" id="customScrollbarLabels"></div>
+            <div class="custom-scrollbar__thumb" id="customScrollbarThumb"></div>
+        </div>
+    </div>
     <script type="module" src="{{entryScript}}"></script>
 </body>
 </html>
