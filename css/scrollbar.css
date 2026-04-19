@@ -24,6 +24,13 @@
     transform: translate3d(1rem, 0, 0);
 }
 
+/* Hide custom scrollbar on mobile — native scroll is better */
+@media (max-width: 767px) and (pointer: coarse) {
+    .custom-scrollbar {
+        display: none !important;
+    }
+}
+
 .custom-scrollbar__track {
     position: relative;
     width: 100%;
