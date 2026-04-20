@@ -5,6 +5,7 @@ const SECTION_LOADERS = {
     home: () => import('./home.js').then((module) => module.initHomeSection()),
     skills: () => import('./skills.js').then((module) => module.initSkillsSection()),
     projects: () => import('./projects.js').then((module) => module.initProjectsSection()),
+    contact: () => import('./contact.js').then((module) => module.initContactSection()),
     footer: () => import('./footer.js').then((module) => module.initFooterSection())
 };
 
@@ -12,6 +13,7 @@ const initializedSections = new Set();
 const LAZY_SECTIONS = [
     { loaderId: 'skills', elementId: 'skills' },
     { loaderId: 'projects', elementId: 'projects' },
+    { loaderId: 'contact', elementId: 'contact' },
     { loaderId: 'footer', elementId: 'footerCyberpunk' }
 ];
 

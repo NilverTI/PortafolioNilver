@@ -656,37 +656,50 @@
                 Cuéntame sobre tu idea y te respondo lo antes posible.
             </p>
 
-            <form id="contactForm" class="contact-form">
+            <!-- Mensajes de estado -->
+            <div id="contactSuccessMessage" class="contact-success hidden">
+                <i class="fa-solid fa-circle-check contact-success__icon"></i>
+                <h3>¡Mensaje enviado correctamente!</h3>
+                <p>Gracias por contactarme. Te responderé lo antes posible.</p>
+            </div>
+            
+            <div id="contactErrorMessage" class="contact-success hidden" style="border-color: #E50914; background: rgba(229, 9, 20, 0.1);">
+                <i class="fa-solid fa-circle-xmark contact-success__icon" style="color: #E50914;"></i>
+                <h3 style="color: #E50914;">Hubo un problema al enviar el mensaje</h3>
+                <p style="color: #ffb3b3;">Por favor intenta de nuevo más tarde o revisa tu conexión.</p>
+            </div>
+
+            <form id="contactForm" class="contact-form" action="https://formspree.io/f/mlgallow" method="POST">
+                <!-- Configuraciones Formspree -->
+                <input type="hidden" name="_subject" value="Nuevo mensaje desde el portafolio de NILVER T.I">
+                <input type="hidden" name="_captcha" value="false">
+
                 <div class="form-group">
                     <label for="name" class="form-label">Nombre</label>
                     <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required />
-                    <p class="form-error hidden" id="nameError">Por favor ingresa tu nombre</p>
                 </div>
 
                 <div class="form-group">
                     <label for="email" class="form-label">Correo electrónico</label>
                     <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required />
-                    <p class="form-error hidden" id="emailError">Por favor ingresa un correo válido</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="asunto" class="form-label">Asunto</label>
+                    <input type="text" id="asunto" name="asunto" class="form-input" placeholder="Asunto del mensaje" required />
                 </div>
 
                 <div class="form-group">
                     <label for="message" class="form-label">Mensaje</label>
                     <textarea id="message" name="message" rows="4" class="form-input form-textarea"
                         placeholder="¿En qué puedo ayudarte?" required></textarea>
-                    <p class="form-error hidden" id="messageError">Por favor escribe tu mensaje</p>
                 </div>
 
-                <button type="submit" class="contact-submit">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    Enviar mensaje
+                <button type="submit" id="contactSubmitBtn" class="contact-submit">
+                    <i class="fa-solid fa-paper-plane" id="contactSubmitIcon"></i>
+                    <span id="contactSubmitText">Enviar mensaje</span>
                 </button>
             </form>
-
-            <div id="successMessage" class="contact-success hidden">
-                <i class="fa-solid fa-circle-check contact-success__icon"></i>
-                <h3>¡Mensaje enviado!</h3>
-                <p>Gracias por contactarme. Te responderé lo antes posible.</p>
-            </div>
         </div>
 
         <!-- RIGHT — Social links -->
@@ -765,7 +778,6 @@
 
     </div>
 </section>
-
 <!-- Footer Cyberpunk -->
 <footer class="footer-cyberpunk" id="footerCyberpunk">
     <!-- Background grid overlay -->
