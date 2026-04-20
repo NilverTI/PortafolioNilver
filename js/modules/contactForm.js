@@ -42,6 +42,7 @@ function showMessage(type) {
 
     if (type === STATE.SUCCESS) {
         if (contactLeft) {
+            contactLeft.classList.add('is-success');
             // Ocultar todo el contenido previo (labels, títulos, form)
             queryAll('.contact-label, .contact-title, .contact-subtitle, .contact-form', contactLeft)
                 .forEach(el => el.style.display = 'none');

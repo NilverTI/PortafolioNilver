@@ -165,12 +165,29 @@
 
 /* Success message */
 .contact-success {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: rgba(229, 9, 20, 0.06);
-    border: 1px solid rgba(229, 9, 20, 0.2);
-    border-radius: 12px;
+    padding: 2.2rem 1.5rem;
+    background: rgba(229, 9, 20, 0.04);
+    border: 1px solid rgba(229, 9, 20, 0.15);
+    border-radius: 20px;
     text-align: center;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: fadeInSuccess 0.5s ease-out forwards;
+}
+
+@keyframes fadeInSuccess {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.contact-left.is-success {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 480px; /* Le da altura para que se vea "más abajo" y centrado */
 }
 
 .contact-success.hidden {
@@ -178,10 +195,11 @@
 }
 
 .contact-success__icon {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     color: #E50914;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.2rem;
     display: block;
+    filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.4));
 }
 
 .contact-success h3 {
