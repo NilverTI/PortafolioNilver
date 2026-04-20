@@ -1,4 +1,4 @@
-import { query } from '../utils/dom.js';
+import { query, queryAll } from '../utils/dom.js';
 
 let contactFormInitialized = false;
 
@@ -38,12 +38,19 @@ function showMessage(type) {
     const form = query('#contactForm');
     const successMsg = query('#contactSuccessMessage');
     const errorMsg = query('#contactErrorMessage');
+    const contactLeft = query('.contact-left');
 
     if (type === STATE.SUCCESS) {
+        if (contactLeft) {
+            // Ocultar todo el contenido previo (labels, títulos, form)
+            queryAll('.contact-label, .contact-title, .contact-subtitle, .contact-form', contactLeft)
+                .forEach(el => el.style.display = 'none');
+        }
         successMsg?.classList.remove('hidden');
-        form.style.display = 'none';
+        console.log('Mensaje enviado con éxito');
     } else if (type === STATE.ERROR) {
         errorMsg?.classList.remove('hidden');
+        console.error('Error al enviar el mensaje');
     }
 }
 

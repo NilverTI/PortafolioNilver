@@ -49,4 +49,3 @@ export function initContactSection() {
         setHtml(socialList, SOCIAL_LINKS.map(buildSocialItem).join(''));
     }
 }
-}
