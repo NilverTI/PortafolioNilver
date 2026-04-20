@@ -1,4 +1,5 @@
 import { query, setHtml } from './utils/dom.js';
+import { initContactForm } from './modules/contactForm.js';
 import { SOCIAL_LINKS } from './constants/sitedata.js';
 
 // Map social network name → brand color
@@ -41,10 +42,11 @@ function buildSocialItem(link) {
 }
 
 export function initContactSection() {
-    // Render social links
+    initContactForm();
+    
     const socialList = query('#contactSocialList');
-    // Sólo renderizar si aún tiene la marca o está vacío 
     if (socialList && socialList.innerHTML.includes('{{contactSocialLinks}}')) {
         setHtml(socialList, SOCIAL_LINKS.map(buildSocialItem).join(''));
     }
+}
 }

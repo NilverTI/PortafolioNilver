@@ -57,56 +57,6 @@
                     <span id="contactSubmitText">Enviar mensaje</span>
                 </button>
             </form>
-
-            <!-- Script en línea para asegurar su ejecución (Previene caché o problemas de Lazy Loading en Github Pages) -->
-            <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                    const form = document.getElementById('contactForm');
-                    const submitBtn = document.getElementById('contactSubmitBtn');
-                    const submitText = document.getElementById('contactSubmitText');
-                    const submitIcon = document.getElementById('contactSubmitIcon');
-                    const successMsg = document.getElementById('contactSuccessMessage');
-                    const errorMsg = document.getElementById('contactErrorMessage');
-
-                    if (form) {
-                        form.addEventListener('submit', async (e) => {
-                            e.preventDefault(); // Prevenir redirección de Formspree
-
-                            successMsg.classList.add('hidden');
-                            errorMsg.classList.add('hidden');
-
-                            const originalText = submitText.innerText;
-                            submitBtn.disabled = true;
-                            submitText.innerText = 'Enviando...';
-                            submitIcon.className = 'fa-solid fa-spinner fa-spin';
-
-                            try {
-                                const response = await fetch(form.action, {
-                                    method: form.method,
-                                    body: new FormData(form),
-                                    headers: { 'Accept': 'application/json' }
-                                });
-
-                                if (response.ok) {
-                                    successMsg.classList.remove('hidden');
-                                    form.reset();
-                                    form.style.display = 'none'; // Ocultar el form completamente
-                                } else {
-                                    const data = await response.json();
-                                    if (data.errors) throw new Error(data.errors.map(err => err.message).join(', '));
-                                    throw new Error('Error al enviar');
-                                }
-                            } catch (error) {
-                                console.error('Error:', error);
-                                errorMsg.classList.remove('hidden');
-                                submitBtn.disabled = false;
-                                submitText.innerText = originalText;
-                                submitIcon.className = 'fa-solid fa-paper-plane';
-                            }
-                        });
-                    }
-                });
-            </script>
         </div>
 
         <!-- RIGHT — Social links -->
@@ -115,7 +65,67 @@
             <h3 class="contact-social-title">Mis redes</h3>
             <p class="contact-social-sub">Sígueme en mis redes sociales y mantente al tanto de mis proyectos.</p>
 
-            <div class="social-list" id="contactSocialList">{{contactSocialLinks}}</div>
+            <div class="social-list" id="contactSocialList">
+                <a href="https://www.instagram.com/nilvert.i/" target="_blank" rel="noopener noreferrer"
+                   class="social-item" style="--social-color: #E1306C;" aria-label="Instagram">
+                    <div class="social-item__icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-item__info">
+                        <p class="social-item__name">Instagram</p>
+                        <p class="social-item__handle">@nilvert.i</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+                </a>
+
+                <a href="https://github.com/NilverTI" target="_blank" rel="noopener noreferrer"
+                   class="social-item" style="--social-color: #6e5494;" aria-label="GitHub">
+                    <div class="social-item__icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="social-item__info">
+                        <p class="social-item__name">GitHub</p>
+                        <p class="social-item__handle">github.com/NilverTI</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/nilverti/" target="_blank" rel="noopener noreferrer"
+                   class="social-item" style="--social-color: #0A66C2;" aria-label="LinkedIn">
+                    <div class="social-item__icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="social-item__info">
+                        <p class="social-item__name">LinkedIn</p>
+                        <p class="social-item__handle">linkedin.com/in/nilverti</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+                </a>
+
+                <a href="https://tiktok.com/@nilvert.i" target="_blank" rel="noopener noreferrer"
+                   class="social-item" style="--social-color: #EE1D52;" aria-label="TikTok">
+                    <div class="social-item__icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="social-item__info">
+                        <p class="social-item__name">TikTok</p>
+                        <p class="social-item__handle">@nilvert.i</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+                </a>
+
+                <a href="https://www.youtube.com/@nilvert.i" target="_blank" rel="noopener noreferrer"
+                   class="social-item" style="--social-color: #FF0000;" aria-label="YouTube">
+                    <div class="social-item__icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="social-item__info">
+                        <p class="social-item__name">YouTube</p>
+                        <p class="social-item__handle">@nilvert.i</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square social-item__arrow"></i>
+                </a>
+            </div>
         </div>
 
     </div>
