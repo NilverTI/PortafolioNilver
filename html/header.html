@@ -3,42 +3,56 @@
     <div class="site-header__inner">
 
         <!-- Logo -->
-        <a href="#" id="headerLogo" class="site-header__logo" aria-label="Ir al inicio">
+        <a href="#" id="headerLogo" class="site-header__logo" aria-label="Go to home"
+            data-i18n-aria-label="header.logoAria">
             NILVER<span class="site-header__logo-accent"> T.I</span>
         </a>
 
-        <!-- Desktop Nav -->
-        <nav class="site-header__nav" aria-label="Navegación principal">
-            <ul class="site-header__nav-list" data-nav-list="desktop">
-                <li><a href="#home" class="nav-link" data-nav-link>Inicio</a></li>
-                <li><a href="#skills" class="nav-link" data-nav-link>Habilidades</a></li>
-                <li><a href="#projects" class="nav-link" data-nav-link>Proyectos</a></li>
-                <li><a href="#contact" class="nav-link" data-nav-link>Contacto</a></li>
-            </ul>
-        </nav>
+        <div class="site-header__actions">
+            <!-- Desktop Nav -->
+            <nav class="site-header__nav" aria-label="Main navigation" data-i18n-aria-label="header.navAria">
+                <ul class="site-header__nav-list" data-nav-list="desktop">
+                    <li><a href="#home" class="nav-link" data-nav-link data-i18n="header.nav.home">Home</a></li>
+                    <li><a href="#skills" class="nav-link" data-nav-link data-i18n="header.nav.skills">Skills</a></li>
+                    <li><a href="#projects" class="nav-link" data-nav-link data-i18n="header.nav.projects">Projects</a></li>
+                    <li><a href="#contact" class="nav-link" data-nav-link data-i18n="header.nav.contact">Contact</a></li>
+                </ul>
+            </nav>
 
-        <!-- Hamburger (Mobile) -->
-        <button
-            class="site-header__hamburger"
-            id="mobileMenuButton"
-            type="button"
-            aria-controls="mobileMenu"
-            aria-expanded="false"
-            aria-label="Abrir menú">
-            <span class="site-header__bar"></span>
-            <span class="site-header__bar"></span>
-            <span class="site-header__bar"></span>
-        </button>
+            <div class="site-header__lang-switch" role="group" aria-label="Language selector"
+                data-i18n-aria-label="header.languageSelector">
+                <button type="button" class="site-header__lang-btn" data-language-option="en" aria-pressed="true"
+                    aria-label="Switch to English" title="Switch to English"
+                    data-i18n-aria-label="header.switchToEnglish" data-i18n-title="header.switchToEnglish">EN</button>
+                <button type="button" class="site-header__lang-btn" data-language-option="es" aria-pressed="false"
+                    aria-label="Switch to Spanish" title="Switch to Spanish"
+                    data-i18n-aria-label="header.switchToSpanish" data-i18n-title="header.switchToSpanish">ES</button>
+            </div>
+
+            <!-- Hamburger (Mobile) -->
+            <button
+                class="site-header__hamburger"
+                id="mobileMenuButton"
+                type="button"
+                aria-controls="mobileMenu"
+                aria-expanded="false"
+                aria-label="Open menu"
+                data-i18n-aria-label="header.menuAria">
+                <span class="site-header__bar"></span>
+                <span class="site-header__bar"></span>
+                <span class="site-header__bar"></span>
+            </button>
+        </div>
 
     </div>
 
     <!-- Mobile Menu -->
     <div class="site-header__mobile hidden" id="mobileMenu">
         <ul class="site-header__mobile-list" data-nav-list="mobile">
-            <li><a href="#home" class="nav-link" data-nav-link>Inicio</a></li>
-            <li><a href="#skills" class="nav-link" data-nav-link>Habilidades</a></li>
-            <li><a href="#projects" class="nav-link" data-nav-link>Proyectos</a></li>
-            <li><a href="#contact" class="nav-link" data-nav-link>Contacto</a></li>
+            <li><a href="#home" class="nav-link" data-nav-link data-i18n="header.nav.home">Home</a></li>
+            <li><a href="#skills" class="nav-link" data-nav-link data-i18n="header.nav.skills">Skills</a></li>
+            <li><a href="#projects" class="nav-link" data-nav-link data-i18n="header.nav.projects">Projects</a></li>
+            <li><a href="#contact" class="nav-link" data-nav-link data-i18n="header.nav.contact">Contact</a></li>
         </ul>
     </div>
 </header>

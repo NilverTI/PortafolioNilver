@@ -1,68 +1,70 @@
 <section id="contact" class="contact-section">
     <div class="contact-container">
 
-        <!-- LEFT — Form -->
+        <!-- LEFT - Form -->
         <div class="contact-left">
-            <span class="contact-label">¿Tienes un proyecto?</span>
-            <h2 class="contact-title">Contáct<span class="contact-title__accent">ame</span></h2>
-            <p class="contact-subtitle">
-                Cuéntame sobre tu idea y te respondo lo antes posible.
+            <span class="contact-label" data-i18n="contact.label">Have a project?</span>
+            <h2 class="contact-title"><span data-i18n="contact.titlePrefix">Contact </span><span class="contact-title__accent" data-i18n="contact.titleAccent">Me</span></h2>
+            <p class="contact-subtitle" data-i18n="contact.subtitle">
+                Tell me about your idea and I will get back to you as soon as possible.
             </p>
 
             <!-- Mensajes de estado -->
             <div id="contactSuccessMessage" class="contact-success hidden">
                 <i class="fa-solid fa-circle-check contact-success__icon"></i>
-                <h3>¡Mensaje enviado correctamente!</h3>
-                <p>Gracias por contactarme. Te responderé lo antes posible.</p>
+                <h3 data-i18n="contact.successTitle">Message sent successfully!</h3>
+                <p data-i18n="contact.successText">Thanks for reaching out. I will reply as soon as possible.</p>
             </div>
 
             <div id="contactErrorMessage" class="contact-success hidden"
                 style="border-color: #E50914; background: rgba(229, 9, 20, 0.1);">
                 <i class="fa-solid fa-circle-xmark contact-success__icon" style="color: #E50914;"></i>
-                <h3 style="color: #E50914;">Hubo un problema al enviar el mensaje</h3>
-                <p style="color: #ffb3b3;">Por favor intenta de nuevo más tarde o revisa tu conexión.</p>
+                <h3 style="color: #E50914;" data-i18n="contact.errorTitle">There was a problem sending the message</h3>
+                <p style="color: #ffb3b3;" data-i18n="contact.errorText">Please try again later or check your connection.</p>
             </div>
 
             <form id="contactForm" class="contact-form" action="https://formspree.io/f/xojyllzp" method="POST">
                 <!-- Configuraciones Formspree -->
-                <input type="hidden" name="_subject" value="Nuevo mensaje desde el portafolio de NILVER T.I">
+                <input type="hidden" name="_subject" value="New message from the NILVER T.I portfolio" data-i18n-value="contact.formSubject">
                 <input type="hidden" name="_captcha" value="false">
 
                 <div class="form-group">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required />
+                    <label for="name" class="form-label" data-i18n="contact.nameLabel">Name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Your name"
+                        data-i18n-placeholder="contact.namePlaceholder" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com"
-                        required />
+                    <label for="email" class="form-label" data-i18n="contact.emailLabel">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="you@email.com"
+                        data-i18n-placeholder="contact.emailPlaceholder" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="asunto" class="form-label">Asunto</label>
-                    <input type="text" id="asunto" name="asunto" class="form-input" placeholder="Asunto del mensaje"
-                        required />
+                    <label for="asunto" class="form-label" data-i18n="contact.subjectLabel">Subject</label>
+                    <input type="text" id="asunto" name="asunto" class="form-input" placeholder="Message subject"
+                        data-i18n-placeholder="contact.subjectPlaceholder" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="message" class="form-label">Mensaje</label>
+                    <label for="message" class="form-label" data-i18n="contact.messageLabel">Message</label>
                     <textarea id="message" name="message" rows="4" class="form-input form-textarea"
-                        placeholder="¿En qué puedo ayudarte?" required></textarea>
+                        placeholder="How can I help you?" data-i18n-placeholder="contact.messagePlaceholder"
+                        required></textarea>
                 </div>
 
                 <button type="submit" id="contactSubmitBtn" class="contact-submit">
                     <i class="fa-solid fa-paper-plane" id="contactSubmitIcon"></i>
-                    <span id="contactSubmitText">Enviar mensaje</span>
+                    <span id="contactSubmitText" data-i18n="contact.submit">Send message</span>
                 </button>
             </form>
         </div>
 
-        <!-- RIGHT — Social links -->
+        <!-- RIGHT - Social links -->
         <div class="contact-right">
-            <span class="contact-label">Encuéntrame en</span>
-            <h3 class="contact-social-title">Mis redes</h3>
-            <p class="contact-social-sub">Sígueme en mis redes sociales y mantente al tanto de mis proyectos.</p>
+            <span class="contact-label" data-i18n="contact.socialLabel">Find me on</span>
+            <h3 class="contact-social-title" data-i18n="contact.socialTitle">My networks</h3>
+            <p class="contact-social-sub" data-i18n="contact.socialSubtitle">Follow me on social media and stay up to date with my projects.</p>
 
             <div class="social-list" id="contactSocialList">
                 <a href="https://www.instagram.com/nilvert.i/" target="_blank" rel="noopener noreferrer"

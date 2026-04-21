@@ -1,4 +1,5 @@
 import { escapeHtml, query, setHtml } from '../utils/dom.js';
+import { getLocalizedValue, translate } from '../i18n.js';
 
 const PAGE_SIZE = 9;
 
@@ -41,6 +42,10 @@ function animateSkillBars(container) {
 }
 
 function buildSkillCard(skill) {
+    const skillName = getLocalizedValue(skill.name);
+    const skillCategory = getLocalizedValue(skill.category);
+    const skillDescription = getLocalizedValue(skill.desc);
+
     return `
         <div class="sk-card">
             <div class="sk-card__head">
@@ -48,12 +53,12 @@ function buildSkillCard(skill) {
                     <i class="${escapeHtml(skill.icon)}" style="color:${skill.color}"></i>
                 </div>
                 <div class="sk-card__info">
-                    <span class="sk-card__name">${escapeHtml(skill.name)}</span>
-                    <span class="sk-card__cat">${escapeHtml(skill.category)}</span>
+                    <span class="sk-card__name">${escapeHtml(skillName)}</span>
+                    <span class="sk-card__cat">${escapeHtml(skillCategory)}</span>
                 </div>
                 <span class="sk-card__pct" style="color:${skill.color}">${skill.value}%</span>
             </div>
-            <p class="sk-card__desc">${escapeHtml(skill.desc)}</p>
+            <p class="sk-card__desc">${escapeHtml(skillDescription)}</p>
             <div class="sk-bar__track">
                 <div class="sk-bar__fill skill-bar-anim"
                      style="--tw:${skill.value}%;--c:${skill.color};"></div>
@@ -65,8 +70,12 @@ function buildSkillCard(skill) {
 function buildPagination(totalPages) {
     const dots = Array.from({ length: totalPages }, (_, index) => `
         <button class="sk-page-dot ${index === currentPage ? 'sk-page-dot--active' : ''}"
-                data-page="${index}" aria-label="P&aacute;gina ${index + 1}"></button>
+                data-page="${index}"
+                aria-label="${escapeHtml(translate('skillsView.goToPage', { page: index + 1 }))}"></button>
     `).join('');
+
+    const start = currentPage * PAGE_SIZE + 1;
+    const end = Math.min((currentPage + 1) * PAGE_SIZE, allSkills.length);
 
     return `
         <div class="sk-pagination">
@@ -81,7 +90,7 @@ function buildPagination(totalPages) {
             </button>
         </div>
         <p class="sk-page-info">
-            Mostrando ${currentPage * PAGE_SIZE + 1}&ndash;${Math.min((currentPage + 1) * PAGE_SIZE, allSkills.length)} de ${allSkills.length} habilidades
+            ${escapeHtml(translate('skillsView.pageInfo', { start, end, total: allSkills.length }))}
         </p>
     `;
 }
@@ -156,12 +165,6 @@ export function renderSkillCategories(categories) {
     currentPage = 0;
 
     bindPaginationEvents(container, paginationContainer);
-
-    if (container.children.length > 0 && paginationContainer.children.length > 0) {
-        animateSkillBars(container);
-        return;
-    }
-
     renderPage(container, paginationContainer, { animate: false });
 }
 

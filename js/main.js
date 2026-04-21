@@ -1,4 +1,5 @@
 import { initCustomScrollbar } from './modules/custom-scrollbar.js';
+import { initI18n } from './i18n.js';
 
 const SECTION_INITIALIZERS = {
     header: () => import('./header.js').then((m) => m.initHeaderSection()),
@@ -49,6 +50,7 @@ function observeLazySections(sections) {
 
 async function bootstrap() {
     initCustomScrollbar();
+    initI18n();
     initSection('header');
     initSection('home');
     observeLazySections(LAZY_SECTIONS);

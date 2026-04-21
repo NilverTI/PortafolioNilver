@@ -25,6 +25,32 @@ function escapeHtml(value) {
         .replaceAll("'", '&#39;');
 }
 
+function getLocalizedValue(value, language = 'en') {
+    if (
+        value &&
+        typeof value === 'object' &&
+        !Array.isArray(value) &&
+        Object.prototype.hasOwnProperty.call(value, 'en') &&
+        Object.prototype.hasOwnProperty.call(value, 'es')
+    ) {
+        return value[language] ?? value.en ?? value.es ?? '';
+    }
+
+    return value ?? '';
+}
+
+function getTranslation(translations, language, key, replacements = {}) {
+    const template = key.split('.').reduce((result, segment) => result?.[segment], translations[language])
+        ?? key.split('.').reduce((result, segment) => result?.[segment], translations.en);
+
+    if (typeof template !== 'string') {
+        return '';
+    }
+
+    return Object.entries(replacements).reduce((result, [token, value]) =>
+        result.replaceAll(`{${token}}`, String(value)), template);
+}
+
 function replaceTokens(template, replacements) {
     return Object.entries(replacements).reduce((result, [token, value]) =>
         result.replaceAll(`{{${token}}}`, value), template);
@@ -77,7 +103,7 @@ function buildNavMarkup(navLinks) {
     return navLinks.map(({ href, label }) => `
         <li>
             <a href="${escapeHtml(href)}" class="nav-link" data-nav-link>
-                ${escapeHtml(label)}
+                ${escapeHtml(getLocalizedValue(label))}
             </a>
         </li>
     `).join('');
@@ -91,14 +117,18 @@ function getProjectImageSrc(imageSrc) {
     return imageSrc.replace('img/proyectos/', 'img/proyectos/optimized/');
 }
 
-function buildProjectCard(project) {
+function buildProjectCard(project, translations, language = 'en') {
+    const title = getLocalizedValue(project.title, language);
+    const description = getLocalizedValue(project.description, language);
+    const imageAlt = getLocalizedValue(project.imageAlt || project.title, language);
+
     return `
         <a href="${escapeHtml(project.websiteUrl)}" target="_blank" rel="noopener noreferrer"
-           class="proj-card" aria-label="Ver ${escapeHtml(project.title)} en vivo">
+           class="proj-card" aria-label="${escapeHtml(getTranslation(translations, language, 'projectsView.liveAria', { title }))}">
             <div class="proj-card__img-wrap">
                 <img
                     src="${escapeHtml(getProjectImageSrc(project.imageSrc))}"
-                    alt="${escapeHtml(project.imageAlt || project.title)}"
+                    alt="${escapeHtml(imageAlt)}"
                     class="proj-card__img"
                     loading="lazy"
                     decoding="async"
@@ -111,33 +141,36 @@ function buildProjectCard(project) {
             <div class="proj-card__overlay">
                 <span class="proj-card__visit">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    Ver sitio web
+                    ${escapeHtml(getTranslation(translations, language, 'projectsView.visitWebsite'))}
                 </span>
                 <div class="proj-card__body">
                     <div class="proj-card__meta">
-                        <h3 class="proj-card__title">${escapeHtml(project.title)}</h3>
+                        <h3 class="proj-card__title">${escapeHtml(title)}</h3>
                         <i class="fa-solid fa-arrow-up-right-from-square proj-card__arrow"></i>
                     </div>
-                    <p class="proj-card__desc">${escapeHtml(project.description)}</p>
+                    <p class="proj-card__desc">${escapeHtml(description)}</p>
                 </div>
             </div>
         </a>
     `;
 }
 
-function buildProjectsMarkup(projects, perPage = 6, currentPage = 0) {
+function buildProjectsMarkup(projects, translations, perPage = 6, currentPage = 0, language = 'en') {
     const start = currentPage * perPage;
-    return projects.slice(start, start + perPage).map(buildProjectCard).join('');
+    return projects
+        .slice(start, start + perPage)
+        .map((project) => buildProjectCard(project, translations, language))
+        .join('');
 }
 
-function buildProjectDots(projects, perPage = 6, currentPage = 0) {
+function buildProjectDots(projects, translations, perPage = 6, currentPage = 0, language = 'en') {
     const totalPages = Math.ceil(projects.length / perPage);
 
     return Array.from({ length: totalPages }, (_, index) => `
         <button
             class="proj-dot ${index === currentPage ? 'active' : ''}"
             data-page="${index}"
-            aria-label="Ir a p&aacute;gina ${index + 1}"
+            aria-label="${escapeHtml(getTranslation(translations, language, 'projectsView.goToPage', { page: index + 1 }))}"
         ></button>
     `).join('');
 }
@@ -148,7 +181,11 @@ function flattenSkills(categories) {
     );
 }
 
-function buildSkillCard(skill) {
+function buildSkillCard(skill, language = 'en') {
+    const skillName = getLocalizedValue(skill.name, language);
+    const skillCategory = getLocalizedValue(skill.category, language);
+    const skillDescription = getLocalizedValue(skill.desc, language);
+
     return `
         <div class="sk-card">
             <div class="sk-card__head">
@@ -156,12 +193,12 @@ function buildSkillCard(skill) {
                     <i class="${escapeHtml(skill.icon)}" style="color:${skill.color}"></i>
                 </div>
                 <div class="sk-card__info">
-                    <span class="sk-card__name">${escapeHtml(skill.name)}</span>
-                    <span class="sk-card__cat">${escapeHtml(skill.category)}</span>
+                    <span class="sk-card__name">${escapeHtml(skillName)}</span>
+                    <span class="sk-card__cat">${escapeHtml(skillCategory)}</span>
                 </div>
                 <span class="sk-card__pct" style="color:${skill.color}">${skill.value}%</span>
             </div>
-            <p class="sk-card__desc">${escapeHtml(skill.desc)}</p>
+            <p class="sk-card__desc">${escapeHtml(skillDescription)}</p>
             <div class="sk-bar__track">
                 <div class="sk-bar__fill skill-bar-anim"
                      style="--tw:${skill.value}%;--c:${skill.color};"></div>
@@ -170,20 +207,24 @@ function buildSkillCard(skill) {
     `;
 }
 
-function buildSkillsGrid(categories, pageSize = 9, currentPage = 0) {
+function buildSkillsGrid(categories, pageSize = 9, currentPage = 0, language = 'en') {
     const allSkills = flattenSkills(categories);
     const start = currentPage * pageSize;
-    return allSkills.slice(start, start + pageSize).map(buildSkillCard).join('');
+    return allSkills
+        .slice(start, start + pageSize)
+        .map((skill) => buildSkillCard(skill, language))
+        .join('');
 }
 
-function buildSkillsPagination(categories, pageSize = 9, currentPage = 0) {
+function buildSkillsPagination(categories, translations, pageSize = 9, currentPage = 0, language = 'en') {
     const allSkills = flattenSkills(categories);
     const totalPages = Math.ceil(allSkills.length / pageSize);
     const start = currentPage * pageSize + 1;
     const end = Math.min((currentPage + 1) * pageSize, allSkills.length);
     const dots = Array.from({ length: totalPages }, (_, index) => `
         <button class="sk-page-dot ${index === currentPage ? 'sk-page-dot--active' : ''}"
-                data-page="${index}" aria-label="P&aacute;gina ${index + 1}"></button>
+                data-page="${index}"
+                aria-label="${escapeHtml(getTranslation(translations, language, 'skillsView.goToPage', { page: index + 1 }))}"></button>
     `).join('');
 
     return `
@@ -199,7 +240,7 @@ function buildSkillsPagination(categories, pageSize = 9, currentPage = 0) {
             </button>
         </div>
         <p class="sk-page-info">
-            Mostrando ${start}&ndash;${end} de ${allSkills.length} habilidades
+            ${escapeHtml(getTranslation(translations, language, 'skillsView.pageInfo', { start, end, total: allSkills.length }))}
         </p>
     `;
 }
@@ -249,14 +290,14 @@ function buildFooterSocialLinks(links) {
     `).join('');
 }
 
-function renderProjectsSection(template, projects) {
+function renderProjectsSection(template, projects, translations) {
     const withGrid = template.replace(
         '<div id="projectsGrid" class="proj-grid"></div>',
-        `<div id="projectsGrid" class="proj-grid">${buildProjectsMarkup(projects)}</div>`
+        `<div id="projectsGrid" class="proj-grid">${buildProjectsMarkup(projects, translations)}</div>`
     );
     const withDots = withGrid.replace(
         '<div class="proj-page-dots" id="projPageDots"></div>',
-        `<div class="proj-page-dots" id="projPageDots">${buildProjectDots(projects)}</div>`
+        `<div class="proj-page-dots" id="projPageDots">${buildProjectDots(projects, translations)}</div>`
     );
     const withPrevDisabled = withDots.replace(
         '<button class="proj-page-btn" id="projPrevBtn"',
@@ -285,12 +326,12 @@ function renderSection(sectionId, template, siteData) {
     if (sectionId === 'skills') {
         return replaceTokens(template, {
             skillsGrid: buildSkillsGrid(siteData.SKILL_CATEGORIES),
-            skillsPagination: buildSkillsPagination(siteData.SKILL_CATEGORIES)
+            skillsPagination: buildSkillsPagination(siteData.SKILL_CATEGORIES, siteData.UI_TRANSLATIONS)
         });
     }
 
     if (sectionId === 'projects') {
-        return renderProjectsSection(template, siteData.PROJECTS);
+        return renderProjectsSection(template, siteData.PROJECTS, siteData.UI_TRANSLATIONS);
     }
 
     if (sectionId === 'contact') {

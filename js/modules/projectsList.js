@@ -1,4 +1,5 @@
 import { escapeHtml, query, setHtml } from '../utils/dom.js';
+import { getLocalizedValue, translate } from '../i18n.js';
 
 const PER_PAGE = 6;
 
@@ -14,13 +15,17 @@ function getProjectImageSrc(imageSrc) {
 }
 
 function buildProjectCard(project) {
+    const projectTitle = getLocalizedValue(project.title);
+    const projectDescription = getLocalizedValue(project.description);
+    const imageAlt = getLocalizedValue(project.imageAlt || project.title);
+
     return `
         <a href="${escapeHtml(project.websiteUrl)}" target="_blank" rel="noopener noreferrer"
-           class="proj-card" aria-label="Ver ${escapeHtml(project.title)} en vivo">
+           class="proj-card" aria-label="${escapeHtml(translate('projectsView.liveAria', { title: projectTitle }))}">
             <div class="proj-card__img-wrap">
                 <img
                     src="${escapeHtml(getProjectImageSrc(project.imageSrc))}"
-                    alt="${escapeHtml(project.imageAlt || project.title)}"
+                    alt="${escapeHtml(imageAlt)}"
                     class="proj-card__img"
                     loading="lazy"
                     decoding="async"
@@ -33,14 +38,14 @@ function buildProjectCard(project) {
             <div class="proj-card__overlay">
                 <span class="proj-card__visit">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    Ver sitio web
+                    ${escapeHtml(translate('projectsView.visitWebsite'))}
                 </span>
                 <div class="proj-card__body">
                     <div class="proj-card__meta">
-                        <h3 class="proj-card__title">${escapeHtml(project.title)}</h3>
+                        <h3 class="proj-card__title">${escapeHtml(projectTitle)}</h3>
                         <i class="fa-solid fa-arrow-up-right-from-square proj-card__arrow"></i>
                     </div>
-                    <p class="proj-card__desc">${escapeHtml(project.description)}</p>
+                    <p class="proj-card__desc">${escapeHtml(projectDescription)}</p>
                 </div>
             </div>
         </a>
@@ -52,7 +57,7 @@ function buildDots(totalPages, page) {
         <button
             class="proj-dot ${index === page ? 'active' : ''}"
             data-page="${index}"
-            aria-label="Ir a p&aacute;gina ${index + 1}"
+            aria-label="${escapeHtml(translate('projectsView.goToPage', { page: index + 1 }))}"
         ></button>
     `).join('');
 }
@@ -157,10 +162,5 @@ export function renderProjects(projects) {
 
     bindPaginationEvents(pagination);
     updatePaginationUI(0);
-
-    if (grid.children.length > 0) {
-        return;
-    }
-
     renderPage(0, { animate: false });
 }

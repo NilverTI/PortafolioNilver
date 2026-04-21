@@ -9,18 +9,18 @@
     <!-- Two-column layout -->
     <div class="hero-container">
 
-        <!-- ═══ LEFT SIDE — Text Content ═══ -->
+        <!-- LEFT SIDE - Text Content -->
         <div class="hero-left">
 
             <!-- Badge -->
             <div class="hero-badge animate-fade-up">
                 <span class="hero-badge__dot"></span>
-                <span class="hero-badge__text">Disponible para proyectos freelance</span>
+                <span class="hero-badge__text" data-i18n="home.badge">Available for freelance projects</span>
             </div>
 
             <!-- Main heading -->
             <h1 class="hero-title animate-fade-up delay-100">
-                Hola, soy <br />
+                <span data-i18n="home.greeting">Hello, I am</span> <br />
                 <span class="hero-title__name">NILVER T.I</span>
             </h1>
 
@@ -30,9 +30,8 @@
             </div>
 
             <!-- Description -->
-            <p class="hero-description animate-fade-up delay-300">
-                Construyo aplicaciones web modernas, escalables y de alto rendimiento
-                con diseño limpio y arquitectura sólida.
+            <p class="hero-description animate-fade-up delay-300" data-i18n="home.description">
+                I build modern, scalable, high-performance web applications with clean design and solid architecture.
             </p>
 
             <!-- Tech chips -->
@@ -47,17 +46,17 @@
             <!-- CTA Buttons -->
             <div class="hero-cta animate-fade-up delay-500">
                 <a href="#projects" class="btn btn--primary">
-                    <span>Ver Proyectos</span>
+                    <span data-i18n="home.viewProjects">View Projects</span>
                     <i class="fa-solid fa-arrow-right btn__icon"></i>
                 </a>
                 <a href="#contact" class="btn btn--outline">
-                    <span>Contáctame</span>
+                    <span data-i18n="home.contactMe">Contact Me</span>
                 </a>
             </div>
 
         </div>
 
-        <!-- ═══ RIGHT SIDE — Profile Image ═══ -->
+        <!-- RIGHT SIDE - Profile Image -->
         <div class="hero-right animate-fade-up delay-300">
 
             <!-- Decorative ring -->
@@ -69,28 +68,29 @@
 
             <!-- Profile picture -->
             <div class="hero-img-wrapper">
-                <img src="img/ico/logo.png" alt="Nilver T.I - Desarrollador Full Stack" class="hero-img"
+                <img src="img/ico/logo.png" alt="Nilver T.I - Full Stack Developer" class="hero-img"
+                    data-i18n-alt="home.imageAlt"
                     id="hero-logo-img"
-                    width="280" height="280" 
+                    width="280" height="280"
                     loading="eager" fetchpriority="high"
                     onerror="this.style.display='none'; document.getElementById('hero-img-fallback').style.display='flex';" />
                 <!-- Fallback if no image -->
                 <div class="hero-img-fallback" id="hero-img-fallback">
                     <i class="fa-solid fa-user"></i>
-                    <span>Añade tu foto en<br /><code>img/ico/logo.png</code></span>
+                    <span data-i18n-html="home.fallbackPhoto">Add your photo to<br /><code>img/ico/logo.png</code></span>
                 </div>
             </div>
 
             <!-- Floating experience badge -->
             <div class="hero-exp-badge animate-float-a">
                 <span class="hero-exp-badge__num">2+</span>
-                <span class="hero-exp-badge__label">Años de<br />experiencia</span>
+                <span class="hero-exp-badge__label" data-i18n-html="home.experienceLabel">Years of<br />experience</span>
             </div>
 
             <!-- Floating projects badge -->
             <div class="hero-proj-badge animate-float-b">
                 <i class="fa-solid fa-check" style="color:#22c55e; font-size:0.7rem;"></i>
-                <span>+10 Proyectos entregados</span>
+                <span data-i18n="home.projectsDelivered">+10 Projects delivered</span>
             </div>
 
         </div>

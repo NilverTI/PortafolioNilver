@@ -1,22 +1,30 @@
-const roles = [
-    "Desarrollador Full Stack",
-    "Desarrollador Frontend",
-    "Desarrollador Backend",
-    "Especialista en React & Node.js"
-];
+import { HOME_ROLES } from './constants/sitedata.js';
+import { getLocalizedValue, LANGUAGE_CHANGE_EVENT } from './i18n.js';
 
 let homeSectionInitialized = false;
+let typewriterTimeoutId = 0;
+let typewriterRunId = 0;
 
 function initTypewriter() {
     const textElement = document.querySelector('.typed-text');
     if (!textElement) return;
 
+    const roles = getLocalizedValue(HOME_ROLES);
+
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
     let typingDelay = 100;
+    const runId = ++typewriterRunId;
+
+    window.clearTimeout(typewriterTimeoutId);
+    textElement.textContent = '';
 
     function type() {
+        if (runId !== typewriterRunId) {
+            return;
+        }
+
         const currentRole = roles[roleIndex];
         
         if (isDeleting) {
@@ -38,11 +46,11 @@ function initTypewriter() {
             typingDelay = 500; // wait before typing new word
         }
 
-        setTimeout(type, typingDelay);
+        typewriterTimeoutId = window.setTimeout(type, typingDelay);
     }
 
     // Start typing after a small initial delay to let fade-up happen
-    setTimeout(type, 1000);
+    typewriterTimeoutId = window.setTimeout(type, 1000);
 }
 
 export function initHomeSection() {
@@ -52,4 +60,5 @@ export function initHomeSection() {
 
     homeSectionInitialized = true;
     initTypewriter();
+    window.addEventListener(LANGUAGE_CHANGE_EVENT, initTypewriter);
 }
