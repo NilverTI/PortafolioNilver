@@ -3,6 +3,9 @@
 ========================================= */
 .nav-link {
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     color: rgba(255, 255, 255, 0.55);
     font-family: 'Poppins', sans-serif;
     font-size: 0.78rem;
@@ -17,6 +20,18 @@
 
 .nav-link:hover {
     color: #ffffff;
+}
+
+.nav-link__icon {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.42);
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-link:hover .nav-link__icon,
+.active-nav .nav-link__icon {
+    color: #E50914;
+    transform: translateY(-1px);
 }
 
 /* Thin red underline that expands on hover */
@@ -231,6 +246,14 @@
     flex-direction: column;
     align-items: center;
     gap: 1.25rem;
+}
+
+.site-header__mobile .nav-link {
+    font-size: 0.95rem;
+}
+
+.site-header__mobile .nav-link__icon {
+    font-size: 0.95rem;
 }
 
 @media (max-width: 767px) {

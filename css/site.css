@@ -106,16 +106,20 @@
 .fa-css3-alt::before { content: '\f38b'; }
 .fa-database::before { content: '\f1c0'; }
 .fa-desktop::before { content: '\f390'; }
+.fa-envelope::before { content: '\f0e0'; }
 .fa-figma::before { content: '\f799'; }
 .fa-gears::before { content: '\f085'; }
 .fa-git-alt::before { content: '\f841'; }
 .fa-github::before { content: '\f09b'; }
 .fa-gitlab::before { content: '\f296'; }
+.fa-home::before,
+.fa-house::before { content: '\f015'; }
 .fa-html5::before { content: '\f13b'; }
 .fa-instagram::before { content: '\f16d'; }
 .fa-java::before { content: '\f4e4'; }
 .fa-js::before { content: '\f3b8'; }
 .fa-k::before { content: '\4b'; }
+.fa-layer-group::before { content: '\f5fd'; }
 .fa-linkedin::before { content: '\f08c'; }
 .fa-n::before { content: '\4e'; }
 .fa-node-js::before { content: '\f3d3'; }
@@ -470,6 +474,9 @@ ul {
 ========================================= */
 .nav-link {
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     color: rgba(255, 255, 255, 0.55);
     font-family: 'Poppins', sans-serif;
     font-size: 0.78rem;
@@ -484,6 +491,18 @@ ul {
 
 .nav-link:hover {
     color: #ffffff;
+}
+
+.nav-link__icon {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.42);
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-link:hover .nav-link__icon,
+.active-nav .nav-link__icon {
+    color: #E50914;
+    transform: translateY(-1px);
 }
 
 /* Thin red underline that expands on hover */
@@ -698,6 +717,14 @@ ul {
     flex-direction: column;
     align-items: center;
     gap: 1.25rem;
+}
+
+.site-header__mobile .nav-link {
+    font-size: 0.95rem;
+}
+
+.site-header__mobile .nav-link__icon {
+    font-size: 0.95rem;
 }
 
 @media (max-width: 767px) {

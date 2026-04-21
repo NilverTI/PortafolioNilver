@@ -55,16 +55,20 @@
 .fa-css3-alt::before { content: '\f38b'; }
 .fa-database::before { content: '\f1c0'; }
 .fa-desktop::before { content: '\f390'; }
+.fa-envelope::before { content: '\f0e0'; }
 .fa-figma::before { content: '\f799'; }
 .fa-gears::before { content: '\f085'; }
 .fa-git-alt::before { content: '\f841'; }
 .fa-github::before { content: '\f09b'; }
 .fa-gitlab::before { content: '\f296'; }
+.fa-home::before,
+.fa-house::before { content: '\f015'; }
 .fa-html5::before { content: '\f13b'; }
 .fa-instagram::before { content: '\f16d'; }
 .fa-java::before { content: '\f4e4'; }
 .fa-js::before { content: '\f3b8'; }
 .fa-k::before { content: '\4b'; }
+.fa-layer-group::before { content: '\f5fd'; }
 .fa-linkedin::before { content: '\f08c'; }
 .fa-n::before { content: '\4e'; }
 .fa-node-js::before { content: '\f3d3'; }
