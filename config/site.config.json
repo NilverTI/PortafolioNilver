@@ -4,8 +4,8 @@
   "entryScript": "js/main.js",
   "stylesOutput": "css/site.css",
   "metadata": {
-    "title": "NILVER T.I - Portfolio",
-    "description": "Construyo aplicaciones web modernas, escalables y de alto rendimiento con dise\u00f1o limpio y arquitectura s\u00f3lida.",
+    "title": "Nilver TI - Frontend Developer & Web Developer | Portfolio",
+    "description": "Soy Nilver TI, Frontend Developer y Web Developer. Especializado en React, JavaScript, HTML, CSS, TypeScript y Node.js. Construyo aplicaciones web modernas, escalables y de alto rendimiento.",
     "siteUrl": "https://nilverti.de/",
     "previewImage": "img/ico/home.jpeg",
     "themeColor": "#07070a",

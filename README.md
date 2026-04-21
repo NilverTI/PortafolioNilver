@@ -2,7 +2,7 @@
 
 Sitio web portfolio personal refactorizado con una arquitectura modular, limpia y escalable, manteniendo el mismo diseño visual, las mismas animaciones y la misma funcionalidad observable del sitio original.
 
-[![Ver demo en vivo](https://img.shields.io/badge/🚀%20Ver%20Demo%20en%20Vivo-nilverti.vercel.app-E50914?style=for-the-badge&logo=vercel&logoColor=white)](https://nilverti.de/)
+[![Ver demo en vivo](https://img.shields.io/badge/🚀%20Ver%20Demo%20en%20Vivo-nilverti.de-E50914?style=for-the-badge&logo=vercel&logoColor=white)](https://nilverti.de/)
 
 ## Vista previa
 

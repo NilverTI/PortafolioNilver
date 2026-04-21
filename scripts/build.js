@@ -34,6 +34,16 @@ function buildStyleTag(bundleHref) {
     return `    <link rel="stylesheet" href="${bundleHref}" />`;
 }
 
+function indentMarkup(markup, spaces = 4) {
+    const indentation = ' '.repeat(spaces);
+
+    return markup
+        .trim()
+        .split('\n')
+        .map((line) => `${indentation}${line}`)
+        .join('\n');
+}
+
 function toAbsoluteUrl(siteUrl, assetPath) {
     return new URL(assetPath, siteUrl).toString();
 }
@@ -42,11 +52,12 @@ function buildStructuredData(metadata, socialLinks) {
     return JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Person',
-        name: 'NILVER T.I',
+        name: 'Nilver TI',
         url: metadata.siteUrl,
         image: toAbsoluteUrl(metadata.siteUrl, metadata.previewImage),
-        jobTitle: 'Desarrollador Full Stack',
+        jobTitle: 'Frontend Developer',
         description: metadata.description,
+        knowsAbout: ['React', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'Node.js'],
         sameAs: socialLinks.map((link) => link.href)
     });
 }
@@ -322,6 +333,60 @@ async function buildCssBundle(rootDir, config) {
     await writeText(path.join(rootDir, config.stylesOutput), bundle);
 }
 
+async function copyDirContents(sourceDir, targetDir) {
+    const entries = await fs.readdir(sourceDir, { withFileTypes: true });
+
+    await Promise.all(entries.map(async (entry) => {
+        const sourcePath = path.join(sourceDir, entry.name);
+        const targetPath = path.join(targetDir, entry.name);
+
+        if (entry.isDirectory()) {
+            await fs.mkdir(targetPath, { recursive: true });
+            await copyDirContents(sourcePath, targetPath);
+            return;
+        }
+
+        await fs.mkdir(path.dirname(targetPath), { recursive: true });
+        await fs.copyFile(sourcePath, targetPath);
+    }));
+}
+
+async function copyPublicAssets(rootDir) {
+    const publicDir = path.join(rootDir, 'public');
+
+    try {
+        await fs.access(publicDir);
+    } catch {
+        return;
+    }
+
+    await copyDirContents(publicDir, rootDir);
+}
+
+async function removeLegacyRootAssets(rootDir) {
+    const legacyAssets = [
+        'favicon.ico',
+        'favicon-16x16.png',
+        'favicon-32x32.png',
+        'favicon-48x48.png',
+        'apple-touch-icon.png',
+        'android-chrome-192x192.png',
+        'android-chrome-512x512.png'
+    ];
+
+    await Promise.all(legacyAssets.map(async (asset) => {
+        const assetPath = path.join(rootDir, asset);
+
+        try {
+            await fs.unlink(assetPath);
+        } catch (error) {
+            if (error.code !== 'ENOENT') {
+                throw error;
+            }
+        }
+    }));
+}
+
 async function writeSeoFiles(rootDir, metadata) {
     const robots = `User-agent: *\nAllow: /\n\nSitemap: ${new URL('sitemap.xml', metadata.siteUrl).toString()}\n`;
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${metadata.siteUrl}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n`;
@@ -344,8 +409,18 @@ async function main() {
 
     const sectionMarkup = await Promise.all(config.sections.map(async (section) => {
         const sectionTemplate = await readText(path.join(rootDir, section.template));
-        return renderSection(section.id, sectionTemplate, siteData);
+        return {
+            id: section.id,
+            markup: renderSection(section.id, sectionTemplate, siteData)
+        };
     }));
+
+    const headerMarkup = sectionMarkup.find((section) => section.id === 'header')?.markup ?? '';
+    const footerMarkup = sectionMarkup.find((section) => section.id === 'footer')?.markup ?? '';
+    const mainMarkup = sectionMarkup
+        .filter((section) => section.id !== 'header' && section.id !== 'footer')
+        .map((section) => section.markup)
+        .join('\n\n');
 
     const indexHtml = replaceTokens(template, {
         metaTitle: escapeHtml(config.metadata.title),
@@ -356,17 +431,23 @@ async function main() {
         previewImageUrl: escapeHtml(toAbsoluteUrl(config.metadata.siteUrl, config.metadata.previewImage)),
         structuredData: buildStructuredData(config.metadata, siteData.SOCIAL_LINKS),
         styles: buildStyleTag(config.stylesOutput),
-        sectionMarkup: sectionMarkup.join('\n'),
+        headerMarkup: indentMarkup(headerMarkup),
+        mainMarkup: indentMarkup(mainMarkup),
+        footerMarkup: indentMarkup(footerMarkup),
         entryScript: config.entryScript
     });
 
     await writeText(path.join(rootDir, config.output), indexHtml);
     await writeSeoFiles(rootDir, config.metadata);
+    await copyPublicAssets(rootDir);
+    await removeLegacyRootAssets(rootDir);
 
     console.log(`Generated ${config.output}`);
     console.log(`Generated ${config.stylesOutput}`);
     console.log('Generated robots.txt');
     console.log('Generated sitemap.xml');
+    console.log('Synced public assets to project root');
+    console.log('Removed legacy favicon assets from project root');
 }
 
 main().catch((error) => {
