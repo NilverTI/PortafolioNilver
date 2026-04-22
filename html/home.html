@@ -20,7 +20,7 @@
 
             <!-- Main heading -->
             <h1 class="hero-title animate-fade-up delay-100">
-                <span data-i18n="home.greeting">Hello, I am</span> <br />
+                <span class="hero-title__intro" data-i18n="home.greeting">Hello, I am</span>
                 <span class="hero-title__name">NILVER T.I</span>
             </h1>
 
@@ -36,11 +36,11 @@
 
             <!-- Tech chips -->
             <div class="hero-chips animate-fade-up delay-400">
-                <span class="tech-chip"><i class="fa-brands fa-react" style="color:#61DAFB"></i> React</span>
-                <span class="tech-chip"><i class="fa-brands fa-node-js" style="color:#339933"></i> Node.js</span>
-                <span class="tech-chip"><i class="fa-brands fa-js" style="color:#F7DF1E"></i> TypeScript</span>
-                <span class="tech-chip"><i class="fa-solid fa-database" style="color:#47A248"></i> MongoDB</span>
-                <span class="tech-chip"><i class="fa-brands fa-css3-alt" style="color:#38B2AC"></i> Tailwind</span>
+                <span class="tech-chip"><i class="fa-brands fa-react"></i> React</span>
+                <span class="tech-chip"><i class="fa-brands fa-node-js"></i> Node.js</span>
+                <span class="tech-chip"><i class="fa-brands fa-js"></i> TypeScript</span>
+                <span class="tech-chip"><i class="fa-solid fa-database"></i> MongoDB</span>
+                <span class="tech-chip"><i class="fa-brands fa-css3-alt"></i> Tailwind</span>
             </div>
 
             <!-- CTA Buttons -->
@@ -59,26 +59,30 @@
         <!-- RIGHT SIDE - Profile Image -->
         <div class="hero-right animate-fade-up delay-300">
 
-            <!-- Decorative ring -->
-            <div class="hero-img-ring"></div>
-            <div class="hero-img-ring hero-img-ring--outer"></div>
+            <div class="hero-visual">
 
-            <!-- Glow behind image -->
-            <div class="hero-img-glow"></div>
+                <!-- Decorative ring -->
+                <div class="hero-img-ring"></div>
+                <div class="hero-img-ring hero-img-ring--outer"></div>
 
-            <!-- Profile picture -->
-            <div class="hero-img-wrapper">
-                <img src="img/ico/logo.png" alt="Nilver T.I - Full Stack Developer" class="hero-img"
-                    data-i18n-alt="home.imageAlt"
-                    id="hero-logo-img"
-                    width="280" height="280"
-                    loading="eager" fetchpriority="high"
-                    onerror="this.style.display='none'; document.getElementById('hero-img-fallback').style.display='flex';" />
-                <!-- Fallback if no image -->
-                <div class="hero-img-fallback" id="hero-img-fallback">
-                    <i class="fa-solid fa-user"></i>
-                    <span data-i18n-html="home.fallbackPhoto">Add your photo to<br /><code>img/ico/logo.png</code></span>
+                <!-- Glow behind image -->
+                <div class="hero-img-glow"></div>
+
+                <!-- Profile picture -->
+                <div class="hero-img-wrapper">
+                    <img src="img/ico/logo.png" alt="Nilver T.I - Full Stack Developer" class="hero-img"
+                        data-i18n-alt="home.imageAlt"
+                        id="hero-logo-img"
+                        width="300" height="300"
+                        loading="eager" fetchpriority="high"
+                        onerror="this.style.display='none'; document.getElementById('hero-img-fallback').style.display='flex';" />
+                    <!-- Fallback if no image -->
+                    <div class="hero-img-fallback" id="hero-img-fallback">
+                        <i class="fa-solid fa-user"></i>
+                        <span data-i18n-html="home.fallbackPhoto">Add your photo to<br /><code>img/ico/logo.png</code></span>
+                    </div>
                 </div>
+
             </div>
 
             <!-- Floating experience badge -->
@@ -89,8 +93,8 @@
 
             <!-- Floating projects badge -->
             <div class="hero-proj-badge animate-float-b">
-                <i class="fa-solid fa-check" style="color:#22c55e; font-size:0.7rem;"></i>
-                <span data-i18n="home.projectsDelivered">+10 Projects delivered</span>
+                <i class="fa-solid fa-circle-check hero-proj-badge__icon"></i>
+                <span class="hero-proj-badge__text" data-i18n="home.projectsDelivered">+10 Projects delivered</span>
             </div>
 
         </div>

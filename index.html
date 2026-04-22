@@ -173,7 +173,7 @@
     
                 <!-- Main heading -->
                 <h1 class="hero-title animate-fade-up delay-100">
-                    <span data-i18n="home.greeting">Hello, I am</span> <br />
+                    <span class="hero-title__intro" data-i18n="home.greeting">Hello, I am</span>
                     <span class="hero-title__name">NILVER T.I</span>
                 </h1>
     
@@ -189,11 +189,11 @@
     
                 <!-- Tech chips -->
                 <div class="hero-chips animate-fade-up delay-400">
-                    <span class="tech-chip"><i class="fa-brands fa-react" style="color:#61DAFB"></i> React</span>
-                    <span class="tech-chip"><i class="fa-brands fa-node-js" style="color:#339933"></i> Node.js</span>
-                    <span class="tech-chip"><i class="fa-brands fa-js" style="color:#F7DF1E"></i> TypeScript</span>
-                    <span class="tech-chip"><i class="fa-solid fa-database" style="color:#47A248"></i> MongoDB</span>
-                    <span class="tech-chip"><i class="fa-brands fa-css3-alt" style="color:#38B2AC"></i> Tailwind</span>
+                    <span class="tech-chip"><i class="fa-brands fa-react"></i> React</span>
+                    <span class="tech-chip"><i class="fa-brands fa-node-js"></i> Node.js</span>
+                    <span class="tech-chip"><i class="fa-brands fa-js"></i> TypeScript</span>
+                    <span class="tech-chip"><i class="fa-solid fa-database"></i> MongoDB</span>
+                    <span class="tech-chip"><i class="fa-brands fa-css3-alt"></i> Tailwind</span>
                 </div>
     
                 <!-- CTA Buttons -->
@@ -212,26 +212,30 @@
             <!-- RIGHT SIDE - Profile Image -->
             <div class="hero-right animate-fade-up delay-300">
     
-                <!-- Decorative ring -->
-                <div class="hero-img-ring"></div>
-                <div class="hero-img-ring hero-img-ring--outer"></div>
+                <div class="hero-visual">
     
-                <!-- Glow behind image -->
-                <div class="hero-img-glow"></div>
+                    <!-- Decorative ring -->
+                    <div class="hero-img-ring"></div>
+                    <div class="hero-img-ring hero-img-ring--outer"></div>
     
-                <!-- Profile picture -->
-                <div class="hero-img-wrapper">
-                    <img src="img/ico/logo.png" alt="Nilver T.I - Full Stack Developer" class="hero-img"
-                        data-i18n-alt="home.imageAlt"
-                        id="hero-logo-img"
-                        width="280" height="280"
-                        loading="eager" fetchpriority="high"
-                        onerror="this.style.display='none'; document.getElementById('hero-img-fallback').style.display='flex';" />
-                    <!-- Fallback if no image -->
-                    <div class="hero-img-fallback" id="hero-img-fallback">
-                        <i class="fa-solid fa-user"></i>
-                        <span data-i18n-html="home.fallbackPhoto">Add your photo to<br /><code>img/ico/logo.png</code></span>
+                    <!-- Glow behind image -->
+                    <div class="hero-img-glow"></div>
+    
+                    <!-- Profile picture -->
+                    <div class="hero-img-wrapper">
+                        <img src="img/ico/logo.png" alt="Nilver T.I - Full Stack Developer" class="hero-img"
+                            data-i18n-alt="home.imageAlt"
+                            id="hero-logo-img"
+                            width="300" height="300"
+                            loading="eager" fetchpriority="high"
+                            onerror="this.style.display='none'; document.getElementById('hero-img-fallback').style.display='flex';" />
+                        <!-- Fallback if no image -->
+                        <div class="hero-img-fallback" id="hero-img-fallback">
+                            <i class="fa-solid fa-user"></i>
+                            <span data-i18n-html="home.fallbackPhoto">Add your photo to<br /><code>img/ico/logo.png</code></span>
+                        </div>
                     </div>
+    
                 </div>
     
                 <!-- Floating experience badge -->
@@ -242,8 +246,8 @@
     
                 <!-- Floating projects badge -->
                 <div class="hero-proj-badge animate-float-b">
-                    <i class="fa-solid fa-check" style="color:#22c55e; font-size:0.7rem;"></i>
-                    <span data-i18n="home.projectsDelivered">+10 Projects delivered</span>
+                    <i class="fa-solid fa-circle-check hero-proj-badge__icon"></i>
+                    <span class="hero-proj-badge__text" data-i18n="home.projectsDelivered">+10 Projects delivered</span>
                 </div>
     
             </div>
@@ -270,7 +274,7 @@
                 </p>
             </div>
     
-            <!-- Skills Grid (rendered by JS, 9 per page) -->
+            <!-- Skills Grid (rendered by JS, 6 per page) -->
             <div id="skillsCategoryGrid" class="sk-grid">
             <div class="sk-card">
                 <div class="sk-card__head">
@@ -379,60 +383,6 @@
                          style="--tw:72%;--c:#ffffff;"></div>
                 </div>
             </div>
-        
-            <div class="sk-card">
-                <div class="sk-card__head">
-                    <div class="sk-card__icon" style="--c:#0769AD">
-                        <i class="fa-solid fa-bolt" style="color:#0769AD"></i>
-                    </div>
-                    <div class="sk-card__info">
-                        <span class="sk-card__name">jQuery</span>
-                        <span class="sk-card__cat">Frontend</span>
-                    </div>
-                    <span class="sk-card__pct" style="color:#0769AD">75%</span>
-                </div>
-                <p class="sk-card__desc">Fast DOM manipulation</p>
-                <div class="sk-bar__track">
-                    <div class="sk-bar__fill skill-bar-anim"
-                         style="--tw:75%;--c:#0769AD;"></div>
-                </div>
-            </div>
-        
-            <div class="sk-card">
-                <div class="sk-card__head">
-                    <div class="sk-card__icon" style="--c:#41CD52">
-                        <i class="fa-solid fa-desktop" style="color:#41CD52"></i>
-                    </div>
-                    <div class="sk-card__info">
-                        <span class="sk-card__name">Qt</span>
-                        <span class="sk-card__cat">Frontend</span>
-                    </div>
-                    <span class="sk-card__pct" style="color:#41CD52">70%</span>
-                </div>
-                <p class="sk-card__desc">Cross-platform interfaces</p>
-                <div class="sk-bar__track">
-                    <div class="sk-bar__fill skill-bar-anim"
-                         style="--tw:70%;--c:#41CD52;"></div>
-                </div>
-            </div>
-        
-            <div class="sk-card">
-                <div class="sk-card__head">
-                    <div class="sk-card__icon" style="--c:#339933">
-                        <i class="fa-brands fa-node-js" style="color:#339933"></i>
-                    </div>
-                    <div class="sk-card__info">
-                        <span class="sk-card__name">Node.js</span>
-                        <span class="sk-card__cat">Backend and Development</span>
-                    </div>
-                    <span class="sk-card__pct" style="color:#339933">85%</span>
-                </div>
-                <p class="sk-card__desc">Server-side logic</p>
-                <div class="sk-bar__track">
-                    <div class="sk-bar__fill skill-bar-anim"
-                         style="--tw:85%;--c:#339933;"></div>
-                </div>
-            </div>
         </div>
     
             <!-- Pagination controls (rendered by JS) -->
@@ -454,6 +404,10 @@
             <button class="sk-page-dot "
                     data-page="2"
                     aria-label="Go to page 3"></button>
+        
+            <button class="sk-page-dot "
+                    data-page="3"
+                    aria-label="Go to page 4"></button>
         </div>
                 <button class="sk-page-btn sk-page-btn--next" id="skillsNext"
                         >
@@ -461,7 +415,7 @@
                 </button>
             </div>
             <p class="sk-page-info">
-                Showing 1-9 of 24 skills
+                Showing 1-6 of 24 skills
             </p>
         </div>
     

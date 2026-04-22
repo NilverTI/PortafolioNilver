@@ -220,26 +220,41 @@
 @media (max-width: 900px) {
     .proj-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 }
 
 @media (max-width: 560px) {
     .proj-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
     }
 
     .proj-card__desc {
         display: none;
     }
+
+    .proj-card__title {
+        font-size: 0.95rem;
+    }
+
+    .proj-card__visit {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.8rem;
+    }
 }
 
 @media (max-width: 400px) {
     .proj-grid {
-        grid-template-columns: 1fr;
+        gap: 0.6rem;
     }
 
-    .proj-card__desc {
-        display: block;
+    .proj-card__title {
+        font-size: 0.85rem;
+    }
+    
+    .proj-container {
+        padding: 0 0.5rem;
     }
 }
 

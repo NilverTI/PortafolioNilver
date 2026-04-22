@@ -1,7 +1,7 @@
 import { escapeHtml, query, setHtml } from '../utils/dom.js';
 import { getLocalizedValue, translate } from '../i18n.js';
 
-const PAGE_SIZE = 9;
+const getPageSize = () => (window.innerWidth > 900 ? 9 : 6);
 
 let currentPage = 0;
 let allSkills = [];
@@ -68,14 +68,15 @@ function buildSkillCard(skill) {
 }
 
 function buildPagination(totalPages) {
+    const pageSize = getPageSize();
     const dots = Array.from({ length: totalPages }, (_, index) => `
         <button class="sk-page-dot ${index === currentPage ? 'sk-page-dot--active' : ''}"
                 data-page="${index}"
                 aria-label="${escapeHtml(translate('skillsView.goToPage', { page: index + 1 }))}"></button>
     `).join('');
 
-    const start = currentPage * PAGE_SIZE + 1;
-    const end = Math.min((currentPage + 1) * PAGE_SIZE, allSkills.length);
+    const start = currentPage * pageSize + 1;
+    const end = Math.min((currentPage + 1) * pageSize, allSkills.length);
 
     return `
         <div class="sk-pagination">
@@ -96,8 +97,9 @@ function buildPagination(totalPages) {
 }
 
 function renderPage(container, paginationContainer, { animate = true } = {}) {
-    const totalPages = Math.ceil(allSkills.length / PAGE_SIZE);
-    const pageSkills = allSkills.slice(currentPage * PAGE_SIZE, (currentPage + 1) * PAGE_SIZE);
+    const pageSize = getPageSize();
+    const totalPages = Math.ceil(allSkills.length / pageSize);
+    const pageSkills = allSkills.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
 
     const applyMarkup = () => {
         setHtml(container, pageSkills.map(buildSkillCard).join(''));
@@ -127,13 +129,14 @@ function bindPaginationEvents(container, paginationContainer) {
             return;
         }
 
+        const pageSize = getPageSize();
         if (target.id === 'skillsPrev' && currentPage > 0) {
             currentPage -= 1;
             renderPage(container, paginationContainer);
             return;
         }
 
-        if (target.id === 'skillsNext' && currentPage < Math.ceil(allSkills.length / PAGE_SIZE) - 1) {
+        if (target.id === 'skillsNext' && currentPage < Math.ceil(allSkills.length / pageSize) - 1) {
             currentPage += 1;
             renderPage(container, paginationContainer);
             return;
@@ -166,6 +169,15 @@ export function renderSkillCategories(categories) {
 
     bindPaginationEvents(container, paginationContainer);
     renderPage(container, paginationContainer, { animate: false });
+
+    // Handle orientation/resize changes to update PAGE_SIZE dynamic layout
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            renderPage(container, paginationContainer, { animate: false });
+        }, 200);
+    });
 }
 
 export function renderSkills() {}

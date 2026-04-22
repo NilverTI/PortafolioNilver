@@ -207,7 +207,7 @@ function buildSkillCard(skill, language = 'en') {
     `;
 }
 
-function buildSkillsGrid(categories, pageSize = 9, currentPage = 0, language = 'en') {
+function buildSkillsGrid(categories, pageSize = 6, currentPage = 0, language = 'en') {
     const allSkills = flattenSkills(categories);
     const start = currentPage * pageSize;
     return allSkills
@@ -216,7 +216,7 @@ function buildSkillsGrid(categories, pageSize = 9, currentPage = 0, language = '
         .join('');
 }
 
-function buildSkillsPagination(categories, translations, pageSize = 9, currentPage = 0, language = 'en') {
+function buildSkillsPagination(categories, translations, pageSize = 6, currentPage = 0, language = 'en') {
     const allSkills = flattenSkills(categories);
     const totalPages = Math.ceil(allSkills.length / pageSize);
     const start = currentPage * pageSize + 1;
