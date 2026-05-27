@@ -7,19 +7,20 @@
     <div class="footer-glitch-container" id="glitchContainer">
         <!-- Canvas for text masking/erasing via blend modes -->
         <canvas id="eraseCanvas" class="erase-canvas"></canvas>
-        
         <p class="glitch" id="glitchText" data-text="NILVER T.I" role="text" aria-label="NILVER T.I">NILVER<span class="text-[#E50914]"> T.I</span></p>
-        
         <!-- Canvas for particle explosion -->
         <canvas id="particleCanvas" class="particle-canvas"></canvas>
     </div>
 
     <div class="footer-bottom">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-24 z-10 relative">
-            <div class="text-center md:text-right">
-                <p class="footer-text m-0">&copy; 2026 <span class="footer-highlight">NILVER T.I</span> &mdash; <span data-i18n="footer.accessGranted">ACCESS GRANTED ///</span></p>
-            </div>
+        <div class="footer-bottom__inner container mx-auto px-6 z-10 relative">
+            <p class="footer-text footer-copy m-0">&copy; 2026 <span class="footer-highlight">NILVER T.I</span> &mdash; <span data-i18n="footer.accessGranted">ACCESS GRANTED ///</span></p>
             <div id="socialLinks" class="flex space-x-6 justify-center footer-socials">{{footerSocialLinks}}</div>
+            <div class="footer-links">
+                <a class="footer-legal-link" href="/curriculum">Currículum</a>
+                <span class="footer-link-separator" aria-hidden="true">|</span>
+                <a class="footer-legal-link" href="/terminos">Términos y Condiciones</a>
+            </div>
         </div>
     </div>
 </footer>

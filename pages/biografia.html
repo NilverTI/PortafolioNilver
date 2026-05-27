@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biografía de Nilver T.I - Nilver Tantalean Inga | Desarrollador Web</title>
+    <meta name="description" content="Conoce la biografía de Nilver Tantalean Inga, también conocido como Nilver T.I: desarrollador web, estudiante de la Universidad Señor de Sipán y creador de experiencias digitales modernas." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#07070a" />
+    <meta name="author" content="Nilver TI" />
+
+    <link rel="canonical" href="https://nilverti.de/biografia" />
+
+    <link rel="icon" type="image/x-icon" href="/img/favicons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/img/favicons/favicon-48x48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:title" content="Biografía de Nilver T.I - Nilver Tantalean Inga" />
+    <meta property="og:description" content="Perfil profesional de Nilver Tantalean Inga, desarrollador web enfocado en interfaces modernas, automatización y tecnología." />
+    <meta property="og:url" content="https://nilverti.de/biografia" />
+    <meta property="og:image" content="https://nilverti.de/img/ico/nilverti.png" />
+    <meta property="og:site_name" content="Nilver TI - Portfolio" />
+    <meta property="profile:first_name" content="Nilver" />
+    <meta property="profile:last_name" content="Tantalean Inga" />
+    <meta property="profile:username" content="nilverti" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@nilverti" />
+    <meta name="twitter:title" content="Biografía de Nilver T.I - Nilver Tantalean Inga" />
+    <meta name="twitter:description" content="Conoce la historia, enfoque profesional y trayectoria de Nilver T.I." />
+    <meta name="twitter:image" content="https://nilverti.de/img/ico/nilverti.png" />
+
+    <link rel="preload" href="/fonts/poppins-300.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/img/ico/nilverti.png" as="image" type="image/png" fetchpriority="high" />
+
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/icons.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+
+    <style>
+        .fa-briefcase::before { content: '\f0b1'; }
+        .fa-calendar-days::before { content: '\f073'; }
+        .fa-chevron-left::before { content: '\f053'; }
+        .fa-file-lines::before { content: '\f15c'; }
+        .fa-graduation-cap::before { content: '\f19d'; }
+        .fa-location-dot::before { content: '\f3c5'; }
+
+        body {
+            background: #07070a;
+        }
+
+        .bio-page {
+            min-height: 100vh;
+            color: #f8fafc;
+            background:
+                linear-gradient(180deg, rgba(229, 9, 20, 0.055), transparent 22rem),
+                #07070a;
+        }
+
+        .bio-shell {
+            width: min(1120px, calc(100% - 2rem));
+            margin: 0 auto;
+        }
+
+        .bio-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 0 4.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .bio-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 82%);
+            -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 82%);
+        }
+
+        .bio-back {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-bottom: 2.5rem;
+            color: #94a3b8;
+            font-size: 0.86rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        .bio-back:hover,
+        .bio-back:focus-visible {
+            color: #fff;
+        }
+
+        .bio-hero__grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.72fr);
+            gap: clamp(2rem, 6vw, 5rem);
+            align-items: center;
+        }
+
+        .bio-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-bottom: 1.25rem;
+            color: #ff4d57;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .bio-eyebrow::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #e50914;
+            box-shadow: 0 0 18px rgba(229, 9, 20, 0.8);
+        }
+
+        .bio-title {
+            max-width: 760px;
+            margin: 0;
+            font-size: clamp(2.55rem, 7vw, 5.45rem);
+            line-height: 0.96;
+            letter-spacing: 0;
+            font-weight: 800;
+        }
+
+        .bio-title__accent {
+            color: #e50914;
+        }
+
+        .bio-lead {
+            max-width: 660px;
+            margin: 1.35rem 0 0;
+            color: #b8bec9;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.75;
+        }
+
+        .bio-lead strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .bio-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .bio-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            min-height: 2.9rem;
+            padding: 0.75rem 1.15rem;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .bio-btn--primary {
+            color: #fff;
+            background: #e50914;
+            box-shadow: 0 14px 34px rgba(229, 9, 20, 0.24);
+        }
+
+        .bio-btn--secondary {
+            color: #d1d5db;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .bio-btn:hover,
+        .bio-btn:focus-visible {
+            transform: translateY(-2px);
+        }
+
+        .bio-btn--secondary:hover,
+        .bio-btn--secondary:focus-visible {
+            border-color: rgba(229, 9, 20, 0.38);
+            background: rgba(229, 9, 20, 0.08);
+        }
+
+        .bio-portrait {
+            justify-self: end;
+            width: min(100%, 360px);
+        }
+
+        .bio-portrait__frame {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4 / 5;
+            border-radius: 28px;
+            background: #101013;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+        }
+
+        .bio-portrait__frame img,
+        .bio-portrait__fallback {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bio-portrait__frame img {
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .bio-portrait__fallback {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.32);
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .bio-portrait__caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: #aab2c0;
+            font-size: 0.85rem;
+        }
+
+        .bio-portrait__caption strong {
+            color: #fff;
+        }
+
+        .bio-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .bio-stat {
+            padding: 0.95rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .bio-stat strong {
+            display: block;
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1.1;
+        }
+
+        .bio-stat span {
+            display: block;
+            margin-top: 0.35rem;
+            color: #8d95a3;
+            font-size: 0.7rem;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+
+        .bio-section {
+            padding: 4rem 0;
+        }
+
+        .bio-section + .bio-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .bio-section__head {
+            max-width: 680px;
+            margin-bottom: 2rem;
+        }
+
+        .bio-kicker {
+            color: #e50914;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .bio-heading {
+            margin: 0.75rem 0 0;
+            color: #fff;
+            font-size: clamp(1.65rem, 4vw, 2.5rem);
+            line-height: 1.15;
+            letter-spacing: 0;
+        }
+
+        .bio-summary {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: start;
+        }
+
+        .bio-copy {
+            display: grid;
+            gap: 1.15rem;
+        }
+
+        .bio-copy p {
+            color: #a8b0bd;
+            font-size: 0.96rem;
+            line-height: 1.9;
+        }
+
+        .bio-copy strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .bio-info-list {
+            display: grid;
+            gap: 0.85rem;
+            padding: 1.1rem;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.032);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .bio-info-item {
+            display: grid;
+            grid-template-columns: 1.65rem minmax(0, 1fr);
+            gap: 0.8rem;
+            align-items: start;
+            padding: 0.75rem 0;
+        }
+
+        .bio-info-item + .bio-info-item {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .bio-info-item i {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.65rem;
+            height: 1.65rem;
+            color: #e50914;
+            background: rgba(229, 9, 20, 0.1);
+            border-radius: 10px;
+            font-size: 0.78rem;
+        }
+
+        .bio-info-item span {
+            display: block;
+            color: #768090;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .bio-info-item strong,
+        .bio-info-item a {
+            display: inline-block;
+            margin-top: 0.2rem;
+            color: #e5e7eb;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .bio-info-item a:hover,
+        .bio-info-item a:focus-visible {
+            color: #ff4d57;
+        }
+
+        .bio-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .bio-step {
+            min-height: 100%;
+            padding: 1.35rem;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.032);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .bio-step__num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            color: #fff;
+            background: #e50914;
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .bio-step h3 {
+            margin: 0;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .bio-step p {
+            margin: 0.75rem 0 0;
+            color: #9ca3af;
+            font-size: 0.88rem;
+            line-height: 1.75;
+        }
+
+        .bio-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
+        .bio-tech {
+            --tech-rgb: 229, 231, 235;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.62rem 0.9rem;
+            border-radius: 999px;
+            color: #e5e7eb;
+            background: rgba(var(--tech-rgb), 0.06);
+            border: 1px solid rgba(var(--tech-rgb), 0.22);
+            font-size: 0.82rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .bio-tech i {
+            color: rgb(var(--tech-rgb));
+            font-size: 0.95rem;
+        }
+
+        .bio-tech--react { --tech-rgb: 97, 218, 251; }
+        .bio-tech--node { --tech-rgb: 51, 153, 51; }
+        .bio-tech--typescript { --tech-rgb: 49, 120, 198; }
+        .bio-tech--mongodb { --tech-rgb: 71, 162, 72; }
+        .bio-tech--tailwind { --tech-rgb: 56, 189, 248; }
+
+        .bio-footer {
+            padding: 2rem 0 3rem;
+            color: #768090;
+            font-size: 0.84rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .bio-footer__inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .bio-footer a {
+            color: #d1d5db;
+            text-decoration: none;
+        }
+
+        .bio-footer a:hover,
+        .bio-footer a:focus-visible {
+            color: #e50914;
+        }
+
+        @media (max-width: 900px) {
+            .bio-hero {
+                padding-top: 7rem;
+            }
+
+            .bio-hero__grid,
+            .bio-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-portrait {
+                justify-self: start;
+                width: min(100%, 330px);
+            }
+
+            .bio-timeline {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .bio-shell {
+                width: min(100% - 1.5rem, 1120px);
+            }
+
+            .bio-hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .bio-actions {
+                width: 100%;
+            }
+
+            .bio-btn {
+                width: 100%;
+            }
+
+            .bio-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-section {
+                padding: 3rem 0;
+            }
+
+            .bio-footer__inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nilver Tantalean Inga",
+        "alternateName": "Nilver T.I",
+        "givenName": "Nilver",
+        "familyName": "Tantalean Inga",
+        "birthDate": "2004-03-13",
+        "jobTitle": "Frontend Developer",
+        "description": "Desarrollador web y estudiante de la Universidad Señor de Sipán, enfocado en interfaces modernas, automatización y tecnología.",
+        "url": "https://nilverti.de/",
+        "sameAs": [
+            "https://www.instagram.com/nilvert.i/",
+            "https://github.com/NilverTI",
+            "https://www.linkedin.com/in/nilverti/",
+            "https://tiktok.com/@nilvert.i",
+            "https://www.youtube.com/@nilvert.i"
+        ],
+        "email": "tinganilver@uss.edu.pe",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lima",
+            "addressCountry": "PE"
+        },
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Universidad Señor de Sipán"
+        },
+        "image": "https://nilverti.de/img/ico/nilverti.png"
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header" id="siteHeader">
+        <div class="site-header__inner">
+            <a href="/" class="site-header__logo" aria-label="Volver al inicio">
+                NILVER<span class="site-header__logo-accent"> T.I</span>
+            </a>
+
+            <div class="site-header__actions">
+                <nav class="site-header__nav" aria-label="Navegación principal">
+                    <ul class="site-header__nav-list">
+                        <li>
+                            <a href="/" class="nav-link">
+                                <i class="fa-solid fa-house nav-link__icon" aria-hidden="true"></i>
+                                <span>Inicio</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#projects" class="nav-link">
+                                <i class="fa-solid fa-layer-group nav-link__icon" aria-hidden="true"></i>
+                                <span>Proyectos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#contact" class="nav-link">
+                                <i class="fa-solid fa-envelope nav-link__icon" aria-hidden="true"></i>
+                                <span>Contacto</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/terminos" class="nav-link">
+                                <i class="fa-solid fa-file-lines nav-link__icon" aria-hidden="true"></i>
+                                <span>Términos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <button class="site-header__hamburger" id="mobileMenuButton" type="button"
+                    aria-controls="mobileMenu" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="site-header__bar"></span>
+                    <span class="site-header__bar"></span>
+                    <span class="site-header__bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="site-header__mobile hidden" id="mobileMenu">
+            <ul class="site-header__mobile-list">
+                <li>
+                    <a href="/" class="nav-link">
+                        <i class="fa-solid fa-house nav-link__icon" aria-hidden="true"></i>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#projects" class="nav-link">
+                        <i class="fa-solid fa-layer-group nav-link__icon" aria-hidden="true"></i>
+                        <span>Proyectos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact" class="nav-link">
+                        <i class="fa-solid fa-envelope nav-link__icon" aria-hidden="true"></i>
+                        <span>Contacto</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/terminos" class="nav-link">
+                        <i class="fa-solid fa-file-lines nav-link__icon" aria-hidden="true"></i>
+                        <span>Términos</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="bio-page">
+        <section class="bio-hero" aria-labelledby="bio-title">
+            <div class="bio-shell">
+                <a href="/" class="bio-back">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                    <span>Volver al inicio</span>
+                </a>
+
+                <div class="bio-hero__grid">
+                    <div>
+                        <span class="bio-eyebrow">Perfil profesional</span>
+                        <h1 class="bio-title" id="bio-title">
+                            Nilver <span class="bio-title__accent">Tantalean Inga</span>
+                        </h1>
+                        <p class="bio-lead">
+                            Desarrollador web enfocado en crear interfaces claras, rápidas y modernas. En internet firma como <strong>Nilver T.I</strong>, una identidad construida alrededor de tecnología, aprendizaje constante y proyectos digitales con intención.
+                        </p>
+
+                        <div class="bio-actions">
+                            <a href="/#projects" class="bio-btn bio-btn--primary">
+                                <span>Ver proyectos</span>
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                            <a href="/#contact" class="bio-btn bio-btn--secondary">
+                                <span>Contactar</span>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1rZiXl562q7aVyk1kJ2nO85YBAq8ixTiw/view" target="_blank" rel="noopener noreferrer" class="bio-btn bio-btn--secondary">
+                                <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                                <span>Ver currículum</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <aside class="bio-portrait" aria-label="Resumen de Nilver T.I">
+                        <div class="bio-portrait__frame">
+                            <img src="/img/ico/nilverti.png" alt="Nilver T.I" width="720" height="900"
+                                loading="eager" fetchpriority="high"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="bio-portrait__fallback">Nilver T.I</div>
+                        </div>
+                        <div class="bio-portrait__caption">
+                            <span>Alias profesional</span>
+                            <strong>Nilver T.I</strong>
+                        </div>
+                        <div class="bio-stats">
+                            <div class="bio-stat">
+                                <strong>2004</strong>
+                                <span>Nacimiento</span>
+                            </div>
+                            <div class="bio-stat">
+                                <strong>2+</strong>
+                                <span>Años creando</span>
+                            </div>
+                            <div class="bio-stat">
+                                <strong>+10</strong>
+                                <span>Proyectos</span>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="bio-section">
+            <div class="bio-shell">
+                <div class="bio-summary">
+                    <div>
+                        <div class="bio-section__head">
+                            <span class="bio-kicker">Sobre mí</span>
+                            <h2 class="bio-heading">Una historia ligada al desarrollo web, la creatividad y la disciplina.</h2>
+                        </div>
+
+                        <div class="bio-copy">
+                            <p>
+                                Nilver Tantalean Inga nació el <strong>13 de marzo de 2004</strong>. Desde joven se interesó por internet, la tecnología y la forma en que una idea puede convertirse en una experiencia digital real.
+                            </p>
+                            <p>
+                                Actualmente estudia en la <strong>Universidad Señor de Sipán</strong>, donde fortalece su base técnica y su visión de ingeniería, con especial atención en el desarrollo de soluciones web útiles, visuales y escalables.
+                            </p>
+                            <p>
+                                Bajo el nombre <strong>Nilver T.I</strong>, desarrolla proyectos web, automatizaciones y contenido digital. Su enfoque combina diseño limpio, estructura técnica y aprendizaje constante para construir productos cada vez más sólidos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <aside class="bio-info-list" aria-label="Datos rápidos">
+                        <div class="bio-info-item">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            <div>
+                                <span>Ubicación</span>
+                                <strong>Lima, Perú</strong>
+                            </div>
+                        </div>
+                        <div class="bio-info-item">
+                            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                            <div>
+                                <span>Formación</span>
+                                <strong>Universidad Señor de Sipán</strong>
+                            </div>
+                        </div>
+                        <div class="bio-info-item">
+                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                            <div>
+                                <span>Correo</span>
+                                <a href="mailto:tinganilver@uss.edu.pe">tinganilver@uss.edu.pe</a>
+                            </div>
+                        </div>
+                        <div class="bio-info-item">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                            <div>
+                                <span>GitHub</span>
+                                <a href="https://github.com/NilverTI" target="_blank" rel="noopener noreferrer">github.com/NilverTI</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="bio-section">
+            <div class="bio-shell">
+                <div class="bio-section__head">
+                    <span class="bio-kicker">Trayectoria</span>
+                    <h2 class="bio-heading">Un camino en crecimiento, con foco en construir mejor.</h2>
+                </div>
+
+                <div class="bio-timeline">
+                    <article class="bio-step">
+                        <span class="bio-step__num">01</span>
+                        <h3>Curiosidad por la tecnología</h3>
+                        <p>El interés por el mundo digital lo llevó a explorar diseño, programación y herramientas capaces de transformar ideas en productos funcionales.</p>
+                    </article>
+                    <article class="bio-step">
+                        <span class="bio-step__num">02</span>
+                        <h3>Base técnica universitaria</h3>
+                        <p>Su formación académica refuerza la lógica, la estructura y la disciplina necesarias para crear soluciones tecnológicas con mejores fundamentos.</p>
+                    </article>
+                    <article class="bio-step">
+                        <span class="bio-step__num">03</span>
+                        <h3>Proyectos y mejora continua</h3>
+                        <p>Actualmente combina frontend, automatización e inteligencia artificial para desarrollar experiencias digitales más completas y profesionales.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="bio-section">
+            <div class="bio-shell">
+                <div class="bio-section__head">
+                    <span class="bio-kicker">Stack principal</span>
+                    <h2 class="bio-heading">Tecnologías que usa para construir interfaces modernas.</h2>
+                </div>
+
+                <div class="bio-stack" aria-label="Tecnologías principales">
+                    <span class="bio-tech bio-tech--react"><i class="fa-brands fa-react" aria-hidden="true"></i> React</span>
+                    <span class="bio-tech bio-tech--node"><i class="fa-brands fa-node-js" aria-hidden="true"></i> Node.js</span>
+                    <span class="bio-tech bio-tech--typescript"><i class="fa-brands fa-js" aria-hidden="true"></i> TypeScript</span>
+                    <span class="bio-tech bio-tech--mongodb"><i class="fa-solid fa-database" aria-hidden="true"></i> MongoDB</span>
+                    <span class="bio-tech bio-tech--tailwind"><i class="fa-brands fa-css3-alt" aria-hidden="true"></i> Tailwind</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bio-footer">
+        <div class="bio-shell bio-footer__inner">
+            <span>&copy; 2026 Nilver T.I. Todos los derechos reservados.</span>
+            <a href="/">Volver al portafolio</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuBtn = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (!menuBtn || !mobileMenu) {
+                return;
+            }
+
+            menuBtn.addEventListener('click', function () {
+                const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+                menuBtn.setAttribute('aria-expanded', String(!expanded));
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

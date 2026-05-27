@@ -7,7 +7,7 @@
     border-top: 1px solid rgba(229, 9, 20, 0.3);
     overflow: hidden;
     padding-top: clamp(3rem, 8vw, 6rem);
-    padding-bottom: clamp(1.5rem, 4vw, 2rem);
+    padding-bottom: 0;
     z-index: 10;
 }
 
@@ -148,9 +148,16 @@
 ========================================= */
 .footer-bottom {
     border-top: 1px solid rgba(229, 9, 20, 0.1);
-    padding: clamp(1.2rem, 3vw, 2rem) clamp(1rem, 4vw, 1.5rem);
+    padding: 0.85rem clamp(1rem, 4vw, 1.5rem);
     position: relative;
     background: linear-gradient(180deg, transparent, rgba(229, 9, 20, 0.05));
+}
+
+.footer-bottom__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
 }
 
 .footer-text {
@@ -161,10 +168,51 @@
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
+.footer-copy {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .footer-highlight {
     color: #fff;
     font-weight: bold;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(229, 9, 20, 0.6);
+}
+
+.footer-socials {
+    align-items: center;
+    justify-self: center;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-self: end;
+    gap: 0.55rem;
+    min-width: 0;
+}
+
+.footer-link-separator {
+    color: #555;
+    font-size: 0.75rem;
+}
+
+.footer-legal-link {
+    color: #888;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    white-space: nowrap;
+}
+
+.footer-legal-link:hover,
+.footer-legal-link:focus-visible {
+    color: #E50914;
+    text-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
 }
 
 /* Social icons override for cyberpunk theme */
@@ -178,4 +226,21 @@
     color: #E50914;
     transform: translateY(-3px) scale(1.1);
     text-shadow: 0 0 10px #E50914, 0 0 20px #E50914;
+}
+
+@media (max-width: 767px) {
+    .footer-bottom__inner {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        text-align: center;
+    }
+
+    .footer-copy {
+        white-space: normal;
+    }
+
+    .footer-socials,
+    .footer-links {
+        justify-self: center;
+    }
 }

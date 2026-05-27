@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Página no encontrada | Nilver T.I</title>
+    <meta name="description" content="La página que buscas no existe. Regresa al inicio de Nilver T.I." />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="theme-color" content="#07070a" />
+    <meta name="author" content="Nilver TI" />
+
+    <link rel="canonical" href="https://nilverti.de/404" />
+
+    <link rel="icon" type="image/x-icon" href="/img/favicons/favicon.ico" />
+
+    <link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/icons.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+
+    <style>
+        .fa-chevron-left::before { content: '\f053'; }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #07070a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .error-bg-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .error-bg-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(229, 9, 20, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .error-content {
+            position: relative;
+            z-index: 1;
+            max-width: 520px;
+        }
+
+        .error-code {
+            font-size: clamp(6rem, 20vw, 12rem);
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+            background: linear-gradient(135deg, #E50914 0%, #ff4d4d 60%, #ff8a80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 40px rgba(229, 9, 20, 0.3));
+        }
+
+        .error-line {
+            width: 60px;
+            height: 3px;
+            background: #E50914;
+            margin: 1.5rem auto;
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+        }
+
+        .error-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 0 0.8rem;
+        }
+
+        .error-text {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin: 0 0 2rem;
+        }
+
+        .error-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .error-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .error-btn--primary {
+            background: linear-gradient(135deg, #E50914, #b00710);
+            color: #fff;
+            box-shadow: 0 0 24px rgba(229, 9, 20, 0.25);
+        }
+
+        .error-btn--primary:hover {
+            box-shadow: 0 0 40px rgba(229, 9, 20, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .error-btn--outline {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .error-btn--outline:hover {
+            border-color: rgba(255, 255, 255, 0.35);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .error-btn i {
+            font-size: 0.75rem;
+        }
+
+        .error-sub {
+            margin-top: 2.5rem;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .error-sub a {
+            color: #E50914;
+            text-decoration: none;
+        }
+
+        .error-sub a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1.5rem; }
+            .error-code { font-size: clamp(4rem, 25vw, 8rem); }
+            .error-title { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-bg-glow"></div>
+
+    <div class="error-content">
+        <p class="error-code">404</p>
+        <div class="error-line"></div>
+        <h1 class="error-title">Página no encontrada</h1>
+        <p class="error-text">
+            La página que buscas no existe o fue movida.<br />
+            Revisa la URL o vuelve al inicio.
+        </p>
+        <div class="error-links">
+            <a href="/" class="error-btn error-btn--primary">
+                <i class="fa-solid fa-house"></i>
+                Volver al inicio
+            </a>
+            <a href="/#contact" class="error-btn error-btn--outline">
+                <i class="fa-solid fa-envelope"></i>
+                Contacto
+            </a>
+        </div>
+        <p class="error-sub">
+            <a href="/">NILVER T.I</a> &mdash; Portafolio
+        </p>
+    </div>
+</body>
+</html>

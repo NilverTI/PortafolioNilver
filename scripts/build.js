@@ -392,16 +392,24 @@ async function copyDirContents(sourceDir, targetDir) {
     }));
 }
 
-async function copyPublicAssets(rootDir) {
-    const publicDir = path.join(rootDir, 'public');
+async function copyDir(rootDir, sourceName) {
+    const sourceDir = path.join(rootDir, sourceName);
 
     try {
-        await fs.access(publicDir);
+        await fs.access(sourceDir);
     } catch {
         return;
     }
 
-    await copyDirContents(publicDir, rootDir);
+    await copyDirContents(sourceDir, rootDir);
+}
+
+async function copyPublicAssets(rootDir) {
+    await copyDir(rootDir, 'public');
+}
+
+async function copyPages(rootDir) {
+    await copyDir(rootDir, 'pages');
 }
 
 async function removeLegacyRootAssets(rootDir) {
@@ -430,7 +438,7 @@ async function removeLegacyRootAssets(rootDir) {
 
 async function writeSeoFiles(rootDir, metadata) {
     const robots = `User-agent: *\nAllow: /\n\nSitemap: ${new URL('sitemap.xml', metadata.siteUrl).toString()}\n`;
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${metadata.siteUrl}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n`;
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${metadata.siteUrl}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>${metadata.siteUrl}biografia</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>\n  <url>\n    <loc>${metadata.siteUrl}curriculum</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>\n  <url>\n    <loc>${metadata.siteUrl}terminos</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n</urlset>\n`;
 
     await writeText(path.join(rootDir, 'robots.txt'), robots);
     await writeText(path.join(rootDir, 'sitemap.xml'), sitemap);
@@ -481,6 +489,7 @@ async function main() {
     await writeText(path.join(rootDir, config.output), indexHtml);
     await writeSeoFiles(rootDir, config.metadata);
     await copyPublicAssets(rootDir);
+    await copyPages(rootDir);
     await removeLegacyRootAssets(rootDir);
 
     console.log(`Generated ${config.output}`);
@@ -488,6 +497,7 @@ async function main() {
     console.log('Generated robots.txt');
     console.log('Generated sitemap.xml');
     console.log('Synced public assets to project root');
+    console.log('Synced pages to project root');
     console.log('Removed legacy favicon assets from project root');
 }
 

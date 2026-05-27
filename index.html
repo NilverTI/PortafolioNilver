@@ -189,11 +189,11 @@
     
                 <!-- Tech chips -->
                 <div class="hero-chips animate-fade-up delay-400">
-                    <span class="tech-chip"><i class="fa-brands fa-react"></i> React</span>
-                    <span class="tech-chip"><i class="fa-brands fa-node-js"></i> Node.js</span>
-                    <span class="tech-chip"><i class="fa-brands fa-js"></i> TypeScript</span>
-                    <span class="tech-chip"><i class="fa-solid fa-database"></i> MongoDB</span>
-                    <span class="tech-chip"><i class="fa-brands fa-css3-alt"></i> Tailwind</span>
+                    <span class="tech-chip tech-chip--react"><i class="fa-brands fa-react"></i> React</span>
+                    <span class="tech-chip tech-chip--node"><i class="fa-brands fa-node-js"></i> Node.js</span>
+                    <span class="tech-chip tech-chip--typescript"><i class="fa-brands fa-js"></i> TypeScript</span>
+                    <span class="tech-chip tech-chip--mongodb"><i class="fa-solid fa-database"></i> MongoDB</span>
+                    <span class="tech-chip tech-chip--tailwind"><i class="fa-brands fa-css3-alt"></i> Tailwind</span>
                 </div>
     
                 <!-- CTA Buttons -->
@@ -201,6 +201,10 @@
                     <a href="#projects" class="btn btn--primary">
                         <span data-i18n="home.viewProjects">View Projects</span>
                         <i class="fa-solid fa-arrow-right btn__icon"></i>
+                    </a>
+                    <a href="/curriculum" class="btn btn--outline">
+                        <i class="fa-solid fa-file-lines btn__icon"></i>
+                        <span data-i18n="home.viewResume">View Resume</span>
                     </a>
                     <a href="#contact" class="btn btn--outline">
                         <span data-i18n="home.contactMe">Contact Me</span>
@@ -707,7 +711,15 @@
                             placeholder="How can I help you?" data-i18n-placeholder="contact.messagePlaceholder"
                             required></textarea>
                     </div>
-    
+                    <div class="terms-check" id="termsCheckGroup">
+                        <input type="checkbox" id="termsAccepted" name="terms_accepted" value="yes"
+                            class="terms-check__input" />
+                        <label for="termsAccepted" class="terms-check__label">
+                            <span data-i18n="contact.termsAcceptPrefix">I have read and accept the</span>
+                            <a href="/terminos.html" target="_blank" rel="noopener noreferrer"
+                                class="terms-check__link" data-i18n="contact.termsAcceptLink">Terms and Conditions</a>
+                        </label>
+                    </div>
                     <button type="submit" id="contactSubmitBtn" class="contact-submit">
                         <i class="fa-solid fa-paper-plane" id="contactSubmitIcon"></i>
                         <span id="contactSubmitText" data-i18n="contact.submit">Send message</span>
@@ -783,7 +795,30 @@
                     </a>
                 </div>
             </div>
-    
+        </div>
+        <div id="termsModal" class="terms-modal hidden" role="dialog" aria-modal="true"
+            aria-labelledby="termsModalTitle" aria-describedby="termsModalText">
+            <div class="terms-modal__backdrop" data-terms-modal-close></div>
+            <div class="terms-modal__panel" tabindex="-1">
+                <button type="button" class="terms-modal__close" data-terms-modal-close
+                    aria-label="Close modal" data-i18n-aria-label="contact.termsModalCloseLabel">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+                <span class="contact-label terms-modal__label" data-i18n="contact.termsModalEyebrow">Before sending</span>
+                <h3 id="termsModalTitle" class="terms-modal__title" data-i18n="contact.termsModalTitle">
+                    Read and accept the terms
+                </h3>
+                <p id="termsModalText" class="terms-modal__text" data-i18n="contact.termsModalText">
+                    To send your message, please review the Terms and Conditions and then mark the acceptance checkbox.
+                </p>
+                <div class="terms-modal__actions">
+                    <a href="/terminos.html" target="_blank" rel="noopener noreferrer" class="terms-modal__primary"
+                        data-terms-modal-close
+                        data-i18n="contact.termsModalRead">Read terms</a>
+                    <button type="button" class="terms-modal__secondary" data-terms-modal-close
+                        data-i18n="contact.termsModalBack">Back to form</button>
+                </div>
+            </div>
         </div>
     </section>
     </main>
@@ -796,18 +831,14 @@
         <div class="footer-glitch-container" id="glitchContainer">
             <!-- Canvas for text masking/erasing via blend modes -->
             <canvas id="eraseCanvas" class="erase-canvas"></canvas>
-            
             <p class="glitch" id="glitchText" data-text="NILVER T.I" role="text" aria-label="NILVER T.I">NILVER<span class="text-[#E50914]"> T.I</span></p>
-            
             <!-- Canvas for particle explosion -->
             <canvas id="particleCanvas" class="particle-canvas"></canvas>
         </div>
     
         <div class="footer-bottom">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-24 z-10 relative">
-                <div class="text-center md:text-right">
-                    <p class="footer-text m-0">&copy; 2026 <span class="footer-highlight">NILVER T.I</span> &mdash; <span data-i18n="footer.accessGranted">ACCESS GRANTED ///</span></p>
-                </div>
+            <div class="footer-bottom__inner container mx-auto px-6 z-10 relative">
+                <p class="footer-text footer-copy m-0">&copy; 2026 <span class="footer-highlight">NILVER T.I</span> &mdash; <span data-i18n="footer.accessGranted">ACCESS GRANTED ///</span></p>
                 <div id="socialLinks" class="flex space-x-6 justify-center footer-socials">
             <a href="https://www.instagram.com/nilvert.i/" class="footer-social-link hover:text-pink-500"
                 target="_blank" rel="noopener noreferrer" title="Instagram"
@@ -839,6 +870,11 @@
                 <i class="fab fa-youtube"></i>
             </a>
         </div>
+                <div class="footer-links">
+                    <a class="footer-legal-link" href="/curriculum">Currículum</a>
+                    <span class="footer-link-separator" aria-hidden="true">|</span>
+                    <a class="footer-legal-link" href="/terminos">Términos y Condiciones</a>
+                </div>
             </div>
         </div>
     </footer>

@@ -3,6 +3,8 @@ import { query, queryAll } from '../utils/dom.js';
 
 let contactFormInitialized = false;
 let languageListenerBound = false;
+let termsModalInitialized = false;
+let previousTermsModalFocus = null;
 let currentState = 'idle';
 
 const STATE = {
@@ -11,6 +13,79 @@ const STATE = {
     SUCCESS: 'success',
     ERROR: 'error'
 };
+
+function clearTermsError() {
+    const termsCheckbox = query('#termsAccepted');
+    const termsGroup = query('#termsCheckGroup');
+
+    termsCheckbox?.removeAttribute('aria-invalid');
+    termsGroup?.classList.remove('is-error');
+}
+
+function openTermsModal(returnFocusElement = null) {
+    const modal = query('#termsModal');
+    const panel = modal ? query('.terms-modal__panel', modal) : null;
+
+    if (!modal || !panel) {
+        return;
+    }
+
+    previousTermsModalFocus = returnFocusElement ?? document.activeElement;
+    modal.classList.remove('hidden');
+    panel.focus();
+}
+
+function closeTermsModal() {
+    const modal = query('#termsModal');
+
+    if (!modal || modal.classList.contains('hidden')) {
+        return;
+    }
+
+    modal.classList.add('hidden');
+
+    if (previousTermsModalFocus instanceof HTMLElement) {
+        previousTermsModalFocus.focus();
+    }
+
+    previousTermsModalFocus = null;
+}
+
+function validateTermsAcceptance() {
+    const termsCheckbox = query('#termsAccepted');
+    const termsGroup = query('#termsCheckGroup');
+
+    if (!termsCheckbox || termsCheckbox.checked) {
+        clearTermsError();
+        return true;
+    }
+
+    termsCheckbox.setAttribute('aria-invalid', 'true');
+    termsGroup?.classList.add('is-error');
+    openTermsModal(termsCheckbox);
+    return false;
+}
+
+function bindTermsModal() {
+    if (termsModalInitialized) {
+        return;
+    }
+
+    termsModalInitialized = true;
+
+    queryAll('[data-terms-modal-close]').forEach((control) => {
+        control.addEventListener('click', closeTermsModal);
+    });
+
+    const termsCheckbox = query('#termsAccepted');
+    termsCheckbox?.addEventListener('change', clearTermsError);
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeTermsModal();
+        }
+    });
+}
 
 function syncSubmitButtonToLanguage() {
     const submitBtn = query('#contactSubmitBtn');
@@ -79,6 +154,10 @@ async function handleSubmit(event) {
         return;
     }
 
+    if (!validateTermsAcceptance()) {
+        return;
+    }
+
     setLoadingState(true);
 
     try {
@@ -121,6 +200,7 @@ export function initContactForm() {
     }
 
     contactFormInitialized = true;
+    bindTermsModal();
     form.addEventListener('submit', handleSubmit);
 
     if (!languageListenerBound) {

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Términos y Condiciones - Nilver TI</title>
+    <meta name="description" content="Términos y condiciones de uso del portafolio de Nilver TI. Información sobre el tratamiento de datos del formulario de contacto." />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#07070a" />
+    <meta name="author" content="Nilver TI" />
+
+    <link rel="canonical" href="https://nilverti.de/terminos" />
+
+    <link rel="icon" type="image/x-icon" href="/img/favicons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/img/favicons/favicon-48x48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png" />
+
+    <link rel="preload" href="/fonts/poppins-300.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/icons.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/scrollbar.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+
+    <style>
+        .fa-arrow-left::before { content: '\f060'; }
+        .fa-file-lines::before { content: '\f15c'; }
+        .fa-shield-halved::before { content: '\f3ed'; }
+        .fa-lock::before { content: '\f023'; }
+        .fa-clock::before { content: '\f017'; }
+        .fa-user-pen::before { content: '\f4ff'; }
+        .fa-triangle-exclamation::before { content: '\f071'; }
+        .fa-link::before { content: '\f0c1'; }
+        .fa-scale-balanced::before { content: '\f24e'; }
+        .fa-message::before { content: '\f27a'; }
+
+        .terms-section {
+            position: relative;
+            padding: 8rem 1.5rem 4rem;
+            background-color: #07070a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .terms-container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .terms-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .terms-label {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #E50914;
+            border: 1px solid rgba(229, 9, 20, 0.15);
+            background: rgba(229, 9, 20, 0.05);
+            padding: 0.4rem 1.1rem;
+            border-radius: 999px;
+            margin-bottom: 1.5rem;
+        }
+
+        .terms-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin: 0 0 0.6rem;
+            line-height: 1.2;
+        }
+
+        .terms-title__accent {
+            color: #E50914;
+        }
+
+        .terms-subtitle {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .terms-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .terms-block {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .terms-block:hover {
+            border-color: rgba(229, 9, 20, 0.2);
+        }
+
+        .terms-block__title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 0 0 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .terms-block__title i {
+            color: #E50914;
+            font-size: 1rem;
+            width: 1.2rem;
+            text-align: center;
+        }
+
+        .terms-block p {
+            color: #9ca3af;
+            font-size: 0.92rem;
+            line-height: 1.8;
+            margin: 0 0 0.5rem;
+        }
+
+        .terms-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-block ul {
+            margin: 0.5rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .terms-block ul li {
+            color: #9ca3af;
+            font-size: 0.92rem;
+            line-height: 1.8;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .terms-block ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #E50914;
+        }
+
+        .terms-block ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .terms-back:hover {
+            color: #E50914;
+        }
+
+        .terms-back i {
+            font-size: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .terms-back:hover i {
+            transform: translateX(-3px);
+        }
+
+        .terms-footer-note {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 1rem;
+        }
+
+        .terms-footer-note p {
+            color: #6b7280;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .terms-footer-note a {
+            color: #E50914;
+            text-decoration: none;
+        }
+
+        .terms-footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .terms-section {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .terms-block {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Simplified header -->
+    <header class="site-header" id="siteHeader">
+        <div class="site-header__inner">
+            <a href="/" class="site-header__logo" aria-label="Volver al inicio">
+                NILVER<span class="site-header__logo-accent"> T.I</span>
+            </a>
+            <div class="site-header__actions">
+                <nav class="site-header__nav" aria-label="Navegación">
+                    <ul class="site-header__nav-list">
+                        <li>
+                            <a href="/" class="nav-link">
+                                <i class="fa-solid fa-house nav-link__icon" aria-hidden="true"></i>
+                                <span>Inicio</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#contact" class="nav-link">
+                                <i class="fa-solid fa-envelope nav-link__icon" aria-hidden="true"></i>
+                                <span>Contacto</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="site-header__hamburger" id="mobileMenuButton" type="button"
+                    aria-controls="mobileMenu" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="site-header__bar"></span>
+                    <span class="site-header__bar"></span>
+                    <span class="site-header__bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="site-header__mobile hidden" id="mobileMenu">
+            <ul class="site-header__mobile-list">
+                <li>
+                    <a href="/" class="nav-link">
+                        <i class="fa-solid fa-house nav-link__icon" aria-hidden="true"></i>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact" class="nav-link">
+                        <i class="fa-solid fa-envelope nav-link__icon" aria-hidden="true"></i>
+                        <span>Contacto</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="terms-section">
+        <div class="terms-container">
+            <a href="/" class="terms-back">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Volver al inicio</span>
+            </a>
+
+            <div class="terms-header">
+                <span class="terms-label">Legal</span>
+                <h1 class="terms-title">Términos y <span class="terms-title__accent">Condiciones</span></h1>
+                <p class="terms-subtitle">Última actualización: mayo 2026</p>
+            </div>
+
+            <div class="terms-content">
+
+                <div class="terms-block">
+                    <h2 class="terms-block__title">
+                        <i class="fa-solid fa-file-lines"></i>
+                        Aceptación de los términos
+                    </h2>
+                    <p>
+                        Al acceder y utilizar este portafolio web, aceptas los presentes Términos y Condiciones. 
+                        Si no estás de acuerdo con alguna parte de estos términos, te recomendamos no utilizar 
+                        este sitio ni el formulario de contacto.
+                    </p>
+                </div>
+
+                <div class="terms-block">
+                    <h2 class="terms-block__title">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Tratamiento de datos personales
+                    </h2>
+                    <p>
+                        A través del formulario de contacto, se recopilan datos personales como nombre, 
+                        correo electrónico, asunto y mensaje. Estos datos son proporcionados de manera 
+                        voluntaria por el usuario.
+                    </p>
+                    <p>
+                        <strong>Los datos recopilados se utilizarán única y exclusivamente para:</strong>
+                    </p>
+                    <ul>
+                        <li>Identificar a la persona que está contactando.</li>
+                        <li>Conocer el motivo de su solicitud y poder responder adecuadamente.</li>
+                        <li>Dar seguimiento a proyectos, propuestas o consultas realizadas a través del formulario.</li>
+                    </ul>
+                    <p>
+                        Bajo ninguna circunstancia los datos proporcionados serán vendidos, alquilados, 
+                        compartidos con terceros no autorizados ni utilizados para fines publicitarios o de 
+                        marketing sin el consentimiento explícito del usuario.
+                    </p>
+                </div>
+
+                <div class="terms-block">
+                    <h2 class="terms-block__title">
+                        <i class="fa-solid fa-lock"></i>
+                        Confidencialidad y seguridad
+                    </h2>
+                    <p>
+                        Nilver T.I se compromete a mantener la confidencialidad de los datos personales 
+                        proporcionados a través del formulario de contacto. Se implementan medidas de 
+                        seguridad técnicas y organizativas para proteger la información contra accesos 
+                        no autorizados, pérdida o divulgación.
+                    </p>
+                </div>
+
+                <div class="terms-block">
+                    <h2 class="terms-block__title">
+                        <i class="fa-solid fa-clock"></i>
+                        Conservación de los datos
+                    </h2>
+                    <p>
+                        Los datos personales proporcionados se conservarán únicamente durante el tiempo 
+                        necesario para atender la solicitud del usuario. Una vez finalizada la comunicación 
+                        o el proyecto, los datos podrán ser eliminados de nuestros registros, salvo que 
+                        exista una obligación legal que requiera su conservación.
+                    </p>
+                </div>
+
+                <div class="terms-block">
+                    <h2 class="terms-block__title">
+                        <i class="fa-solid fa-user-pen"></i>
+                        Derechos del usuario
+                    </h2>
+                    <p>
+                        Como titular de los datos personales, tienes derecho a:
+                    </p>
+                    <ul>
+                        <li>Solicitar el acceso a tus datos personales.</li>
+                        <li>Solicitar la rectificación de datos inexactos.</li>
+                        <li>Solicitar la eliminación de tus datos cuando ya no sean necesarios.</li>
+                        <li>Oponerte al tratamiento de tus datos.</li>
+                    </ul>
+                    <p>
+                        Para ejercer cualquiera de estos derechos, puedes contactarnos a través del 
+                        formulario de contacto o directamente al correo que figura en el sitio.
+                    </p>
+                </div>
+
+                <div class="terms-block">
+                    <h2 class="terms-block__title">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        Uso del sitio
+                    </h2>
+                    <p>
+                        Este portafolio tiene fines exclusivamente informativos y de presentación profesional. 
+                        Todo el contenido mostrado (proyectos, habilidades, diseño) es propiedad de Nilver T.I 
+                        y no puede ser reproducido sin autorización.
+                    </p>
+                    <p>
+                        El usuario se compromete a no utilizar este sitio para actividades ilícitas o que 
+                        puedan dañar la imagen o el funcionamiento del mismo.
+                    </p>
+                </div>
+
+                <div class="terms-block">
+                    <h2 class="terms-block__title">
+                        <i class="fa-solid fa-link"></i>
+                        Enlaces a terceros
+                    </h2>
+                    <p>
+                        Este portafolio puede contener enlaces a sitios web externos (redes sociales, 
+                        proyectos desplegados en otras plataformas, etc.). Nilver T.I no se hace responsable 
+                        del contenido ni de las prácticas de privacidad de dichos sitios.
+                    </p>
+                </div>
+
+                <div class="terms-block">
+                    <h2 class="terms-block__title">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        Modificaciones
+                    </h2>
+                    <p>
+                        Nilver T.I se reserva el derecho de modificar estos Términos y Condiciones en 
+                        cualquier momento. Los cambios serán publicados en esta misma página con la fecha 
+                        de actualización correspondiente.
+                    </p>
+                </div>
+
+                <div class="terms-block">
+                    <h2 class="terms-block__title">
+                        <i class="fa-solid fa-message"></i>
+                        Contacto
+                    </h2>
+                    <p>
+                        Si tienes alguna duda sobre estos Términos y Condiciones o sobre el tratamiento 
+                        de tus datos personales, puedes contactarnos a través del 
+                        <a href="/#contact" style="color:#E50914;text-decoration:none;">formulario de contacto</a> 
+                        disponible en este portafolio.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="terms-footer-note">
+                <p>&copy; 2026 Nilver T.I &mdash; Todos los derechos reservados. | <a href="/">Volver al inicio</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script for hamburger menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuBtn = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function () {
+                    const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+                    menuBtn.setAttribute('aria-expanded', !expanded);
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

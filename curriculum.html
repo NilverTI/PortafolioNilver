@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currículum - Nilver Tantalean Inga | Nilver T.I</title>
+    <meta name="description" content="Currículum vitae de Nilver Tantalean Inga (Nilver T.I), Desarrollador Frontend y estudiante de Ingeniería de Sistemas en la Universidad Señor de Sipán." />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#07070a" />
+    <meta name="author" content="Nilver TI" />
+
+    <link rel="canonical" href="https://nilverti.de/curriculum" />
+
+    <link rel="icon" type="image/x-icon" href="/img/favicons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/img/favicons/favicon-48x48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:title" content="Currículum - Nilver Tantalean Inga | Nilver T.I" />
+    <meta property="og:description" content="Currículum vitae de Nilver Tantalean Inga, Desarrollador Frontend y estudiante de Ingeniería de Sistemas." />
+    <meta property="og:url" content="https://nilverti.de/curriculum" />
+    <meta property="og:image" content="https://nilverti.de/img/ico/nilverti.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <meta property="og:site_name" content="Nilver TI - Portfolio" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@nilverti" />
+    <meta name="twitter:title" content="Currículum - Nilver Tantalean Inga | Nilver T.I" />
+    <meta name="twitter:image" content="https://nilverti.de/img/ico/nilverti.png" />
+
+    <link rel="preload" href="/fonts/poppins-300.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/icons.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/scrollbar.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+
+    <style>
+        .fa-chevron-left::before { content: '\f053'; }
+        .fa-location-dot::before { content: '\f3c5'; }
+        .fa-calendar::before { content: '\f073'; }
+        .fa-graduation-cap::before { content: '\f19d'; }
+        .fa-code-branch::before { content: '\f126'; }
+        .fa-globe::before { content: '\f0ac'; }
+        .fa-download::before { content: '\f019'; }
+        .fa-print::before { content: '\f02f'; }
+        .fa-star::before { content: '\f005'; }
+        .fa-star-half-stroke::before { content: '\f5c0'; }
+        .fa-check::before { content: '\f00c'; }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #07070a;
+            color: #fff;
+        }
+
+        .cv-header-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(7, 7, 10, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0 2rem;
+            height: 4.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cv-header-bar__logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .cv-header-bar__logo span { color: #E50914; }
+
+        .cv-header-bar__actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .cv-btn--primary {
+            background: #E50914;
+            color: #fff;
+        }
+
+        .cv-btn--primary:hover {
+            background: #b00710;
+            transform: translateY(-1px);
+        }
+
+        .cv-btn--outline {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .cv-btn--outline:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        .cv-btn i { font-size: 0.8rem; }
+
+        .cv-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 6.5rem 1.5rem 3rem;
+        }
+
+        .cv-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+        }
+
+        /* SIDEBAR */
+        .cv-sidebar {
+            background: rgba(229, 9, 20, 0.03);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 2.5rem 1.8rem;
+        }
+
+        .cv-avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            display: block;
+            border: 3px solid rgba(229, 9, 20, 0.25);
+            background: #0a0a0a;
+        }
+
+        .cv-avatar-fallback {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(229, 9, 20, 0.06);
+            border: 3px solid rgba(229, 9, 20, 0.15);
+            font-size: 3rem;
+            color: rgba(229, 9, 20, 0.3);
+        }
+
+        .cv-sidebar-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 0 0 0.3rem;
+            line-height: 1.2;
+        }
+
+        .cv-sidebar-role {
+            text-align: center;
+            color: #E50914;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin: 0 0 1.5rem;
+        }
+
+        .cv-sidebar-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            margin: 1.5rem 0;
+        }
+
+        .cv-sidebar-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #E50914;
+            margin: 0 0 1rem;
+        }
+
+        .cv-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.4rem 0;
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .cv-contact-item:hover { color: #fff; }
+
+        .cv-contact-item i {
+            width: 1rem;
+            color: #E50914;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        .cv-skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.35rem 0;
+            font-size: 0.8rem;
+        }
+
+        .cv-skill-item__name {
+            flex: 1;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cv-skill-item__stars {
+            display: flex;
+            gap: 2px;
+            color: #E50914;
+            font-size: 0.6rem;
+        }
+
+        .cv-skill-item__stars .empty { color: rgba(255, 255, 255, 0.12); }
+
+        .cv-lang-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.35rem 0;
+            font-size: 0.8rem;
+        }
+
+        .cv-lang-item__name { color: rgba(255, 255, 255, 0.7); }
+
+        .cv-lang-item__level {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.7rem;
+        }
+
+        /* MAIN */
+        .cv-main {
+            padding: 2.5rem 2.5rem;
+        }
+
+        .cv-main-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 0.2rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .cv-main-name span { color: #E50914; }
+
+        .cv-main-role {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            margin: 0 0 1.5rem;
+        }
+
+        .cv-main-role strong { color: #E50914; }
+
+        .cv-summary {
+            color: #9ca3af;
+            font-size: 0.88rem;
+            line-height: 1.8;
+            margin: 0 0 2rem;
+            padding: 1.25rem 1.5rem;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border-left: 3px solid #E50914;
+        }
+
+        .cv-section {
+            margin-bottom: 2rem;
+        }
+
+        .cv-section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .cv-section-header i {
+            color: #E50914;
+            font-size: 0.9rem;
+        }
+
+        .cv-section-header h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cv-edu-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.75rem 0;
+        }
+
+        .cv-edu-item:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .cv-edu-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(229, 9, 20, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #E50914;
+            font-size: 0.85rem;
+        }
+
+        .cv-edu-info h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0 0 0.15rem;
+        }
+
+        .cv-edu-info p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        .cv-edu-info .cv-date {
+            font-size: 0.72rem;
+            color: #E50914;
+            font-weight: 500;
+        }
+
+        .cv-proj-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.75rem 0;
+        }
+
+        .cv-proj-item:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .cv-proj-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(229, 9, 20, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #E50914;
+            font-size: 0.85rem;
+        }
+
+        .cv-proj-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cv-proj-info h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0 0 0.15rem;
+        }
+
+        .cv-proj-info p {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0 0 0.3rem;
+            line-height: 1.5;
+        }
+
+        .cv-proj-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .cv-proj-links a {
+            font-size: 0.7rem;
+            color: #E50914;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .cv-proj-links a:hover { text-decoration: underline; }
+
+        .cv-footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .cv-footer a { color: #E50914; text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 820px) {
+            .cv-grid { grid-template-columns: 1fr; }
+            .cv-sidebar { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+            .cv-sidebar { padding: 2rem 1.5rem; }
+            .cv-main { padding: 1.5rem; }
+            .cv-avatar { width: 120px; height: 120px; }
+            .cv-header-bar { padding: 0 1rem; }
+            .cv-btn span { display: none; }
+            .cv-wrapper { padding: 5.5rem 0.75rem 2rem; }
+            .cv-main-name { font-size: 1.6rem; }
+        }
+
+        @media (max-width: 480px) {
+            .cv-main { padding: 1rem; }
+            .cv-sidebar { padding: 1.5rem 1rem; }
+        }
+
+        /* Print */
+        @media print {
+            .cv-header-bar { display: none; }
+            .cv-wrapper { padding: 0; }
+            .cv-card { border: none; border-radius: 0; }
+            .cv-grid { grid-template-columns: 260px 1fr; }
+            .cv-sidebar { background: #f5f5f5; border-right: 1px solid #ddd; }
+            .cv-main-name, .cv-main-role, .cv-summary, .cv-section-header h2 { color: #000; }
+            .cv-summary, .cv-contact-item, .cv-skill-item__name, .cv-lang-item__name, .cv-edu-info p, .cv-proj-info p { color: #444; }
+            .cv-edu-info h3, .cv-proj-info h3, .cv-sidebar-name { color: #111; }
+            .cv-sidebar { color: #333; }
+            .cv-card { background: #fff; }
+            .cv-sidebar { background: #fafafa; }
+            .cv-btn { display: none; }
+            .cv-footer { color: #888; }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nilver Tantalean Inga",
+        "alternateName": "Nilver T.I",
+        "givenName": "Nilver",
+        "familyName": "Tantalean Inga",
+        "birthDate": "2004-03-13",
+        "jobTitle": "Frontend Developer",
+        "email": "tinganilver@uss.edu.pe",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lima",
+            "addressCountry": "PE"
+        },
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Universidad Señor de Sipán"
+        },
+        "image": "https://nilverti.de/img/ico/nilverti.png",
+        "url": "https://nilverti.de/"
+    }
+    </script>
+</head>
+<body>
+
+    <header class="cv-header-bar">
+        <a href="/" class="cv-header-bar__logo">NILVER<span> T.I</span></a>
+        <div class="cv-header-bar__actions">
+            <a href="/biografia" class="cv-btn cv-btn--outline">
+                <i class="fa-solid fa-user"></i>
+                <span>Biografía</span>
+            </a>
+            <button class="cv-btn cv-btn--outline" onclick="window.print()">
+                <i class="fa-solid fa-print"></i>
+                <span>Imprimir</span>
+            </button>
+            <a href="?download=1" class="cv-btn cv-btn--primary" onclick="window.print(); return false;">
+                <i class="fa-solid fa-download"></i>
+                <span>Descargar PDF</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="cv-wrapper">
+        <div class="cv-card">
+            <div class="cv-grid">
+
+                <!-- SIDEBAR -->
+                <aside class="cv-sidebar">
+                    <img
+                        src="/img/ico/nilverti.png"
+                        alt="Nilver T.I"
+                        class="cv-avatar"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+                    />
+                    <div class="cv-avatar-fallback" style="display:none">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <h2 class="cv-sidebar-name">Nilver T.I</h2>
+                    <p class="cv-sidebar-role">Frontend Developer</p>
+
+                    <div class="cv-sidebar-divider"></div>
+
+                    <h3 class="cv-sidebar-title">Contacto</h3>
+                    <a href="mailto:tinganilver@uss.edu.pe" class="cv-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        tinganilver@uss.edu.pe
+                    </a>
+                    <div class="cv-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Lima, Perú
+                    </div>
+                    <a href="https://nilverti.de" class="cv-contact-item" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-globe"></i>
+                        nilverti.de
+                    </a>
+                    <a href="https://github.com/NilverTI" class="cv-contact-item" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-github"></i>
+                        github.com/NilverTI
+                    </a>
+                    <a href="https://www.linkedin.com/in/nilverti/" class="cv-contact-item" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-linkedin"></i>
+                        linkedin.com/in/nilverti
+                    </a>
+
+                    <div class="cv-sidebar-divider"></div>
+
+                    <h3 class="cv-sidebar-title">Habilidades</h3>
+
+                    <div class="cv-skill-item">
+                        <span class="cv-skill-item__name">HTML5</span>
+                        <span class="cv-skill-item__stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </span>
+                    </div>
+                    <div class="cv-skill-item">
+                        <span class="cv-skill-item__name">CSS3</span>
+                        <span class="cv-skill-item__stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </span>
+                    </div>
+                    <div class="cv-skill-item">
+                        <span class="cv-skill-item__name">JavaScript</span>
+                        <span class="cv-skill-item__stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </span>
+                    </div>
+                    <div class="cv-skill-item">
+                        <span class="cv-skill-item__name">TypeScript</span>
+                        <span class="cv-skill-item__stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star empty"></i>
+                        </span>
+                    </div>
+                    <div class="cv-skill-item">
+                        <span class="cv-skill-item__name">React</span>
+                        <span class="cv-skill-item__stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star empty"></i>
+                        </span>
+                    </div>
+                    <div class="cv-skill-item">
+                        <span class="cv-skill-item__name">Node.js</span>
+                        <span class="cv-skill-item__stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star empty"></i>
+                        </span>
+                    </div>
+                    <div class="cv-skill-item">
+                        <span class="cv-skill-item__name">Python</span>
+                        <span class="cv-skill-item__stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star empty"></i>
+                        </span>
+                    </div>
+                    <div class="cv-skill-item">
+                        <span class="cv-skill-item__name">Git / GitHub</span>
+                        <span class="cv-skill-item__stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star empty"></i>
+                        </span>
+                    </div>
+
+                    <div class="cv-sidebar-divider"></div>
+
+                    <h3 class="cv-sidebar-title">Idiomas</h3>
+                    <div class="cv-lang-item">
+                        <span class="cv-lang-item__name">Español</span>
+                        <span class="cv-lang-item__level">Nativo</span>
+                    </div>
+                    <div class="cv-lang-item">
+                        <span class="cv-lang-item__name">Inglés</span>
+                        <span class="cv-lang-item__level">Intermedio</span>
+                    </div>
+                </aside>
+
+                <!-- MAIN -->
+                <main class="cv-main">
+                    <h1 class="cv-main-name">Nilver <span>Tantalean Inga</span></h1>
+                    <p class="cv-main-role">
+                        <strong>Frontend Developer</strong> &mdash; Full Stack &amp; React &amp; Node.js
+                    </p>
+
+                    <div class="cv-summary">
+                        Desarrollador Frontend con m&aacute;s de 2 a&ntilde;os de experiencia creando aplicaciones web modernas, escalables y de alto rendimiento. Estudiante de Ingenier&iacute;a de Sistemas en la Universidad Se&ntilde;or de Sip&aacute;n. Apasionado por la tecnolog&iacute;a, la inteligencia artificial y el desarrollo de soluciones digitales innovadoras. Enfocado en escribir c&oacute;digo limpio, experiencias de usuario atractivas y productos funcionales.
+                    </div>
+
+                    <!-- EDUCATION -->
+                    <section class="cv-section">
+                        <div class="cv-section-header">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <h2>Educaci&oacute;n</h2>
+                        </div>
+                        <div class="cv-edu-item">
+                            <div class="cv-edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div class="cv-edu-info">
+                                <h3>Ingenier&iacute;a de Sistemas</h3>
+                                <p>Universidad Se&ntilde;or de Sip&aacute;n (USS)</p>
+                                <span class="cv-date">2022 &mdash; Presente</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- PROJECTS -->
+                    <section class="cv-section">
+                        <div class="cv-section-header">
+                            <i class="fa-solid fa-code-branch"></i>
+                            <h2>Proyectos Destacados</h2>
+                        </div>
+
+                        <div class="cv-proj-item">
+                            <div class="cv-proj-icon"><i class="fa-solid fa-globe"></i></div>
+                            <div class="cv-proj-info">
+                                <h3>Peruserver</h3>
+                                <p>Sitio web oficial del simulador de conducci&oacute;n PERUSERVER inspirado en Per&uacute;.</p>
+                                <div class="cv-proj-links">
+                                    <a href="https://peruserver.pe" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> peruserver.pe</a>
+                                    <a href="https://github.com/NilverTI/peruserver.de" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> C&oacute;digo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cv-proj-item">
+                            <div class="cv-proj-icon"><i class="fa-solid fa-truck"></i></div>
+                            <div class="cv-proj-info">
+                                <h3>MOVIL BUS PSV</h3>
+                                <p>Web oficial con integraci&oacute;n de API Trucky y galer&iacute;a de fotos con Supabase.</p>
+                                <div class="cv-proj-links">
+                                    <a href="https://www.movilbuspsv.de/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> movilbuspsv.de</a>
+                                    <a href="https://github.com/NilverTI/movilbus" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> C&oacute;digo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cv-proj-item">
+                            <div class="cv-proj-icon"><i class="fa-solid fa-truck"></i></div>
+                            <div class="cv-proj-info">
+                                <h3>TRANSZELA PSV</h3>
+                                <p>Web oficial con integraci&oacute;n de API Trucky y galer&iacute;a de fotos con Supabase.</p>
+                                <div class="cv-proj-links">
+                                    <a href="https://transzelapsv.ink/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> transzelapsv.ink</a>
+                                    <a href="https://github.com/NilverTI/transzelapsv" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> C&oacute;digo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cv-proj-item">
+                            <div class="cv-proj-icon"><i class="fa-solid fa-truck"></i></div>
+                            <div class="cv-proj-info">
+                                <h3>RARAZ PSV</h3>
+                                <p>Web oficial con integraci&oacute;n de API Trucky y galer&iacute;a de fotos con Supabase.</p>
+                                <div class="cv-proj-links">
+                                    <a href="https://raraz.peruserver.pe/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> raraz.peruserver.pe</a>
+                                    <a href="https://github.com/NilverTI/rarazpsv" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> C&oacute;digo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cv-proj-item">
+                            <div class="cv-proj-icon"><i class="fa-solid fa-hospital"></i></div>
+                            <div class="cv-proj-info">
+                                <h3>Cicsa - Centro M&eacute;dico</h3>
+                                <p>Sitio web oficial del Centro M&eacute;dico CICSA, especializado en ex&aacute;menes m&eacute;dicos para licencias de conducir.</p>
+                                <div class="cv-proj-links">
+                                    <a href="https://cicsa.netlify.app/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> cicsa.netlify.app</a>
+                                    <a href="https://github.com/NilverTI/CICSA" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> C&oacute;digo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cv-proj-item">
+                            <div class="cv-proj-icon"><i class="fa-solid fa-hashtag"></i></div>
+                            <div class="cv-proj-info">
+                                <h3>Social Media Manager</h3>
+                                <p>Web interactiva para administrar m&uacute;ltiples redes sociales desde un solo panel.</p>
+                                <div class="cv-proj-links">
+                                    <a href="https://nilverti.netlify.app/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> nilverti.netlify.app</a>
+                                    <a href="https://github.com/NilverTI/Redes-Sociales" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> C&oacute;digo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+
+            </div>
+
+            <div class="cv-footer">
+                &copy; 2026 Nilver T.I &mdash; <a href="/">nilverti.de</a> &mdash; M&aacute;s proyectos en <a href="https://github.com/NilverTI" target="_blank" rel="noopener">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('downloadBtn')?.addEventListener('click', function() {
+            window.print();
+        });
+    </script>
+
+</body>
+</html>

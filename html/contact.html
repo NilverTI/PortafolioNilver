@@ -52,7 +52,15 @@
                         placeholder="How can I help you?" data-i18n-placeholder="contact.messagePlaceholder"
                         required></textarea>
                 </div>
-
+                <div class="terms-check" id="termsCheckGroup">
+                    <input type="checkbox" id="termsAccepted" name="terms_accepted" value="yes"
+                        class="terms-check__input" />
+                    <label for="termsAccepted" class="terms-check__label">
+                        <span data-i18n="contact.termsAcceptPrefix">I have read and accept the</span>
+                        <a href="/terminos.html" target="_blank" rel="noopener noreferrer"
+                            class="terms-check__link" data-i18n="contact.termsAcceptLink">Terms and Conditions</a>
+                    </label>
+                </div>
                 <button type="submit" id="contactSubmitBtn" class="contact-submit">
                     <i class="fa-solid fa-paper-plane" id="contactSubmitIcon"></i>
                     <span id="contactSubmitText" data-i18n="contact.submit">Send message</span>
@@ -128,6 +136,29 @@
                 </a>
             </div>
         </div>
-
+    </div>
+    <div id="termsModal" class="terms-modal hidden" role="dialog" aria-modal="true"
+        aria-labelledby="termsModalTitle" aria-describedby="termsModalText">
+        <div class="terms-modal__backdrop" data-terms-modal-close></div>
+        <div class="terms-modal__panel" tabindex="-1">
+            <button type="button" class="terms-modal__close" data-terms-modal-close
+                aria-label="Close modal" data-i18n-aria-label="contact.termsModalCloseLabel">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+            <span class="contact-label terms-modal__label" data-i18n="contact.termsModalEyebrow">Before sending</span>
+            <h3 id="termsModalTitle" class="terms-modal__title" data-i18n="contact.termsModalTitle">
+                Read and accept the terms
+            </h3>
+            <p id="termsModalText" class="terms-modal__text" data-i18n="contact.termsModalText">
+                To send your message, please review the Terms and Conditions and then mark the acceptance checkbox.
+            </p>
+            <div class="terms-modal__actions">
+                <a href="/terminos.html" target="_blank" rel="noopener noreferrer" class="terms-modal__primary"
+                    data-terms-modal-close
+                    data-i18n="contact.termsModalRead">Read terms</a>
+                <button type="button" class="terms-modal__secondary" data-terms-modal-close
+                    data-i18n="contact.termsModalBack">Back to form</button>
+            </div>
+        </div>
     </div>
 </section>

@@ -133,6 +133,53 @@
     display: none;
 }
 
+.terms-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.terms-check.is-error {
+    background: rgba(229, 9, 20, 0.08);
+    border-color: rgba(229, 9, 20, 0.45);
+    box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.08);
+}
+
+.terms-check__input {
+    width: 1.05rem;
+    height: 1.05rem;
+    margin: 0.2rem 0 0;
+    accent-color: var(--color-accent);
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.terms-check__label {
+    color: #9ca3af;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.terms-check__link {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(229, 9, 20, 0.45);
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.terms-check__link:hover,
+.terms-check__link:focus-visible {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
 .contact-submit {
     display: inline-flex;
     align-items: center;
@@ -214,6 +261,132 @@
     color: #888;
     font-size: 0.9rem;
     margin: 0;
+}
+
+/* Terms modal */
+.terms-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+}
+
+.terms-modal.hidden {
+    display: none;
+}
+
+.terms-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.74);
+    backdrop-filter: blur(8px);
+}
+
+.terms-modal__panel {
+    position: relative;
+    width: min(100%, 460px);
+    background: #0f0f10;
+    border: 1px solid rgba(229, 9, 20, 0.22);
+    border-radius: 16px;
+    padding: 2rem;
+    color: #fff;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    outline: none;
+}
+
+.terms-modal__close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.terms-modal__close:hover,
+.terms-modal__close:focus-visible {
+    color: #fff;
+    background: rgba(229, 9, 20, 0.12);
+    border-color: rgba(229, 9, 20, 0.35);
+}
+
+.terms-modal__label {
+    margin-bottom: 1rem;
+}
+
+.terms-modal__title {
+    font-size: clamp(1.35rem, 4vw, 1.8rem);
+    margin: 0 0 0.75rem;
+    line-height: 1.2;
+}
+
+.terms-modal__text {
+    color: #a3a3a3;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin: 0 0 1.5rem;
+}
+
+.terms-modal__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.terms-modal__primary,
+.terms-modal__secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.85rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.terms-modal__primary {
+    color: #fff;
+    background: linear-gradient(135deg, #e50914, #b00710);
+    border: 0;
+    box-shadow: 0 8px 25px rgba(229, 9, 20, 0.25);
+}
+
+.terms-modal__secondary {
+    color: #d1d5db;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terms-modal__primary:hover,
+.terms-modal__primary:focus-visible,
+.terms-modal__secondary:hover,
+.terms-modal__secondary:focus-visible {
+    transform: translateY(-2px);
+}
+
+.terms-modal__primary:hover,
+.terms-modal__primary:focus-visible {
+    box-shadow: 0 12px 35px rgba(229, 9, 20, 0.4);
+}
+
+.terms-modal__secondary:hover,
+.terms-modal__secondary:focus-visible {
+    border-color: rgba(229, 9, 20, 0.3);
 }
 
 /* =========================================
@@ -347,6 +520,15 @@
 
     .contact-title {
         font-size: clamp(1.8rem, 8vw, 2.4rem);
+    }
+
+    .terms-modal__panel {
+        padding: 1.5rem;
+    }
+
+    .terms-modal__primary,
+    .terms-modal__secondary {
+        width: 100%;
     }
 
     .social-list {
